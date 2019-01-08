@@ -1,62 +1,97 @@
 <!DOCTYPE html>
 <html>
-    <head>
+
+<head>
     <title>Página pruebas</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
 </head>
 
 <body>
-    <h1>Emmet</h1>
-    <p>Es un sistema que permite generar de forma rápida un html. Es un sistema que permite generar de forma rápida un html</p>
-
-    <div id="page">
-        <div class="logo"></div>
-        <ul id="navigation">
-            <li><a href="http://www.google.es">Google</a></li>
+    <!--<div id="cabecera">-->
+    <header>
+        <h1>Bienvenidos a esta página</h1>
+    </header>
+    <!--    </div>-->
+    <!--    <div id="menu">-->
+    <nav>
+        <ul>
+            <li><a href="index.html">Índice</a></li>
             <li><a href="segunda.html">Segunda</a></li>
         </ul>
-    </div>
+    </nav>
+    <!--    </div>-->
+    <main>
+        <!--       <div id="contenido">-->
+        <h1>Emmet</h1>
+        <p>Es un sistema que permite generar de forma rápida un html. Es un <strong>sistema</strong> que permite generar de forma rápida un html. Javier&nbsp;&amp;&nbsp;Javier</p>
+        <p>
+            <code>5 > 3</code> es la expresión
+        </p>
+        
+        <pre>
+void main() {
+    printf("Hola &amp; &lt; 3 &gt; 3");
+}
+        </pre>
 
-    <ol>
-        <li>Primero</li>
-        <li>Segundo</li>
-        <li>Tercero
-            <ol>
-                <li>Otro</li>
-                <li>Otro más</li>
-            </ol>
-        </li>
-    </ol>
+        <div id="page">
+            <div class="logo"></div>
+            <ul id="navigation">
+                <li><a href="http://www.google.es">Google</a></li>
+                <li><a href="segunda.html">Segunda</a></li>
+            </ul>
+        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Sueldo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th>1</th>
-                <td>Javier</td>
-                <td>123</td>
-            </tr>
-            <tr>
-                <th>2</th>
-                <td>Pedro</td>
-                <td>234</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td></td>
-                <th>Total</th>
-                <td>357</td>
-            </tr>
-        </tfoot>
-    </table>
+        <ol>
+            <li>Primero</li>
+            <li>Segundo</li>
+            <li>Tercero
+                <ol>
+                    <li>Otro</li>
+                    <li>Otro más</li>
+                </ol>
+            </li>
+        </ol>
 
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Sueldo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>1</th>
+                    <td>Javier</td>
+                    <td>123</td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td>Pedro</td>
+                    <td>234</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <th>Total</th>
+                    <td>357</td>
+                </tr>
+            </tfoot>
+        </table>
+        <!--        </div>-->
+    </main>
+    <!--    <div id="anuncios"></div>-->
+    <aside>
+
+    </aside>
+    <!--    <div id="pie"></div>-->
+    <footer>
+        &copy; 2018 Garc&iacute;a Ni&ntilde;o
+    </footer>
 </body>
+
 </html>
