@@ -1,5 +1,10 @@
 body {
-    font-family: sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 1.2em;
+}
+
+h1, h2, h3 {
+    font-family: 'Allura', cursive;
 }
 
 h1 {
@@ -7,6 +12,7 @@ h1 {
     font-size: 3em;
     padding: 0.25em;
     text-align: center;
+    font-weight: bold;
 }
 
 main {
@@ -47,7 +53,7 @@ a {
 section > h2 {
     text-align: center;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 2.5em;
     margin-bottom: 0.25em;
 }
 
@@ -59,13 +65,41 @@ article {
 }
 
 article h2, article h3 {
-    font-size: 1.5em;
+    font-size: 2em;
 }
 
 article h2 {
-    font-variant: small-caps;
+    /*font-variant: small-caps;*/
+    margin-bottom: 0.25em;
 }
 
 article h3 {
     font-style: italic;
+    margin-bottom: 0.5em;
+}
+
+section {
+    line-height: 1.5em;
+}
+
+p {
+    margin-bottom: 1em;
+    text-indent: 1em;
+}
+
+p::first-letter {
+    font-size: 2em;
+    font-family: serif;
+}
+
+main h2:before {
+    content: "<<";
+    background-color: lightgray;
+    color: lightgray;
+    border: 1px solid lightgray;
+    border-radius: 2em;
+}
+
+main h2:after {
+    content: ">>";
 }
