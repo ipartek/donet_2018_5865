@@ -148,5 +148,6 @@ aside img {
 }
 
 iframe {
-    width: 100%;
+    width: calc(70vw - 3em);
+    height: calc( (70vw - 3em) * 9 / 16 );
 }
