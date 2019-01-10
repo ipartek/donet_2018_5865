@@ -123,3 +123,30 @@ main h2:after {
     content: ">>";
 }
 
+main {
+    float: left;
+    width: 70%;
+    box-sizing: border-box;
+}
+
+aside {
+    float: right;
+    width: 30%;
+    box-sizing: border-box;
+    
+    padding: 1em;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #777777;
+    background-color: white;
+    
+    line-height: 2em;
+}
+
+aside img {
+    width: 100%;
+}
+
+iframe {
+    width: 100%;
+}
