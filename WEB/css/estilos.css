@@ -163,3 +163,19 @@ footer {
     text-align: center;
     clear: both;
 }
+
+@media (max-width: 400px) {
+    main {
+        width: 100%;
+    }
+    
+    aside {
+        display: none;
+        /*visibility: hidden;*/
+    }
+    
+    iframe {
+    width: calc(100vw - 2em);
+    height: calc( (100vw - 2em) * 9 / 16 );
+}
+}
