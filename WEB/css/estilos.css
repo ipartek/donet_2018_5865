@@ -1,6 +1,11 @@
+html {
+    background-image: url(../imgs/despedida.jpg);
+}
+
 body {
     font-family: 'Yanone Kaffeesatz', sans-serif;
     font-size: 1.2em;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 h1, h2, h3 {
@@ -13,6 +18,8 @@ h1 {
     padding: 0.25em;
     text-align: center;
     font-weight: bold;
+    transform: rotateZ(2deg);
+    text-shadow: 5px 5px 10px #777777;
 }
 
 main {
@@ -20,9 +27,18 @@ main {
 }
 
 #logo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
     width: 100px;
 }
 
+#menu-principal {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    box-shadow: 5px 5px 10px #777777;
+}
 
 #menu-principal li {
     list-style: none;
@@ -62,6 +78,9 @@ article {
     margin-bottom: 1em;
     padding: 1em;
     border-radius: 5px;
+    
+    box-shadow: 5px 5px 10px #777777;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 article h2, article h3 {
@@ -103,3 +122,4 @@ main h2:before {
 main h2:after {
     content: ">>";
 }
+
