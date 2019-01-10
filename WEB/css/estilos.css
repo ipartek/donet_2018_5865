@@ -12,13 +12,17 @@ h1, h2, h3 {
     font-family: 'Allura', cursive;
 }
 
+body > header {
+    overflow: hidden;
+}
+
 h1 {
     background-color: lightgray;
     font-size: 3em;
     padding: 0.25em;
     text-align: center;
     font-weight: bold;
-    transform: rotateZ(2deg);
+    transform: rotateZ(2deg) scale(0.9);
     text-shadow: 5px 5px 10px #777777;
 }
 
@@ -29,7 +33,7 @@ main {
 #logo {
     position: fixed;
     right: 0;
-    bottom: 0;
+    bottom: 3em;
     width: 100px;
 }
 
@@ -150,4 +154,12 @@ aside img {
 iframe {
     width: calc(70vw - 3em);
     height: calc( (70vw - 3em) * 9 / 16 );
+}
+
+footer {
+    background-color: black;
+    color: white;
+    padding: 1em;
+    text-align: center;
+    clear: both;
 }
