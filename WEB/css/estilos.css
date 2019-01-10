@@ -124,7 +124,8 @@ main h2:before {
 }
 
 main h2:after {
-    content: ">>";
+    font-family: "Font Awesome 5 Free";
+    content: " \f1ea";
 }
 
 main {
