@@ -148,7 +148,7 @@ function sentenciasDeControl() {
 
 sentenciasDeControl();
 */
-
+/*
 function matricesArreglosArraysVectores() {
     'use strict';
     
@@ -196,3 +196,74 @@ function matricesArreglosArraysVectores() {
 }
 
 matricesArreglosArraysVectores();
+*/
+
+function funciones() {
+    'use strict';
+    
+    //function sumar(a, b) {
+    //    return a + b;
+    //}
+    
+    var sumar, total, calcular;
+    
+    sumar = function (a, b) {
+        return a + b;
+    };
+    
+    calcular = sumar;
+    
+    total = calcular(1, 2);
+    
+    console.log(total);
+}
+
+funciones();
+
+function objetos() {
+    'use strict';
+    var persona;
+    
+    persona = {
+        nombre: 'Javier',
+        apellido: 'Lete',
+        nombreCompleto: function () {
+            return this.nombre + ', ' + this.apellido;
+        }
+    };
+    
+    //persona.nombre = 'Javier';
+    //persona.apellido = 'Lete';
+    
+    //persona.nombreCompleto = function () {
+    //    return this.nombre + ' ' + //this.apellido;
+    //};
+    
+    console.log(persona);
+    console.log(persona.nombre);
+    console.log(persona.apellido);
+    console.log(persona.nombreCompleto());
+    
+    function Persona(nombre, apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+    
+    Persona.prototype.nombreCompleto = function () {
+        return '[' + this.nombre + ',' + this.apellido + ']';
+    };
+    
+    persona = new Persona('Pepe', 'Pérez');
+    
+    persona.tipo = 'Ejemplo de toda la vida';
+    
+    console.log(persona);
+    console.log(persona.nombre);
+    console.log(persona.apellido);
+    console.log(persona.nombreCompleto());
+    
+    console.log(Persona);
+    console.log(Persona.prototype);
+}
+
+objetos();
