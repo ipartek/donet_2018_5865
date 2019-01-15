@@ -43,14 +43,16 @@ window.onload = function () {
         if (email.value.indexOf('hotmail') !== -1) {
             errorEmail = document.createElement('span');
             errorEmail.innerHTML = 'No aceptamos emails públicos';
-            errorEmail.style = 'color: red; font-weight: bold';
+            //errorEmail.style = 'color: red; font-weight: bold';
+            errorEmail.className = 'error';
             
             console.trace(errorEmail);
             
             email.parentNode.appendChild(errorEmail);
             
             //alert('No aceptamos emails públicos');
-            email.style = 'border: 1px solid red';
+            //email.style = 'border: 1px solid red';
+            email.className = 'error';
             email.value = '';
             email.focus();
             valido = false;
