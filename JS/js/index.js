@@ -85,7 +85,7 @@ function operadores() {
 
 operadores();
 */
-
+/*
 function sentenciasDeControl() {
     'use strict';
     
@@ -147,3 +147,52 @@ function sentenciasDeControl() {
 }
 
 sentenciasDeControl();
+*/
+
+function matricesArreglosArraysVectores() {
+    'use strict';
+    
+    var i, prop, arr = [ 5, 7, 9 ];
+    console.log('arr[0]', arr[0]);
+    
+    for (i = 0; i < arr.length; i++) {
+        console.log(i, arr[i]);
+    }
+    
+    arr = new Array(2);
+    arr[0] = 10;
+    arr[1] = 20;
+    
+    arr[2] = 7;
+    
+    arr[7] = 'Yepa';
+    
+    arr[10] = 20;
+    
+    //arr['casa'] = 'home';
+    arr.casa = 'home';
+    
+    for (i = 0; i < arr.length; i++) {
+        console.log(i, arr[i]);
+    }
+    
+    console.log('Listado completo de propiedades');
+    
+    for (prop in arr) {
+        if (arr.hasOwnProperty(prop)) {
+            console.log(prop, arr[prop]);
+        }
+    }
+    
+    //console.log(arr['casa']);
+    console.log(arr);
+    
+    arr = [];
+    
+    arr.push(5);
+    arr.push(6);
+    
+    console.log(arr);
+}
+
+matricesArreglosArraysVectores();
