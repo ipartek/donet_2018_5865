@@ -70,7 +70,7 @@ window.onload = function () {
         } else if (email.error) {
             email.error.parentNode.removeChild(email.error);
             email.error = undefined;
-            email.className = '';
+            email.removeAttribute('class');
         }
 
         if (valido && confirm('¿Estás seguro de enviar los datos?')) {
