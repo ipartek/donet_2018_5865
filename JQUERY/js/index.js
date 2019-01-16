@@ -40,6 +40,8 @@ $(function () {
             if (!$email.hasClass('error')) {
                 $email.after($('<span class="error">No aceptamos emails públicos</span>')).addClass('error');
             }
+        } else if ($email.hasClass('error')) {
+            $email.removeClass('error').next().remove();
         }
         
         if (valido && confirm('¿Estás seguro de enviar los datos?')) {
