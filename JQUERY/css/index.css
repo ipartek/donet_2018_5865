@@ -1,0 +1,9 @@
+input.error {
+    border: 1px dashed red;
+}
+
+span.error {
+    color: red;
+    font-weight: bold;
+    font-family: monospace;
+}
