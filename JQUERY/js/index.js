@@ -7,4 +7,6 @@ $(function () {
     'use strict';
     
     $('h1').text('Cambiado desde jQuery');
+    
+    
 });
