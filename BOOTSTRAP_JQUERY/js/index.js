@@ -20,7 +20,7 @@ $(function () {
     $zipError.data('error-original', $('#zip-error').text());
     
     $form.submit(function (e) {
-        var errorCustom, clave, tipoError, mensajeError;
+        var errorCustom, tipoError, mensajeError;
         
         if (!esValidoZip($zip.val())) {
             errorCustom = 'El ZIP no es válido (no es divisible entre 2)';
@@ -35,12 +35,21 @@ $(function () {
             e.preventDefault();
             e.stopPropagation();
 
-            for (clave in $zip[0].validity) {
+            /*for (clave in $zip[0].validity) {
                 if ($zip[0].validity[clave]) {
                     tipoError = clave;
                     break;
                 }
-            }
+            }*/
+            
+            tipoError = Object.keys(Object.getPrototypeOf($zip[0].validity)).find(
+                function (clave) {
+                    return $zip[0].validity[clave] === true;
+                }
+                
+                // ES6
+                //clave => $zip[0].validity[clave] === true
+            );
             
             switch (tipoError) {
             case 'patternMismatch':
