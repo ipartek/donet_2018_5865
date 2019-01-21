@@ -20,6 +20,10 @@ $(function () {
     $zipError.data('error-original', $('#zip-error').text());
     
     $form.submit(function (e) {
+        //TODO: Quitar esto en versión final
+        e.preventDefault();
+        e.stopPropagation();
+        
         var errorCustom, tipoError, mensajeError;
         
         if (!esValidoZip($zip.val())) {
