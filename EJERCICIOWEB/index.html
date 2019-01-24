@@ -15,6 +15,8 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
+    <script src="js/moment.min.js"></script>
+   
     <script src="js/index.js"></script>
 </head>
 
@@ -78,7 +80,7 @@
         </table>
     </section>
     <section id="detalle">
-        <form id="formulario" action="servidor.html" method="get" class="needs-validation">
+        <form id="formulario" action="servidor.html" method="get" class="needs-validation" novalidate>
             <input type="hidden" name="id" value="1" />
 
             <div class="form-row">
@@ -115,14 +117,14 @@
                 <div class="col-md-3 mb-3">
                     <label for="dni">DNI</label>
                     <input type="text" class="form-control" id="dni" name="dni" placeholder="12345678A ó A1234567A" pattern="[XYZ\d]\d{7}[ABCDEFGHJKLMNPQRSTVWXYZ]" required>
-                    <div class="invalid-feedback">
+                    <div id="dni-error" class="invalid-feedback">
                         DNI incorrecto
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="fecha-de-nacimiento">Fecha de nacimiento</label>
                     <input type="date" class="form-control" id="fecha-de-nacimiento" name="fecha-de-nacimiento" placeholder="aaaa-mm-dd" required>
-                    <div class="invalid-feedback">
+                    <div id="fecha-error" class="invalid-feedback">
                         Fecha incorrecta
                     </div>
                 </div>
