@@ -1,0 +1,7 @@
+C:\5865\donet_2018_5865\HolaMundo\HolaMundo\bin\Debug\HolaMundo.exe.config
+C:\5865\donet_2018_5865\HolaMundo\HolaMundo\bin\Debug\HolaMundo.exe
+C:\5865\donet_2018_5865\HolaMundo\HolaMundo\bin\Debug\HolaMundo.pdb
+C:\5865\donet_2018_5865\HolaMundo\HolaMundo\obj\Debug\HolaMundo.csprojAssemblyReference.cache
+C:\5865\donet_2018_5865\HolaMundo\HolaMundo\obj\Debug\HolaMundo.csproj.CoreCompileInputs.cache
+C:\5865\donet_2018_5865\HolaMundo\HolaMundo\obj\Debug\HolaMundo.exe
+C:\5865\donet_2018_5865\HolaMundo\HolaMundo\obj\Debug\HolaMundo.pdb
