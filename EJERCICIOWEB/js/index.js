@@ -11,6 +11,7 @@ function esDeEdadLegalParaTrabajar(fechaDeNacimiento) {
     var hoy, cumpleMayoriaEdad, cumpleJubilacion;
     
     hoy = moment().startOf('day');
+    fechaDeNacimiento = moment(fechaDeNacimiento).startOf('day');
     
     cumpleMayoriaEdad = moment(fechaDeNacimiento).add(18, 'year');
     cumpleJubilacion = moment(fechaDeNacimiento).add(65, 'year');
@@ -205,8 +206,8 @@ function formularioAFilaTabla(id) {
     f = new Date(datos.fechaDeNacimiento = form['fecha-de-nacimiento'].value);
     datos.nacionalidad = form.nacionalidad.value;
     
-    celdas[5].innerText =
-        f.getDate() + '/' + (f.getMonth() + 1) + '/' + f.getFullYear();
+    celdas[5].innerText = moment(f).format('DD/MM/YYYY');
+        //f.getDate() + '/' + (f.getMonth() + 1) + '/' + f.getFullYear();
     
     nac = form.nacionalidad;
     
@@ -249,6 +250,9 @@ function borrarFilaTabla(id) {
 
 $(function () {
     'use strict';
+    
+    $('#listado table').DataTable();
+    
     var $form;
     
     $form = $('#formulario');
@@ -281,6 +285,8 @@ $(function () {
             errorDni = 'La letra de DNI no concuerda con el número';
         } else if (esDniExtranjero($dni.val()) && $('#nacionalidad').val() !== '2') {
             errorDni = 'Si el DNI es extranjero la nacionalidad debe ser extranjero';
+        } else if (!esDniExtranjero($dni.val()) && $('#nacionalidad').val() !== '1') {
+            errorDni = 'Si el DNI es español la nacionalidad debe ser española';
         } else {
             errorDni = '';
         }
