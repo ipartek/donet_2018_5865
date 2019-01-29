@@ -9,6 +9,8 @@ namespace EjemploPoo
     {
         static void Main()
         {
+            Usuario.PasswordPorDefecto = "PASSWORD POR DEFECTO";
+
             Usuario usuario;
 
             usuario = new Usuario(password: "lakjdfl", email: "laskfal");
@@ -47,6 +49,8 @@ namespace EjemploPoo
             Console.WriteLine(usuario < u);
             //Console.WriteLine(usuario.Email.CompareTo(u) < 0);
             //Console.WriteLine(usuario.menorQue(u));
+
+            Console.WriteLine(Usuario.PasswordPorDefecto);
         }
 
         private struct Estructura

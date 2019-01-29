@@ -5,6 +5,16 @@ namespace Tipos
 {
     public class Usuario
     {
+        //Variables estáticas / de clase / compartidas
+        private static string passwordPorDefecto = "Cámbiala";
+
+        //Propiedad estática / de clase / compartida
+        public static string PasswordPorDefecto
+        {
+            get { return passwordPorDefecto; }
+            set { passwordPorDefecto = value; }
+        }
+
         //Variables de instancia / Campos / Fields
         private string email;
 
@@ -19,7 +29,7 @@ namespace Tipos
             Console.WriteLine(password);
         }
         
-        public Usuario() : this(null, null)
+        public Usuario() : this(null, passwordPorDefecto)
         {
             Console.WriteLine("Constructor vacío");
         }
@@ -102,5 +112,7 @@ namespace Tipos
         {
             return u1.Email.CompareTo(u2.Email) < 0;
         }
+
+
     }
 }
