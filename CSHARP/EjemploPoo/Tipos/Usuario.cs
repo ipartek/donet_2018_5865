@@ -50,7 +50,40 @@ namespace Tipos
         //Método de instancia
         public string GetTexto()
         {
-            return String.Format("Email: {0}, Password: {1}", Email, Password);
+            return string.Format("Email: {0}, Password: {1}", Email, Password);
+        }
+
+        public enum Formatos
+        {
+            Bonito,
+            Compacto
+        }
+
+        //Sobrecargas
+        public string GetTexto(string formato)
+        {
+            switch (formato)
+            {
+                case "bonito":
+                    return GetTexto();
+                case "compacto":
+                    return string.Format("{0},{1}", Email, Password);
+                default:
+                    return GetTexto();
+            }
+        }
+
+        public string GetTexto(Formatos formato)
+        {
+            switch (formato)
+            {
+                case Formatos.Bonito:
+                    return GetTexto("bonito");
+                case Formatos.Compacto:
+                    return GetTexto("compacto");
+                default:
+                    return GetTexto();
+            }
         }
     }
 }

@@ -41,7 +41,9 @@ namespace EjemploPoo
 
             u = new Usuario("laksdjfl", "lkajsdlk");
 
-            Console.WriteLine(u.GetTexto());
+            Console.WriteLine(u.GetTexto("compacto"));
+            Console.WriteLine(u.GetTexto(Usuario.Formatos.Bonito));
+            Console.WriteLine(u.GetTexto(1));
         }
 
         private struct Estructura
