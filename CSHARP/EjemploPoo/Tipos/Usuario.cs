@@ -23,6 +23,12 @@ namespace Tipos
         {
             Console.WriteLine("Constructor vacío");
         }
+
+        //DESTRUCTOR
+        ~Usuario()
+        {
+            Console.WriteLine("Destructor");
+        }
         
         //Propiedad "automática" que genera la variable y los accesos
         public string Password { get; set; }
@@ -84,6 +90,17 @@ namespace Tipos
                 default:
                     return GetTexto();
             }
+        }
+
+        //Sobrecarga de operadores
+        public static bool operator>(Usuario u1, Usuario u2)
+        {
+            return u1.Email.CompareTo(u2.Email) > 0;
+        }
+
+        public static bool operator<(Usuario u1, Usuario u2)
+        {
+            return u1.Email.CompareTo(u2.Email) < 0;
         }
     }
 }

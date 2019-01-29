@@ -43,7 +43,10 @@ namespace EjemploPoo
 
             Console.WriteLine(u.GetTexto("compacto"));
             Console.WriteLine(u.GetTexto(Usuario.Formatos.Bonito));
-            Console.WriteLine(u.GetTexto(1));
+
+            Console.WriteLine(usuario < u);
+            //Console.WriteLine(usuario.Email.CompareTo(u) < 0);
+            //Console.WriteLine(usuario.menorQue(u));
         }
 
         private struct Estructura
