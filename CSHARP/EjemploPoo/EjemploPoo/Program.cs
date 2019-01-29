@@ -12,7 +12,20 @@ namespace EjemploPoo
 
             usuario = new Tipos.Usuario();
 
-            Console.WriteLine(usuario);
+            usuario.SetEmail("javierlete@email.net");
+            
+            Console.WriteLine(usuario.GetEmail());
+
+            usuario.Email = "yepa";
+
+            Console.WriteLine(usuario.Email);
+
+            usuario.Password = "alsdkjfalsdk";
+
+            Console.WriteLine(usuario.Password);
+
+            //contador.SetValor(contador.GetValor()+1);
+            //contador.Valor++;
         }
 
         private struct Estructura
