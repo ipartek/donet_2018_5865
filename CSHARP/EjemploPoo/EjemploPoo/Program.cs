@@ -13,7 +13,30 @@ namespace EjemploPoo
             public int dato;
         }
 
-        static void Main(string[] args)
+        private class Clase
+        {
+            public int dato;
+        }
+
+        static void Main()
+        {
+            Clase clase, clase2;
+
+            clase = new Clase();
+
+            clase.dato = 1;
+
+            Console.WriteLine(clase.dato);
+
+            clase2 = clase;
+
+            clase.dato = 7;
+
+            Console.WriteLine(clase.dato);
+            Console.WriteLine(clase2.dato);
+        }
+
+        static void MainEstructura(string[] args)
         {
             Estructura estructura, estructura2;
 
