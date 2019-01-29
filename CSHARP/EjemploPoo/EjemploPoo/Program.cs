@@ -1,13 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+//csc /r:Tipos.dll Program.cs /out:EjemploPoo.exe
 
 namespace EjemploPoo
 {
     class Program
     {
+        static void Main()
+        {
+            Tipos.Usuario usuario;
+
+            usuario = new Tipos.Usuario();
+
+            Console.WriteLine(usuario);
+        }
+
         private struct Estructura
         {
             public int dato;
@@ -18,7 +25,7 @@ namespace EjemploPoo
             public int dato;
         }
 
-        static void Main()
+        static void MainClase()
         {
             Clase clase, clase2;
 
