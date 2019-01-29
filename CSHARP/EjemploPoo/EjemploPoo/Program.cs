@@ -9,6 +9,22 @@ namespace EjemploPoo
     {
         static void Main()
         {
+            Dni dni = new Dni("12345678Z");
+
+            Console.WriteLine(dni.Numero);
+            Console.WriteLine(dni.Letra);
+
+            if (Dni.EsValido("12345678A"))
+            {
+                dni = new Dni("12345678A");
+            }
+            else
+            {
+                Console.WriteLine("Es incorrecto");
+            }
+        }
+        static void MainUsuario()
+        {
             Usuario.PasswordPorDefecto = "PASSWORD POR DEFECTO";
 
             Usuario usuario;
@@ -16,7 +32,7 @@ namespace EjemploPoo
             usuario = new Usuario(password: "lakjdfl", email: "laskfal");
 
             usuario.SetEmail("javierlete@email.net");
-            
+
             Console.WriteLine(usuario.GetEmail());
 
             usuario.Email = "yepa";
