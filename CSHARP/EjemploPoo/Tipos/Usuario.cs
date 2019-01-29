@@ -42,6 +42,7 @@ namespace Tipos
         
         //Propiedad "automática" que genera la variable y los accesos
         public string Password { get; set; }
+        public Dni Dni { get; set; }
 
         //Métodos de acceso
         public string GetEmail()

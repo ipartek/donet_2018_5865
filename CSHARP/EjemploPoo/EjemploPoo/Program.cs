@@ -9,6 +9,24 @@ namespace EjemploPoo
     {
         static void Main()
         {
+            Grupo g = new Grupo("Pruebas");
+
+            g.Add(new Usuario("a@b", "a"));
+            g.Add(new Usuario("b@c", "b"));
+
+            Usuario usuario = g.FindByEmail("b@c");
+
+            Console.WriteLine(usuario.GetTexto());
+
+            g.Remove(new Usuario("b@c", "b"));
+
+            Console.WriteLine(
+                g.FindByEmail("b@c") == null ? "No encontrado" : "Encontrado");
+
+            Console.WriteLine(usuario == new Usuario("b@c", "b"));
+        }
+        static void MainDni()
+        {
             Dni dni = new Dni("12345678Z");
 
             Console.WriteLine(dni.Numero);
@@ -22,6 +40,13 @@ namespace EjemploPoo
             {
                 Console.WriteLine("Es incorrecto");
             }
+
+            Usuario u = new Usuario
+            {
+                Email = "asdf@asdf",
+                Password = "aslñdifohlkdhfas",
+                Dni = new Dni("12345678A")
+            };
         }
         static void MainUsuario()
         {
