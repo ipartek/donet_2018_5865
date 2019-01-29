@@ -46,5 +46,11 @@ namespace Tipos
             //Acceso set
             set { email = value; }
         }
+
+        //Método de instancia
+        public string GetTexto()
+        {
+            return String.Format("Email: {0}, Password: {1}", Email, Password);
+        }
     }
 }

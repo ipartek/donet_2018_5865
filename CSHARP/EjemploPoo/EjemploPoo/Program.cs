@@ -40,6 +40,8 @@ namespace EjemploPoo
             Console.WriteLine(u.Password);
 
             u = new Usuario("laksdjfl", "lkajsdlk");
+
+            Console.WriteLine(u.GetTexto());
         }
 
         private struct Estructura
