@@ -1,4 +1,5 @@
-﻿//csc /t:library Usuario.cs /out:Tipos.dll
+﻿using System;
+//csc /t:library Usuario.cs /out:Tipos.dll
 
 namespace Tipos
 {
@@ -7,6 +8,22 @@ namespace Tipos
         //Variables de instancia / Campos / Fields
         private string email;
 
+        //Constructores
+        public Usuario(string email = null, string password = null)
+        {
+            Email = email;
+            Password = password;
+
+            Console.WriteLine("Constructor completo");
+            Console.WriteLine(email);
+            Console.WriteLine(password);
+        }
+        
+        public Usuario() : this(null, null)
+        {
+            Console.WriteLine("Constructor vacío");
+        }
+        
         //Propiedad "automática" que genera la variable y los accesos
         public string Password { get; set; }
 

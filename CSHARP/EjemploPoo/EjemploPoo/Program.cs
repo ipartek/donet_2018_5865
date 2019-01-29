@@ -1,4 +1,5 @@
 ﻿using System;
+using Tipos;
 
 //csc /r:Tipos.dll Program.cs /out:EjemploPoo.exe
 
@@ -8,9 +9,9 @@ namespace EjemploPoo
     {
         static void Main()
         {
-            Tipos.Usuario usuario;
+            Usuario usuario;
 
-            usuario = new Tipos.Usuario();
+            usuario = new Usuario(password: "lakjdfl", email: "laskfal");
 
             usuario.SetEmail("javierlete@email.net");
             
@@ -26,6 +27,19 @@ namespace EjemploPoo
 
             //contador.SetValor(contador.GetValor()+1);
             //contador.Valor++;
+
+            Usuario u2 = new Usuario();
+
+            Usuario u = new Usuario
+            {
+                Email = "email",
+                Password = "pass"
+            };
+
+            Console.WriteLine(u.Email);
+            Console.WriteLine(u.Password);
+
+            u = new Usuario("laksdjfl", "lkajsdlk");
         }
 
         private struct Estructura
