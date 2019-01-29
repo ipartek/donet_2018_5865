@@ -4,9 +4,16 @@ using System.Collections.Generic;
 
 namespace HolaMundo
 {
-    class Pepito
+    /// <summary>
+    /// Clase de ejemplo de C#
+    /// </summary>
+    public class Pepito
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Método de entrada de la aplicación
+        /// </summary>
+        /// <param name="args">Argumentos de entrada</param>
+        public static void Main(string[] args)
         {
             Console.Write("Dime tu nombre: ");
             string nombre = Console.ReadLine();
@@ -130,7 +137,101 @@ namespace HolaMundo
             dicGen[5] = "cinco";
             dicGen["cinco"] = 5;
 
+            //SENTENCIAS DE CONTROL
 
+            int x = 8;
+
+            if(x==7)
+            {
+                Console.WriteLine("Vale 7");
+            }
+
+            switch (x)
+            {
+                case 5:
+                    Console.WriteLine("Vale 5");
+                    break;
+                case 6:
+                case 7:
+                    Console.WriteLine("Vale 6 o 7");
+                    break;
+
+                case 8:
+                    Console.WriteLine("Vale 8");
+                    goto case 9;
+
+                case 9:
+                    Console.WriteLine("Vale 8 o 9");
+                    break;
+                default:
+                    Console.WriteLine("Ningún valor de los anteriores");
+                    break;
+            }
+
+            for (int n = 1; n <= 10; n++)
+            {
+                Console.WriteLine("Repetición: {0}", n);
+            }
+
+            foreach (string t in textos)
+            {
+                Console.WriteLine(t);
+            }
+
+            foreach (int elemento in lista)
+            {
+                Console.WriteLine(elemento);
+            }
+
+            foreach (char casilla in tablero)
+            {
+                Console.WriteLine(casilla);
+            }
+
+            for(int fila = 0; fila < tablero.GetUpperBound(0); fila++)
+            {
+                for (int col = 0; col < tablero.GetUpperBound(1); col++)
+                {
+                    if(tablero[fila, col] == '\0')
+                    {
+                        tablero[fila, col] = '_';
+                    }
+                    Console.Write(tablero[fila, col]);
+                }
+
+                Console.WriteLine();
+            }
+
+            //NULLABLES
+
+            int? i = null;
+
+            if(i == null)
+            {
+                Console.WriteLine("Vale nulo");
+            }
+
+            i = 3;
+            
+            Console.WriteLine(i);
+
+            Nullable<int> nullable = null;
+
+            if(!nullable.HasValue)
+            {
+                Console.WriteLine("No tiene valor");
+            }
+
+            nullable = 3;
+
+            Console.WriteLine(nullable.Value);
         }
+
+        //Comentario de línea
+
+        /*
+         * Comentario
+         * multilínea
+         */
     }
 }

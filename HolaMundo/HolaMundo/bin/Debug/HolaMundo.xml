@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HolaMundo</name>
+    </assembly>
+    <members>
+        <member name="T:HolaMundo.Pepito">
+            <summary>
+            Clase de ejemplo de C#
+            </summary>
+        </member>
+        <member name="M:HolaMundo.Pepito.Main(System.String[])">
+            <summary>
+            Método de entrada de la aplicación
+            </summary>
+            <param name="args">Argumentos de entrada</param>
+        </member>
+    </members>
+</doc>
