@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 //Al hacer el using se activan los métodos de extensión de ese espacio de nombres
 using Utilidades;
@@ -13,6 +14,16 @@ namespace Tipos
 
         public Dni(string dni)
         {
+            if(dni == null)
+            {
+                throw new Exception("No se aceptan DNIs incorrectos");
+            }
+
+            if(!Regex.IsMatch(dni, @"^[XYZ\d]\d{7}[" + LETRAS + "]$"))
+            {
+                throw new Exception("El formato de DNI no es correcto");
+            }
+
             if (!EsValido(dni))
             {
                 throw new Exception("El DNI no es válido");

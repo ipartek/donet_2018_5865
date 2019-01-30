@@ -3,6 +3,8 @@ using Tipos;
 
 //csc /r:Tipos.dll Program.cs /out:EjemploPoo.exe
 
+//Program.Main()
+
 namespace EjemploPoo
 {
     class Program
