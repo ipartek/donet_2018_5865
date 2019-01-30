@@ -11,6 +11,13 @@ namespace EjemploPoo
     {
         static void Main()
         {
+            Dni dni = new Dni("12345678Z");
+
+            Console.WriteLine(dni.Numero);
+            Console.WriteLine(dni.Letra);
+        }
+        static void MainUsuarioExtendido()
+        {
             UsuarioExtendido ue = new UsuarioExtendido
             {
                 Email = "email", 

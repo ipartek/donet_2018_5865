@@ -8,8 +8,6 @@ namespace Tipos
 {
     public class Dni
     {
-        private int numero;
-
         private const string LETRAS = "TRWAGMYFPDXBNJZSQVHLCKE";
 
         public Dni(string dni)
@@ -29,13 +27,10 @@ namespace Tipos
                 throw new Exception("El DNI no es válido");
             }
 
-            numero = int.Parse(ExtraerNumero(dni));
+            Numero = int.Parse(ExtraerNumero(dni));
         }
 
-        public int Numero
-        {
-            get { return numero; }
-        }
+        public int Numero { get; }
 
         public char Letra
         {
