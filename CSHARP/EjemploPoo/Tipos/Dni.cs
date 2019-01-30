@@ -46,6 +46,7 @@ namespace Tipos
         {
             //Usando método de extensión
             return dni.CutRight(1); //dni.Substring(0, dni.Length - 1);
+            //return Utilidades.Extensiones.CutRight(dni, 1);
         }
 
         private static char CalcularLetra(int numero)
