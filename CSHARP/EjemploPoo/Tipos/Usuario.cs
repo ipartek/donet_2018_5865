@@ -66,7 +66,7 @@ namespace Tipos
         }
 
         //Método de instancia
-        public string GetTexto()
+        public virtual string GetTexto()
         {
             return string.Format("Email: {0}, Password: {1}", Email, Password);
         }
@@ -115,6 +115,9 @@ namespace Tipos
             return u1.Email.CompareTo(u2.Email) < 0;
         }
 
-
+        public override string ToString()
+        {
+            return GetTexto();
+        }
     }
 }

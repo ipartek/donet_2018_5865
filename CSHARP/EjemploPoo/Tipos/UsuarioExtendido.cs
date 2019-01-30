@@ -19,7 +19,7 @@ namespace Tipos
 
         //public UsuarioExtendido():base() { }
 
-        public new string GetTexto()
+        public override string GetTexto()
         {
             return string.Format("Nombre: {0}, {1}", Nombre, base.GetTexto());
         }

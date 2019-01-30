@@ -12,12 +12,12 @@ namespace Tipos
 
         public Dni(string dni)
         {
-            if(dni == null)
+            if (dni == null)
             {
                 throw new Exception("No se aceptan DNIs incorrectos");
             }
 
-            if(!Regex.IsMatch(dni, @"^[XYZ\d]\d{7}[" + LETRAS + "]$"))
+            if (!Regex.IsMatch(dni, @"^[XYZ\d]\d{7}[" + LETRAS + "]$"))
             {
                 throw new Exception("El formato de DNI no es correcto");
             }
@@ -30,7 +30,7 @@ namespace Tipos
             Numero = int.Parse(ExtraerNumero(dni));
         }
 
-        public int Numero { get; }
+        public int Numero { get; set; }
 
         public char Letra
         {
@@ -58,6 +58,56 @@ namespace Tipos
         private static char CalcularLetra(int numero)
         {
             return LETRAS[numero % 23];
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0:00000000}{1}", Numero, Letra);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            if (!(obj is Dni))
+            {
+                return false;
+            }
+
+            Dni d = (Dni)obj;
+
+            if (d == this)
+            {
+                return true;
+            }
+
+            if (d.Numero == this.Numero)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public override int GetHashCode()
+        {
+            return Numero;
+        }
+
+        public static bool operator==(Dni dni1, Dni dni2)
+        {
+            return dni1.Equals(dni2);
+        }
+
+        public static bool operator !=(Dni dni1, Dni dni2)
+        {
+            return !(dni1 == dni2);
         }
     }
 }

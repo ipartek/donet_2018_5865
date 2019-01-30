@@ -18,6 +18,22 @@ namespace EjemploPoo
 
             Console.WriteLine(dni.ToString());
 
+            Dni dni2 = dni;
+
+            Console.WriteLine("El DNI ES: " + dni);
+            Console.WriteLine(dni.GetHashCode());
+            Console.WriteLine(new Dni("12345678Z").GetHashCode());
+            Console.WriteLine(dni2.GetHashCode());
+
+            dni.Numero = 87654321;
+
+            Console.WriteLine(dni);
+            Console.WriteLine(dni.GetHashCode());
+
+            Console.WriteLine(new Dni("12345678Z") == new Dni("12345678Z"));
+            Console.WriteLine(new Dni("12345678Z").Equals(new Dni("12345678Z")));
+            Console.WriteLine(new Dni("12345678Z") != new Dni("12345678Z"));
+
             UsuarioExtendido ue = new UsuarioExtendido();
 
             Usuario u = ue;
@@ -27,13 +43,17 @@ namespace EjemploPoo
             UsuarioExtendido ue2 = u as UsuarioExtendido;
 
             Console.WriteLine(ue2.GetTexto());
+
+            Console.WriteLine(new Usuario().GetTexto());
+
+            Usuario usuario = new UsuarioExtendido();
         }
 
         static void MainUsuarioExtendido()
         {
             UsuarioExtendido ue = new UsuarioExtendido
             {
-                Email = "email", 
+                Email = "email",
                 Password = "password",
                 Nombre = "nombre"
             };
