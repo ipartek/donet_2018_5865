@@ -1,4 +1,6 @@
 ﻿using System;
+
+//Al hacer el using se activan los métodos de extensión de ese espacio de nombres
 using Utilidades;
 
 namespace Tipos

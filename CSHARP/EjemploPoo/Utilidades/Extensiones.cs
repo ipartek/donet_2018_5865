@@ -11,7 +11,7 @@ namespace Utilidades
         //Método de extensión CutRight para string
         public static string CutRight(this string s, int cuantosCaracteresAQuitar)
         {
-            return s.Substring(0, s.Length - 1);
+            return s.Substring(0, s.Length - cuantosCaracteresAQuitar);
         }
     }
 }
