@@ -20,6 +20,21 @@ namespace EjemploPoo
 
             Console.WriteLine(ue.GetTexto());
             Console.WriteLine(ue2.GetTexto());
+
+            Usuario u = ue;
+
+            //Console.WriteLine(u.Nombre);
+
+            if (u is UsuarioExtendido)
+            {
+                UsuarioExtendido ue3 = (UsuarioExtendido)u; //Lanza InvalidCastException si no cuadran los tipos
+
+                Console.WriteLine(ue3.Nombre);
+            }
+
+            UsuarioExtendido ue4 = u as UsuarioExtendido; //Devuelve null si no cuadran los tipos
+
+            UsuarioExtendido ue5 = (UsuarioExtendido)new Usuario();
         }
 
         static void MainGrupo()
