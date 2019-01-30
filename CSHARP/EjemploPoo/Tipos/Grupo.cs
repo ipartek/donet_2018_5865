@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Tipos
@@ -54,6 +55,32 @@ namespace Tipos
             }
 
             usuarios.Remove(usuario);
+        }
+
+        private ReadOnlyCollection<Usuario> GetUsuarios()
+        {
+            return new ReadOnlyCollection<Usuario>(usuarios);
+        }
+
+        public ReadOnlyCollection<Usuario> Usuarios
+        {
+            get { return GetUsuarios(); }
+        }
+
+        //Indizador / Indexador
+        public Usuario this[int i]
+        {
+            get { return usuarios[i]; }
+            set { usuarios[i] = value; }
+        }
+
+        public Usuario this[string email]
+        {
+            get { return FindByEmail(email); }
+            set
+            {
+                usuarios[usuarios.IndexOf(FindByEmail(email))] = value;
+            }
         }
     }
 }

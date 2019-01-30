@@ -1,4 +1,5 @@
 ﻿using System;
+using Utilidades;
 
 namespace Tipos
 {
@@ -41,7 +42,8 @@ namespace Tipos
 
         private static string ExtraerNumero(string dni)
         {
-            return dni.Substring(0, dni.Length - 1);
+            //Usando método de extensión
+            return dni.CutRight(1); //dni.Substring(0, dni.Length - 1);
         }
 
         private static char CalcularLetra(int numero)

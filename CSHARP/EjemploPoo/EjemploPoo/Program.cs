@@ -18,6 +18,26 @@ namespace EjemploPoo
 
             Console.WriteLine(usuario.GetTexto());
 
+            g.Usuarios[1].Email = "YEPAAAAAAAA";
+
+            Console.WriteLine(g[0].Email);
+
+            if (g["a@b"] != null)
+            {
+                Console.WriteLine("El password es {0}", g["a@b"].Password);
+                g["a@b"] = new Usuario("a@b", "NUEVA PASSWORD");
+                Console.WriteLine(g["a@b"].GetTexto());
+            }
+            else
+            {
+                Console.WriteLine("No se ha encontrado el email a@b");
+            }
+
+            foreach (Usuario u in g.Usuarios)
+            {
+                Console.WriteLine(u.GetTexto());
+            }
+
             g.Remove(new Usuario("b@c", "b"));
 
             Console.WriteLine(
