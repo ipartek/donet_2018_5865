@@ -15,7 +15,20 @@ namespace EjemploPoo
 
             Console.WriteLine(dni.Numero);
             Console.WriteLine(dni.Letra);
+
+            Console.WriteLine(dni.ToString());
+
+            UsuarioExtendido ue = new UsuarioExtendido();
+
+            Usuario u = ue;
+
+            Console.WriteLine(u.GetTexto());
+
+            UsuarioExtendido ue2 = u as UsuarioExtendido;
+
+            Console.WriteLine(ue2.GetTexto());
         }
+
         static void MainUsuarioExtendido()
         {
             UsuarioExtendido ue = new UsuarioExtendido

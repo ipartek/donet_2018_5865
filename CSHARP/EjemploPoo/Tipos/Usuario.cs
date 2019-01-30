@@ -3,7 +3,7 @@
 
 namespace Tipos
 {
-    public class Usuario
+    public class Usuario // : object
     {
         protected const string EMAIL_POR_DEFECTO = "desconocido@desconocidez.com";
         //Variables estáticas / de clase / compartidas
