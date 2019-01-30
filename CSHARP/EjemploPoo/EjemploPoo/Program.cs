@@ -9,6 +9,21 @@ namespace EjemploPoo
     {
         static void Main()
         {
+            UsuarioExtendido ue = new UsuarioExtendido
+            {
+                Email = "email", 
+                Password = "password",
+                Nombre = "nombre"
+            };
+
+            UsuarioExtendido ue2 = new UsuarioExtendido("asdf", "asdfasdf", "asdfasdf");
+
+            Console.WriteLine(ue.GetTexto());
+            Console.WriteLine(ue2.GetTexto());
+        }
+
+        static void MainGrupo()
+        {
             Grupo g = new Grupo("Pruebas");
 
             g.Add(new Usuario("a@b", "a"));

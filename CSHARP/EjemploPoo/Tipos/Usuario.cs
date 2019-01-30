@@ -5,6 +5,7 @@ namespace Tipos
 {
     public class Usuario
     {
+        protected const string EMAIL_POR_DEFECTO = "desconocido@desconocidez.com";
         //Variables estáticas / de clase / compartidas
         private static string passwordPorDefecto = "Cámbiala";
 
@@ -19,7 +20,7 @@ namespace Tipos
         private string email;
 
         //Constructores
-        public Usuario(string email = null, string password = null)
+        public Usuario(string email = EMAIL_POR_DEFECTO, string password = null)
         {
             Email = email;
             Password = password;
@@ -29,7 +30,7 @@ namespace Tipos
             Console.WriteLine(password);
         }
         
-        public Usuario() : this(null, passwordPorDefecto)
+        public Usuario() : this(EMAIL_POR_DEFECTO, passwordPorDefecto)
         {
             Console.WriteLine("Constructor vacío");
         }
