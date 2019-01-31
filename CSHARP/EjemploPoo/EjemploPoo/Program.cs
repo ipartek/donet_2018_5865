@@ -12,7 +12,37 @@ namespace EjemploPoo
 {
     class Program
     {
+        private delegate double Calcular(double d1, double d2);
+
+        private static double Sumar(double d1, double d2) => d1 + d2;
+
+        private static double Restar(double d1, double d2) => d1 - d2;
+
         static void Main()
+        {
+            Calcular calcular;
+
+            calcular = Sumar;
+
+            Console.WriteLine(calcular(1, 2));
+
+            calcular = Restar;
+
+            Console.WriteLine(calcular(1, 2));
+
+            List<int> lista = new List<int> { 1, 3, 4, 6 };
+
+            Console.WriteLine(lista.Find(BuscarPar));
+
+            Console.WriteLine(lista.Find(i => i % 2 == 0));
+        }
+
+        public static bool BuscarPar(int i)
+        {
+            return i % 2 == 0;
+        }
+
+        static void MainExcepciones()
         {
             int a = 5, b = 1, res;
 
