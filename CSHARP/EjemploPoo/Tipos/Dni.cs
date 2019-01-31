@@ -14,17 +14,17 @@ namespace Tipos
         {
             if (dni == null)
             {
-                throw new Exception("No se aceptan DNIs incorrectos");
+                throw new TiposException("No se aceptan DNIs incorrectos");
             }
 
             if (!Regex.IsMatch(dni, @"^[XYZ\d]\d{7}[" + LETRAS + "]$"))
             {
-                throw new Exception("El formato de DNI no es correcto");
+                throw new TiposException("El formato de DNI no es correcto");
             }
 
             if (!EsValido(dni))
             {
-                throw new Exception("El DNI no es válido");
+                throw new TiposException("El DNI no es válido");
             }
 
             Numero = int.Parse(ExtraerNumero(dni));

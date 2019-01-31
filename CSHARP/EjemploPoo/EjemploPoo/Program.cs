@@ -23,7 +23,7 @@ namespace EjemploPoo
                 res = a / b;
                 Console.WriteLine("El resultado es {0}", res);
 
-                int i = int.MaxValue;
+                int i = int.MaxValue - 1;
 
                 checked
                 {
@@ -32,6 +32,8 @@ namespace EjemploPoo
 
                 string s = null;
                 //Console.WriteLine(s.ToUpper());
+
+                new Dni("1234567");
             }
             catch (DivideByZeroException)
             {
@@ -41,6 +43,10 @@ namespace EjemploPoo
             {
                 Console.WriteLine(oe.Message);
                 throw new Exception("Error de rebose de variable", oe);
+            }
+            catch(TiposException te)
+            {
+                Console.WriteLine(te.Message);
             }
             finally
             {
