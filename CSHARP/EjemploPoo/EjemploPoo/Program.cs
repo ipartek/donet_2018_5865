@@ -10,10 +10,39 @@ namespace EjemploPoo
 {
     class Program
     {
+        private static void IntercambiarValores(ref int x, ref int y)
+        {
+            int z = x;
+
+            Console.WriteLine("x = {0}, y = {1}", x, y);
+
+            x = y;
+            y = z;
+
+            Console.WriteLine("x = {0}, y = {1}", x, y);
+        }
         static void Main()
+        {
+            int a = 5, b = 3;
+
+            Console.WriteLine("a = {0}, b = {1}", a, b);
+
+            IntercambiarValores(ref a, ref b);
+
+            Console.WriteLine("a = {0}, b = {1}", a, b);
+
+            double res1, res2;
+
+            Matematicas.EcuacionCuadratica(4.0, -2.0, -90.0, out res1, out res2);
+
+            Console.WriteLine("{0},{1}", res1, res2);
+        }
+
+        static void MainRecursividad()
         {
             Console.WriteLine(Matematicas.Factorial(5));
         }
+
         static void MainClasesAnonimas()
         {
             var punto = new { Nombre = "Bilbao", X = (byte)5, Y = (short)10 };
