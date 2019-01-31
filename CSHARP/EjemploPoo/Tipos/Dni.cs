@@ -67,6 +67,8 @@ namespace Tipos
 
         public override bool Equals(object obj)
         {
+            return obj == null ? false : GetHashCode() == obj.GetHashCode();
+            /*
             if (obj == null)
             {
                 return false;
@@ -92,12 +94,13 @@ namespace Tipos
             {
                 return false;
             }
-
+            */
         }
 
         public override int GetHashCode()
         {
-            return Numero;
+            //Aquí se utiliza una clase anónima
+            return new { Numero }.GetHashCode();
         }
 
         public static bool operator==(Dni dni1, Dni dni2)
