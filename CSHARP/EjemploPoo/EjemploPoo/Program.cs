@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Tipos;
 using Utilidades;
 
@@ -10,6 +12,25 @@ namespace EjemploPoo
 {
     class Program
     {
+        static void Main()
+        {
+            Console.OutputEncoding = Encoding.Default;
+
+            List<Empleado> empleados = new List<Empleado>
+            {
+                new EmpleadoIndefinido("Javier", 50000.0M, 14),
+                new EmpleadoIndefinido("Pepe", 10000.0M, 12),
+                new EmpleadoPorHoras("Pringao", 10.0M, 300)
+            };
+
+            foreach (Empleado empleado in empleados)
+            {
+                Console.WriteLine(empleado);
+                //Console.WriteLine("{0:c}", empleado.SueldoMensual);
+                Console.WriteLine("{0:0.00} €", empleado.SueldoMensual);
+            }
+        }
+
         private static void IntercambiarValores(ref int x, ref int y)
         {
             int z = x;
@@ -21,7 +42,8 @@ namespace EjemploPoo
 
             Console.WriteLine("x = {0}, y = {1}", x, y);
         }
-        static void Main()
+
+        static void MainParametros()
         {
             int a = 5, b = 3;
 

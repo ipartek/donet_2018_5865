@@ -32,6 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Dni.cs" />
+    <Compile Include="Empleado.cs" />
+    <Compile Include="EmpleadoIndefinido.cs" />
+    <Compile Include="EmpleadoPorHoras.cs" />
     <Compile Include="Grupo.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
