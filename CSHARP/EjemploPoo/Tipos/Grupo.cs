@@ -5,9 +5,12 @@ using System.Linq;
 
 namespace Tipos
 {
-    public class Grupo
+    //Genéricos
+    //Podemos crear un grupo así: 
+    //Grupo<Usuario> grupo = new Grupo<Usuario>();
+    public class Grupo<TComponente>
     {
-        private List<Usuario> usuarios = new List<Usuario>();
+        private List<TComponente> componentes = new List<TComponente>();
 
         public string Nombre { get; set; }
 
@@ -16,70 +19,62 @@ namespace Tipos
             Nombre = nombre;
         }
 
-        public void Add(Usuario usuario)
+        public void Add(TComponente componente)
         {
-            if (usuario == null)
+            if (componente == null)
             {
-                throw new Exception("No se admiten usuarios nulos");
+                throw new Exception("No se admiten componentes nulos");
             }
 
-            usuarios.Add(usuario);
+            componentes.Add(componente);
         }
 
+        public TComponente Find(Predicate<TComponente> delegadoDeBusqueda)
+        {
+            return componentes.Find(delegadoDeBusqueda);
+        }
+
+        /*
         public Usuario FindByEmail(string email)
         {
             //Expresión Lambda
-            return usuarios.Find(u => u.Email == email);
-
-            /*
-            foreach(Usuario usuario in usuarios)
-            {
-                if(usuario.Email == email)
-                {
-                    return usuario;
-                }
-            }
-            */
-            /*
-            return (from u in usuarios
-                    where u.Email == email
-                    select u).First<Usuario>();
-            */
+            return componentes.Find(u => u.Email == email);
         }
+        */
 
-        public void Remove(Usuario usuario)
+        public void Remove(TComponente componente)
         {
-            if (usuario == null)
+            if (componente == null)
             {
-                throw new Exception("No se admiten usuarios nulos");
+                throw new Exception("No se admiten componentes nulos");
             }
 
-            usuarios.Remove(usuario);
+            componentes.Remove(componente);
         }
 
-        private ReadOnlyCollection<Usuario> GetUsuarios()
+        private ReadOnlyCollection<TComponente> GetComponentes()
         {
-            return new ReadOnlyCollection<Usuario>(usuarios);
+            return new ReadOnlyCollection<TComponente>(componentes);
         }
 
-        public ReadOnlyCollection<Usuario> Usuarios
+        public ReadOnlyCollection<TComponente> Componentes
         {
-            get { return GetUsuarios(); }
+            get { return GetComponentes(); }
         }
 
         //Indizador / Indexador
-        public Usuario this[int i]
+        public TComponente this[int i]
         {
-            get { return usuarios[i]; }
-            set { usuarios[i] = value; }
+            get { return componentes[i]; }
+            set { componentes[i] = value; }
         }
 
-        public Usuario this[string email]
+        public TComponente this[Predicate<TComponente> funcionDeBusqueda]
         {
-            get { return FindByEmail(email); }
+            get { return Find(funcionDeBusqueda); }
             set
             {
-                usuarios[usuarios.IndexOf(FindByEmail(email))] = value;
+                componentes[componentes.IndexOf(Find(funcionDeBusqueda))] = value;
             }
         }
     }

@@ -20,6 +20,49 @@ namespace EjemploPoo
 
         static void Main()
         {
+            Grupo<Usuario> g = new Grupo<Usuario>("Pruebas");
+
+            g.Add(new Usuario("a@b", "a"));
+            g.Add(new Usuario("b@c", "b"));
+
+            Usuario usuario = g.Find(u => u.Email == "b@c");
+
+            Console.WriteLine(usuario);
+
+            g.Componentes[1].Email = "YEPAAAAAAAA";
+
+            Console.WriteLine(g[0].Email);
+
+            Predicate<Usuario> busqueda = u => u.Email == "a@b";
+
+            Usuario usuarioBuscado = g[busqueda];
+
+            if (usuarioBuscado != null)
+            {
+                Console.WriteLine("El password es {0}", usuarioBuscado.Password);
+                g[busqueda] = new Usuario("a@b", "NUEVA PASSWORD");
+                Console.WriteLine(usuarioBuscado);
+            }
+            else
+            {
+                Console.WriteLine("No se ha encontrado el email a@b");
+            }
+
+            foreach (Usuario u in g.Componentes)
+            {
+                Console.WriteLine(u);
+            }
+
+            g.Remove(new Usuario("b@c", "b"));
+
+            Console.WriteLine(
+                g.Find(u => u.Email == "b@c") == null ? "No encontrado" : "Encontrado");
+
+            Console.WriteLine(usuario == new Usuario("b@c", "b"));
+        }
+
+        static void MainDelegados()
+        {
             Calcular calcular;
 
             calcular = Sumar;
@@ -252,6 +295,7 @@ namespace EjemploPoo
             UsuarioExtendido ue5 = (UsuarioExtendido)new Usuario();
         }
 
+        /*
         static void MainGrupo()
         {
             Grupo g = new Grupo("Pruebas");
@@ -290,6 +334,7 @@ namespace EjemploPoo
 
             Console.WriteLine(usuario == new Usuario("b@c", "b"));
         }
+        */
         static void MainDni()
         {
             Dni dni = new Dni("12345678Z");
