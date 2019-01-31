@@ -73,6 +73,10 @@ namespace EjemploPoo
 
             Console.WriteLine(calcular(1, 2));
 
+            calcular = (d1, d2) => d1 * d2;
+
+            Console.WriteLine(calcular(1, 2));
+
             List<int> lista = new List<int> { 1, 3, 4, 6 };
 
             Console.WriteLine(lista.Find(BuscarPar));
