@@ -14,6 +14,56 @@ namespace EjemploPoo
     {
         static void Main()
         {
+            int a = 5, b = 1, res;
+
+            Console.WriteLine("Vamos a dividir {0}/{1}", a, b);
+
+            try
+            {
+                res = a / b;
+                Console.WriteLine("El resultado es {0}", res);
+
+                int i = int.MaxValue;
+
+                checked
+                {
+                    i++;
+                }
+
+                string s = null;
+                //Console.WriteLine(s.ToUpper());
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Ha habido un error en la división");
+            }
+            catch (OverflowException oe)
+            {
+                Console.WriteLine(oe.Message);
+                throw new Exception("Error de rebose de variable", oe);
+            }
+            finally
+            {
+                Console.WriteLine("Me ejecuto por c*j*nes");
+            }
+
+            /*
+            catch(Exception e)
+            {
+                Console.WriteLine(e.GetType());
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine(e.Source);
+
+                return;
+            }
+            */
+
+            Console.WriteLine("Fin del programa");
+        }
+
+        static void MainInterfaces()
+        {
             //Para permitir que la consola visualice el caracter del €
             Console.OutputEncoding = Encoding.Default;
 
