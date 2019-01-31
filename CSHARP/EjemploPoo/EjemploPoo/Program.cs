@@ -11,6 +11,17 @@ namespace EjemploPoo
     {
         static void Main()
         {
+            var punto = new { Nombre = "Bilbao", X = (byte)5, Y = (short)10 };
+
+            Console.WriteLine(punto.Nombre.Length);
+
+            //punto = new Dni("12345678Z");
+
+            var dni = new Dni("12345678Z");
+        }
+
+        static void MainObject()
+        {
             Dni dni = new Dni("12345678Z");
 
             Console.WriteLine(dni.Numero);
