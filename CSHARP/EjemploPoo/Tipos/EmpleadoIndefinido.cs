@@ -21,8 +21,12 @@ namespace Tipos
 
         public override string ToString()
         {
-            return String.Format("{0}, SueldoAnual: {1:c}, NumeroDePagas: {2}", 
+            return string.Format("{0}, SueldoAnual: {1:c}, NumeroDePagas: {2}", 
                 base.ToString(), SueldoAnual, NumeroDePagas);
         }
+
+        public override string FormatoVertical => string.Format(
+            "{0}\nSueldoAnual: {1:c}\nNumeroDePagas: {2}\n",
+                base.ToString(), SueldoAnual, NumeroDePagas);
     }
 }

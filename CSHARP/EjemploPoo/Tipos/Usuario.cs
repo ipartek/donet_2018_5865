@@ -3,7 +3,7 @@
 
 namespace Tipos
 {
-    public class Usuario // : object
+    public class Usuario : IFormateable // : object
     {
         protected const string EMAIL_POR_DEFECTO = "desconocido@desconocidez.com";
         //Variables estáticas / de clase / compartidas
@@ -64,6 +64,13 @@ namespace Tipos
             //Acceso set
             set { email = value; }
         }
+
+        public virtual string FormatoVertical =>
+            //TODO: Modificar este texto por implementación real
+            //"________TEXTO DE PRUEBA___________";
+            //throw new NotImplementedException();
+            string.Format(
+            "Email: {0}\nPassword: {1}\n", Email, Password);
 
         //Método de instancia
         public virtual string GetTexto()

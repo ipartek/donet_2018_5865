@@ -19,10 +19,19 @@ namespace Tipos
 
         public override decimal SueldoMensual => SueldoPorHora * NumeroDeHoras;
 
-        public override string ToString()
+        /*
+        public override decimal SueldoMensual
         {
-            return String.Format("{0}, SueldoPorHora: {1:c}, NumeroDeHoras: {2}", 
-                base.ToString(), SueldoPorHora, NumeroDeHoras);
+            get { return SueldoPorHora * NumeroDeHoras; }
         }
+        */
+
+        public override string ToString() => 
+            string.Format("{0}, SueldoPorHora: {1:c}, NumeroDeHoras: {2}", 
+                base.ToString(), SueldoPorHora, NumeroDeHoras);
+
+        public override string FormatoVertical => string.Format(
+            "{0}\nSueldoPorHora: {1:c}\nNumeroDeHoras: {2}\n", 
+            base.FormatoVertical, SueldoPorHora, NumeroDeHoras);
     }
 }

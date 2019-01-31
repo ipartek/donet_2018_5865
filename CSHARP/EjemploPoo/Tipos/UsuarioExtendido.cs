@@ -23,5 +23,7 @@ namespace Tipos
         {
             return string.Format("Nombre: {0}, {1}", Nombre, base.GetTexto());
         }
+
+        public override string FormatoVertical => string.Format("Nombre: {0}\n{1}\n", Nombre, base.GetTexto());
     }
 }

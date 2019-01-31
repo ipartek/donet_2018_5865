@@ -14,6 +14,26 @@ namespace EjemploPoo
     {
         static void Main()
         {
+            //Para permitir que la consola visualice el caracter del €
+            Console.OutputEncoding = Encoding.Default;
+
+            List<IFormateable> formateables = new List<IFormateable>
+            {
+                new EmpleadoIndefinido("Javier", 50000.0M, 14),
+                new EmpleadoPorHoras("Pringao", 10.0M, 300),
+                new Usuario(),
+                new UsuarioExtendido()
+            };
+
+            foreach (IFormateable formateable in formateables)
+            {
+                Console.WriteLine(formateable.FormatoVertical);
+            }
+
+        }
+
+        static void MainClasesAbstractas()
+        {
             Console.OutputEncoding = Encoding.Default;
 
             List<Empleado> empleados = new List<Empleado>

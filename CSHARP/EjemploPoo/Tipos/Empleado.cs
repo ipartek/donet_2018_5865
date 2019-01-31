@@ -2,7 +2,7 @@
 
 namespace Tipos
 {
-    public abstract class Empleado
+    public abstract class Empleado : IFormateable
     {
         public string Nombre { get; set; }
 
@@ -12,6 +12,9 @@ namespace Tipos
         }
 
         public abstract decimal SueldoMensual { get; }
+
+        public virtual string FormatoVertical => string.Format(
+            "Nombre: {0}\n", Nombre);
 
         public override string ToString()
         {
