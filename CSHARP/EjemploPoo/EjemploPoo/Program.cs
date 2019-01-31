@@ -1,5 +1,6 @@
 ﻿using System;
 using Tipos;
+using Utilidades;
 
 //csc /r:Tipos.dll Program.cs /out:EjemploPoo.exe
 
@@ -10,6 +11,10 @@ namespace EjemploPoo
     class Program
     {
         static void Main()
+        {
+            Console.WriteLine(Matematicas.Factorial(5));
+        }
+        static void MainClasesAnonimas()
         {
             var punto = new { Nombre = "Bilbao", X = (byte)5, Y = (short)10 };
 
