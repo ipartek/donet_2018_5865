@@ -37,6 +37,7 @@
     <Compile Include="EmpleadoPorHoras.cs" />
     <Compile Include="Grupo.cs" />
     <Compile Include="IFormateable.cs" />
+    <Compile Include="OcultoParaBusquedasAttribute.cs" />
     <Compile Include="TiposException.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

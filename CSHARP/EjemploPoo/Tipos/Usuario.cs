@@ -3,6 +3,7 @@
 
 namespace Tipos
 {
+    [OcultoParaBusquedas]
     public class Usuario : IFormateable // : object
     {
         protected const string EMAIL_POR_DEFECTO = "desconocido@desconocidez.com";

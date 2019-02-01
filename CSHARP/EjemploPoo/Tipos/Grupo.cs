@@ -31,7 +31,14 @@ namespace Tipos
 
         public TComponente Find(Predicate<TComponente> delegadoDeBusqueda)
         {
-            return componentes.Find(delegadoDeBusqueda);
+            TComponente encontrado = componentes.Find(delegadoDeBusqueda);
+
+            if (encontrado == null || Attribute.IsDefined(encontrado.GetType(), typeof(OcultoParaBusquedasAttribute)))
+            {
+                return default(TComponente);
+            }
+
+            return encontrado;
         }
 
         /*
