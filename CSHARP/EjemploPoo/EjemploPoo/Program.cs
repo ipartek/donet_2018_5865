@@ -12,13 +12,31 @@ namespace EjemploPoo
 {
     class Program
     {
-        private delegate double Calcular(double d1, double d2);
-
-        private static double Sumar(double d1, double d2) => d1 + d2;
-
-        private static double Restar(double d1, double d2) => d1 - d2;
-
         static void Main()
+        {
+            string logTxapu = "";
+            StringBuilder log = new StringBuilder();
+
+            logTxapu += "Principio\n";
+            log.AppendLine("Principio");
+
+            for (int i = 1; i <= 10; i++)
+            {
+                logTxapu += "Repetición: " + i + "\n";
+                //logTxapu = new StringBuilder(logTxapu).Append("Repetición: ").Append(i.ToString()).Append("\n").ToString();
+                log.Append("Repeticion: ").AppendLine(i.ToString());
+            }
+
+            logTxapu += "Fin\n";
+            log.AppendLine("Fin");
+
+            string logString = log.ToString();
+
+            Console.WriteLine(logTxapu);
+            Console.WriteLine(logString);
+        }
+
+        static void MainGenericos()
         {
             Grupo<Usuario> g = new Grupo<Usuario>("Pruebas");
 
@@ -60,6 +78,12 @@ namespace EjemploPoo
 
             Console.WriteLine(usuario == new Usuario("b@c", "b"));
         }
+
+        private delegate double Calcular(double d1, double d2);
+
+        private static double Sumar(double d1, double d2) => d1 + d2;
+
+        private static double Restar(double d1, double d2) => d1 - d2;
 
         static void MainDelegados()
         {
