@@ -14,6 +14,43 @@ namespace EjemploPoo
     {
         static void Main()
         {
+            Dictionary<string, int> dic = new Dictionary<string, int>
+            {
+                ["uno"] = 1,
+                ["dos"] = 2
+            };
+
+            Console.WriteLine(dic["uno"]);
+
+            foreach (KeyValuePair<string, int> par in dic)
+            {
+                Console.WriteLine($"{par.Key} = {par.Value}");
+            }
+
+            foreach(string clave in dic.Keys)
+            {
+                Console.WriteLine(clave);
+            }
+
+            foreach (int valor in dic.Values)
+            {
+                Console.WriteLine(valor);
+            }
+
+            Usuario u1 = new Usuario();
+            Usuario u2 = new Usuario("javierlete@email.net", "mi contra");
+
+            Dictionary<string, Usuario> usuarios = new Dictionary<string, Usuario>()
+            {
+                [u1.Email] = u1,
+                [u2.Email] = u2
+            };
+
+            Console.WriteLine(usuarios["javierlete@email.net"]);
+        }
+
+        static void MainStringBuilder()
+        {
             string logTxapu = "";
             StringBuilder log = new StringBuilder();
 
