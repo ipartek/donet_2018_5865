@@ -17,6 +17,14 @@ namespace EjemploPoo
     {
         static void Main()
         {
+            Write("Dime tu nombre: ");
+            System.Windows.Forms.SendKeys.SendWait("Javier");
+            string nombre = ReadLine();
+
+            WriteLine(nombre);
+        }
+        static void MainEjemploFindConEntero()
+        {
             Grupo<EmpleadoIndefinido> empleados = new Grupo<EmpleadoIndefinido>("Indefinidos");
 
             empleados.Add(new EmpleadoIndefinido("Javier", 20000m, 14));
