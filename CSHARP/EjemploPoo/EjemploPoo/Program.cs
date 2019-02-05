@@ -4,6 +4,9 @@ using System.Text;
 using Tipos;
 using Utilidades;
 
+using static System.Console;
+using static System.Math;
+
 //csc /r:Tipos.dll Program.cs /out:EjemploPoo.exe
 
 //Program.Main()
@@ -13,6 +16,12 @@ namespace EjemploPoo
     class Program
     {
         static void Main()
+        {
+            Console.WriteLine(Math.Sin(3));
+            WriteLine(Sin(3));
+        }
+
+        static void MainDictionary()
         {
             Dictionary<string, int> dic = new Dictionary<string, int>
             {
