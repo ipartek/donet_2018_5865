@@ -60,10 +60,12 @@ namespace Tipos
             return LETRAS[numero % 23];
         }
 
-        public override string ToString()
-        {
-            return string.Format("{0:00000000}{1}", Numero, Letra);
-        }
+        //public override string ToString()
+        //{
+        //    return string.Format("{0:00000000}{1}", Numero, Letra);
+        //}
+
+        public override string ToString() => $"{Numero:00000000}{Letra}";
 
         public override bool Equals(object obj)
         {
