@@ -17,6 +17,17 @@ namespace EjemploPoo
     {
         static void Main()
         {
+            Grupo<EmpleadoIndefinido> empleados = new Grupo<EmpleadoIndefinido>("Indefinidos");
+
+            empleados.Add(new EmpleadoIndefinido("Javier", 20000m, 14));
+
+            EmpleadoIndefinido ei = empleados.Find(e => e.NumeroDePagas == 14);
+
+            Console.WriteLine(ei);
+        }
+
+        static void MainUsingStatic()
+        {
             Console.WriteLine(Math.Sin(3));
             WriteLine(Sin(3));
         }
