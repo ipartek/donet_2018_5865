@@ -57,7 +57,7 @@ namespace EjemploUsuario
             Usuario usuario = new Usuario();
 
             PedirCampo("Email: ", s => usuario.Email = s);
-            PedirCampo("Password: ", delegate(string s) { usuario.Email = s; });
+            PedirCampo("Password: ", delegate(string s) { usuario.Password = s; });
 
             usuarios.Add(usuario);
         }
