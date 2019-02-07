@@ -22,8 +22,7 @@ namespace Tipos
                     throw new TiposException("Es obligatorio rellenar el email");
                 }
 
-                //TODO: CORREGIR LA EXPRESIÓN REGULAR
-                if (!Regex.IsMatch(value.Trim(), @"^\w+@\w+.\w+$"))
+                if (!Regex.IsMatch(value.Trim(), @"^\w+@\w+\.\w+$"))
                 {
                     throw new TiposException("El email introducido no es válido");
                 }

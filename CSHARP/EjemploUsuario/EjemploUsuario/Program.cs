@@ -56,12 +56,38 @@ namespace EjemploUsuario
         {
             Usuario usuario = new Usuario();
 
-            Write("Email: ");
-            usuario.Email = ReadLine();
-            Write("Nombre: ");
-            usuario.Password = ReadLine();
+            PedirCampo("Email: ", s => usuario.Email = s);
+            PedirCampo("Password: ", s => usuario.Password = s);
 
             usuarios.Add(usuario);
+        }
+
+        private delegate void DelegadoPedirCampo(string s);
+
+        private static void PedirCampo(string mensaje, DelegadoPedirCampo dpc)
+        {
+            bool repetir;
+
+            do
+            {
+                try
+                {
+                    repetir = false;
+
+                    Write(mensaje);
+                    dpc(ReadLine());
+                }
+                catch(FormatException)
+                {
+                    WriteLine("El formato introducido no es válido");
+                    repetir = true;
+                }
+                catch(Exception e)
+                {
+                    WriteLine(e.Message);
+                    repetir = true;
+                }
+            } while (repetir);
         }
 
         private static int PedirOpcion() //params int[] opciones)
