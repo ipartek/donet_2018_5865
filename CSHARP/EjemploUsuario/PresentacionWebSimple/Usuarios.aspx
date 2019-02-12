@@ -13,6 +13,7 @@
             <div>
                 <asp:Label ID="Label1" runat="server" Text="Label">Email</asp:Label>
                 <asp:TextBox ID="TxtEmail" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFieldValidator" ControlToValidate="TxtEmail"></asp:RequiredFieldValidator>
             </div>
             <div>
                 <asp:Label ID="Label2" runat="server" Text="Label">Password</asp:Label>
