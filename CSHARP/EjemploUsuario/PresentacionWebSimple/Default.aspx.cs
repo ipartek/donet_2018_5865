@@ -22,5 +22,10 @@ namespace PresentacionWebSimple
         {
             LblSaludo.Text = "Hola " + TxtNombre.Text;
         }
+
+        protected void CalFechaNacimiento_SelectionChanged(object sender, EventArgs e)
+        {
+            LblCalendario.Text = CalFechaNacimiento.SelectedDate.ToString();
+        }
     }
 }
