@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tipos", "Tipos\Tipos.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentacionWeb", "PresentacionWeb\PresentacionWeb.csproj", "{B49D3E1E-ECE6-42F6-979F-39F9CB74DA28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentacionWebSimple", "PresentacionWebSimple\PresentacionWebSimple.csproj", "{1FE82E38-96AE-48B3-BCB8-8C01EF2629FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B49D3E1E-ECE6-42F6-979F-39F9CB74DA28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B49D3E1E-ECE6-42F6-979F-39F9CB74DA28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B49D3E1E-ECE6-42F6-979F-39F9CB74DA28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FE82E38-96AE-48B3-BCB8-8C01EF2629FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FE82E38-96AE-48B3-BCB8-8C01EF2629FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FE82E38-96AE-48B3-BCB8-8C01EF2629FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FE82E38-96AE-48B3-BCB8-8C01EF2629FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
