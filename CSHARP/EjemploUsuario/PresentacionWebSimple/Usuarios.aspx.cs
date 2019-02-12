@@ -14,9 +14,19 @@ namespace PresentacionWebSimple
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            usuarios.Add(new Usuario("pepe@email.net", "contrapepe"));
-            usuarios.Add(new Usuario("javierlete@email.net", "contra"));
+            if (!IsPostBack)
+            {
+                usuarios.Add(new Usuario("pepe@email.net", "contrapepe"));
+                usuarios.Add(new Usuario("javierlete@email.net", "contra"));
 
+                GvUsuarios.DataSource = usuarios;
+                GvUsuarios.DataBind();
+            }
+        }
+
+        protected void BtnAceptar_Click(object sender, EventArgs e)
+        {
+            usuarios.Add(new Usuario(TxtEmail.Text, TxtPassword.Text));
             GvUsuarios.DataSource = usuarios;
             GvUsuarios.DataBind();
         }

@@ -19,7 +19,7 @@
                 <asp:TextBox ID="TxtPassword" TextMode="Password" runat="server"></asp:TextBox>
             </div>
             <div>
-                <asp:Button ID="BtnAceptar" runat="server" Text="Aceptar" />
+                <asp:Button ID="BtnAceptar" runat="server" Text="Aceptar" OnClick="BtnAceptar_Click" />
             </div>
         </div>
         <div>
