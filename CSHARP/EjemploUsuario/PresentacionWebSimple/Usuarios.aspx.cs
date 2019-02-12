@@ -12,13 +12,16 @@ namespace PresentacionWebSimple
     {
         private static List<Usuario> usuarios = new List<Usuario>();
 
+        static Usuarios()
+        {
+            usuarios.Add(new Usuario("pepe@email.net", "contrapepe"));
+            usuarios.Add(new Usuario("javierlete@email.net", "contra"));
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                usuarios.Add(new Usuario("pepe@email.net", "contrapepe"));
-                usuarios.Add(new Usuario("javierlete@email.net", "contra"));
-
                 GvUsuarios.DataSource = usuarios;
                 GvUsuarios.DataBind();
             }
