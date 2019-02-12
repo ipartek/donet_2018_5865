@@ -34,7 +34,14 @@ namespace PresentacionWebSimple
                 usuarios.Add(new Usuario(TxtEmail.Text, TxtPassword.Text));
                 GvUsuarios.DataSource = usuarios;
                 GvUsuarios.DataBind();
+
+                Dni dni = new Dni(TxtDni.Text);
             }
+        }
+
+        protected void ValidadorDni_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = Dni.EsValido(args.Value);
         }
     }
 }
