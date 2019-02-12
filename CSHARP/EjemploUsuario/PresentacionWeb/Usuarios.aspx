@@ -22,12 +22,12 @@
             <asp:CustomValidator ID="ValidadorDni" runat="server" ErrorMessage="El DNI no es válido" Text="*" ControlToValidate="TxtDni" OnServerValidate="ValidadorDni_ServerValidate" ClientValidationFunction="validarDni"></asp:CustomValidator>
         </div>
         <div class="form-group row">
-            <asp:Button CssClass="btn btn-primary" ID="BtnAceptar" runat="server" Text="Aceptar" OnClick="BtnAceptar_Click" />
+            <asp:Button CssClass="btn btn-primary offset-sm-2" ID="BtnAceptar" runat="server" Text="Aceptar" OnClick="BtnAceptar_Click" />
             <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
         </div>
     </div>
     <div>
-        <asp:GridView ID="GvUsuarios" runat="server"></asp:GridView>
+        <asp:GridView CssClass="table table-striped table-bordered table-hover table-sm" ID="GvUsuarios" runat="server"></asp:GridView>
     </div>
     <script>
         function validarDni(object, args) {

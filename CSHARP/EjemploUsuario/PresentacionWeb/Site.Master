@@ -50,6 +50,7 @@
                     <li class="nav-item active"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
                     <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" runat="server" href="~/Usuarios.aspx">Usuarios</a></li>
                 </ul>
             </div>
         </nav>
