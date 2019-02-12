@@ -10,7 +10,7 @@
 namespace PresentacionWebSimple {
     
     
-    public partial class Default {
+    public partial class EjemploWebForms {
         
         /// <summary>
         /// Control form1.

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="PresentacionWebSimple.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EjemploWebForms.aspx.cs" Inherits="PresentacionWebSimple.EjemploWebForms" %>
 
 <!DOCTYPE html>
 
