@@ -3,6 +3,11 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent" ClientIDMode="Static">
     <div style="margin-top: 1em">
         <div class="form-group row">
+            <asp:Label CssClass="col-sm-2 col-12" ID="Label4" runat="server" Text="Label">Id</asp:Label>
+            <asp:TextBox CssClass="form-control col-sm-10 col-12" ID="TxtId" runat="server" TextMode="Number"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="El Id es obligatorio" ControlToValidate="TxtId" Display="Dynamic">*</asp:RequiredFieldValidator>
+        </div>
+        <div class="form-group row">
             <asp:Label CssClass="col-sm-2 col-12" ID="Label1" runat="server" Text="Label">Email</asp:Label>
             <asp:TextBox CssClass="form-control col-sm-10 col-12" ID="TxtEmail" runat="server" TextMode="Email"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="El Email es obligatorio" ControlToValidate="TxtEmail" Display="Dynamic">*</asp:RequiredFieldValidator>
@@ -27,6 +32,33 @@
         </div>
     </div>
     <div>
+        <table class="table table-striped table-bordered table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Contraseña</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <asp:Repeater ID="RUsuarios" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td><%# DataBinder.Eval(Container.DataItem, "Email") %></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "Password") %></td>
+                            <td>
+                                <a class="btn btn-primary" 
+                                    href="?opcion=editar&id=<%# DataBinder.Eval(
+                                        Container.DataItem, "Id") %>">Editar</a>
+                                <a class="btn btn-danger" href="?opcion=eliminar&id=<%# DataBinder.Eval(
+                                        Container.DataItem, "Id") %>">Eliminar</a>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tbody>
+        </table>
+        
         <asp:GridView AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover table-sm" ID="GvUsuarios" runat="server" OnRowDeleting="Borrar" OnRowEditing="Editar">
             <Columns>
                 <asp:BoundField DataField="Email" HeaderText="Email"></asp:BoundField>
@@ -43,29 +75,7 @@
             </Columns>
         </asp:GridView>
 
-        <table class="table table-striped table-bordered table-hover table-sm">
-            <thead>
-                <tr>
-                    <th>Email</th>
-                    <th>Contraseña</th>
-                    <th>Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <asp:Repeater ID="RUsuarios" runat="server">
-                    <ItemTemplate>
-                        <tr>
-                            <td><%# DataBinder.Eval(Container.DataItem, "Email") %></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "Password") %></td>
-                            <td>
-                                <a class="btn btn-primary" href="?opcion=editar">Editar</a>
-                                <a class="btn btn-danger" href="?opcion=eliminar">Eliminar</a>
-                            </td>
-                        </tr>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </tbody>
-        </table>
+        
     </div>
     <script>
         function validarDni(object, args) {
