@@ -4,24 +4,24 @@
     <div style="margin-top: 1em">
         <div class="form-group row">
             <asp:Label CssClass="col-sm-2 col-12" ID="Label4" runat="server" Text="Label">Id</asp:Label>
-            <asp:TextBox CssClass="form-control col-sm-10 col-12" ID="TxtId" runat="server" TextMode="Number" ValidationGroup="usuario" EnableViewState="false"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="El Id es obligatorio" ControlToValidate="TxtId" Display="Dynamic" ValidationGroup="usuario" EnableViewState="false">*</asp:RequiredFieldValidator>
+            <asp:TextBox CssClass="form-control col-sm-10 col-12" ID="TxtId" runat="server" TextMode="Number" ValidationGroup="usuario"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="El Id es obligatorio" ControlToValidate="TxtId" Display="Dynamic" ValidationGroup="usuario">*</asp:RequiredFieldValidator>
         </div>
         <div class="form-group row">
             <asp:Label CssClass="col-sm-2 col-12" ID="Label1" runat="server" Text="Label">Email</asp:Label>
-            <asp:TextBox CssClass="form-control col-sm-10 col-12" ID="TxtEmail" runat="server" TextMode="Email" ValidationGroup="usuario" EnableViewState="false"></asp:TextBox>
+            <asp:TextBox CssClass="form-control col-sm-10 col-12" ID="TxtEmail" runat="server" TextMode="Email" ValidationGroup="usuario"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="El Email es obligatorio" ControlToValidate="TxtEmail" Display="Dynamic" ValidationGroup="usuario">*</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TxtEmail" Display="Dynamic" ErrorMessage="El email no tiene el formato adecuado" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="usuario">*</asp:RegularExpressionValidator>
         </div>
         <div class="form-group row">
             <asp:Label CssClass="col-sm-2 col-12" ID="Label2" runat="server" Text="Label">Password</asp:Label>
-            <asp:TextBox CssClass="form-control col-sm-10 col-12" ID="TxtPassword" TextMode="Password" runat="server" ValidationGroup="usuario" EnableViewState="false"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RfvPassword" runat="server" ControlToValidate="TxtPassword" Display="Dynamic" ErrorMessage="Es obligatorio rellenar la contraseña" ValidationGroup="usuario" EnableViewState="false">*</asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="TxtPassword" Display="Dynamic" ErrorMessage="La contraseña tiene que tener mínimo 6 caracteres" ValidationExpression=".{6,}" ValidationGroup="usuario">*</asp:RegularExpressionValidator>
+            <asp:TextBox CssClass="form-control col-sm-10 col-12" ID="TxtPassword" TextMode="Password" runat="server" ValidationGroup="usuario"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RfvPassword" runat="server" ControlToValidate="TxtPassword" Display="Dynamic" ErrorMessage="Es obligatorio rellenar la contraseña" ValidationGroup="usuario">*</asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RevPassword" runat="server" ControlToValidate="TxtPassword" Display="Dynamic" ErrorMessage="La contraseña tiene que tener mínimo 6 caracteres" ValidationExpression=".{6,}" ValidationGroup="usuario">*</asp:RegularExpressionValidator>
         </div>
         <div class="form-group row">
             <asp:Label CssClass="col-sm-2 col-12" ID="Label3" runat="server" Text="Label">DNI</asp:Label>
-            <asp:TextBox CssClass="form-control col-sm-10 col-12" ID="TxtDni" runat="server" EnableViewState="false"></asp:TextBox>
+            <asp:TextBox CssClass="form-control col-sm-10 col-12" ID="TxtDni" runat="server"></asp:TextBox>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TxtDni" Display="Dynamic" ErrorMessage="El DNI no tiene el formato adecuado" ValidationExpression="^[\dXYZ]\d{7}[A-Z]$" ValidationGroup="usuario">*</asp:RegularExpressionValidator>
             <asp:CustomValidator ID="ValidadorDni" runat="server" ErrorMessage="El DNI no es válido" Text="*" ControlToValidate="TxtDni" OnServerValidate="ValidadorDni_ServerValidate" ClientValidationFunction="validarDni" ValidationGroup="usuario"></asp:CustomValidator>
         </div>

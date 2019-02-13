@@ -95,6 +95,11 @@ namespace PresentacionWebSimple
 
         protected void ProcesarOpcionRejilla(object sender, CommandEventArgs e)
         {
+            TxtId.ReadOnly = false;
+            TxtEmail.ReadOnly = false;
+            TxtPassword.ReadOnly = false;
+            RfvPassword.Enabled = true;
+
             string opcion = e.CommandName;
             string sId = (string)e.CommandArgument;
             long id;
@@ -126,8 +131,8 @@ namespace PresentacionWebSimple
                     break;
                 case OPCION_ELIMINAR:
                     TxtId.ReadOnly = true;
-                    TxtEmail.Enabled = false;
-                    TxtPassword.Enabled = false;
+                    TxtEmail.ReadOnly = true;
+                    TxtPassword.ReadOnly = true;
                     RfvPassword.Enabled = false;
 
                     goto case OPCION_EDITAR;
@@ -141,27 +146,10 @@ namespace PresentacionWebSimple
         protected void BtnAceptar_Command(object sender, CommandEventArgs e)
         {
             string opcion = e.CommandName;
-            string sId = (string)e.CommandArgument;
-            long id;
-
-            if (opcion != null)
-            {
-                BtnAceptar.CommandName = opcion;
-            }
-
-            if (!string.IsNullOrEmpty(sId))
-            {
-                id = long.Parse(sId);
-                BtnAceptar.CommandArgument = sId;
-            }
-            else
-            {
-                id = -1;
-            }
 
             if (IsValid)
             {
-                //long id = long.Parse(TxtId.Text);
+                long id = long.Parse(TxtId.Text);
                 Usuario usuario = new Usuario(id, TxtEmail.Text, TxtPassword.Text);
 
                 switch (opcion)
