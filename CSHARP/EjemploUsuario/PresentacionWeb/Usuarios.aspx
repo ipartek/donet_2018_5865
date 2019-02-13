@@ -31,7 +31,7 @@
             <Columns>
                 <asp:BoundField DataField="Email" HeaderText="Email"></asp:BoundField>
                 <asp:BoundField DataField="Password" HeaderText="Contraseña"></asp:BoundField>
-                
+
                 <asp:TemplateField ShowHeader="True" HeaderText="Opciones">
                     <ItemTemplate>
                         <asp:Button CssClass="btn btn-primary" runat="server" Text="Editar" CommandName="Editar" CausesValidation="False" ID="Button1"></asp:Button>
@@ -40,9 +40,32 @@
                 </asp:TemplateField>
 
                 <%--<asp:CommandField ControlStyle-CssClass="btn btn-danger" ShowDeleteButton="True" ShowEditButton="False" ShowSelectButton="False" ShowHeader="False" HeaderText="" ButtonType="Button"></asp:CommandField>--%>
-                
             </Columns>
         </asp:GridView>
+
+        <table class="table table-striped table-bordered table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Contraseña</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <asp:Repeater ID="RUsuarios" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td><%# DataBinder.Eval(Container.DataItem, "Email") %></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "Password") %></td>
+                            <td>
+                                <a class="btn btn-primary" href="?opcion=editar">Editar</a>
+                                <a class="btn btn-danger" href="?opcion=eliminar">Eliminar</a>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tbody>
+        </table>
     </div>
     <script>
         function validarDni(object, args) {

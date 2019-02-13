@@ -22,9 +22,21 @@ namespace PresentacionWebSimple
         {
             if (!IsPostBack)
             {
-                GvUsuarios.DataSource = usuarios;
-                GvUsuarios.DataBind();
+                EnlazarDatos();
             }
+        }
+
+        private void EnlazarDatos()
+        {
+            GvUsuarios.DataSource = usuarios;
+            GvUsuarios.DataBind();
+
+            GvUsuarios.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+            RUsuarios.DataSource = usuarios;
+            RUsuarios.DataBind();
+
+            //DataBind();
         }
 
         protected void BtnAceptar_Click(object sender, EventArgs e)
@@ -32,8 +44,8 @@ namespace PresentacionWebSimple
             if (IsValid)
             {
                 usuarios.Add(new Usuario(TxtEmail.Text, TxtPassword.Text));
-                GvUsuarios.DataSource = usuarios;
-                GvUsuarios.DataBind();
+
+                EnlazarDatos();
 
                 Dni dni = new Dni(TxtDni.Text);
             }
