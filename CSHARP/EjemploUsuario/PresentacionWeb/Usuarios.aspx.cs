@@ -43,5 +43,15 @@ namespace PresentacionWebSimple
         {
             args.IsValid = Dni.EsValido(args.Value);
         }
+
+        protected void Editar(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void Borrar(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
     }
 }

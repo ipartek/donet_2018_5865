@@ -27,7 +27,22 @@
         </div>
     </div>
     <div>
-        <asp:GridView CssClass="table table-striped table-bordered table-hover table-sm" ID="GvUsuarios" runat="server"></asp:GridView>
+        <asp:GridView AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover table-sm" ID="GvUsuarios" runat="server" OnRowDeleting="Borrar" OnRowEditing="Editar">
+            <Columns>
+                <asp:BoundField DataField="Email" HeaderText="Email"></asp:BoundField>
+                <asp:BoundField DataField="Password" HeaderText="Contraseña"></asp:BoundField>
+                
+                <asp:TemplateField ShowHeader="True" HeaderText="Opciones">
+                    <ItemTemplate>
+                        <asp:Button CssClass="btn btn-primary" runat="server" Text="Editar" CommandName="Editar" CausesValidation="False" ID="Button1"></asp:Button>
+                        <asp:Button CssClass="btn btn-danger" runat="server" Text="Eliminar" CommandName="Borrar" CausesValidation="False" ID="Button3"></asp:Button>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <%--<asp:CommandField ControlStyle-CssClass="btn btn-danger" ShowDeleteButton="True" ShowEditButton="False" ShowSelectButton="False" ShowHeader="False" HeaderText="" ButtonType="Button"></asp:CommandField>--%>
+                
+            </Columns>
+        </asp:GridView>
     </div>
     <script>
         function validarDni(object, args) {
