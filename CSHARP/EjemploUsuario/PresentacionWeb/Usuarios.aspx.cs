@@ -95,10 +95,7 @@ namespace PresentacionWebSimple
 
         protected void ProcesarOpcionRejilla(object sender, CommandEventArgs e)
         {
-            TxtId.ReadOnly = false;
-            TxtEmail.ReadOnly = false;
-            TxtPassword.ReadOnly = false;
-            RfvPassword.Enabled = true;
+            ResetearFormulario();
 
             string opcion = e.CommandName;
             string sId = (string)e.CommandArgument;
@@ -143,6 +140,15 @@ namespace PresentacionWebSimple
             }
         }
 
+        private void ResetearFormulario()
+        {
+            TxtId.ReadOnly = TxtEmail.ReadOnly = TxtPassword.ReadOnly = false;
+            RfvPassword.Enabled = true;
+            
+            TxtId.Text = TxtEmail.Text = TxtPassword.Text = "";
+            TxtDni.Text = "12345678Z";
+        }
+
         protected void BtnAceptar_Command(object sender, CommandEventArgs e)
         {
             string opcion = e.CommandName;
@@ -165,11 +171,17 @@ namespace PresentacionWebSimple
                     default:
                         usuarios.Add(id, usuario);
                         break;
+
                 }
                 
                 EnlazarDatos();
 
                 Dni dni = new Dni(TxtDni.Text);
+
+                ResetearFormulario();
+
+                BtnAceptar.CommandName = "";
+                BtnAceptar.CommandArgument = "";
             }
         }
     }
