@@ -11,9 +11,12 @@ namespace PresentacionWebSimple
 {
     public partial class Usuarios : System.Web.UI.Page
     {
+        private const string OPCION_EDITAR = "editar";
+        private const string OPCION_ELIMINAR = "eliminar";
         private static Dictionary<long, Usuario> usuarios = new Dictionary<long, Usuario>();
 
         private string opcion;
+        private long id;
 
         static Usuarios()
         {
@@ -33,7 +36,7 @@ namespace PresentacionWebSimple
 
             switch (opcion)
             {
-                case "editar":
+                case OPCION_EDITAR:
                     long id = long.Parse(sId);
                     Usuario usuario = usuarios[id];
 
@@ -42,14 +45,15 @@ namespace PresentacionWebSimple
                     TxtPassword.Text = usuario.Password;
 
                     this.opcion = opcion;
+                    this.id = id;
 
                     break;
-                case "eliminar":
+                case OPCION_ELIMINAR:
                     TxtId.ReadOnly = true;
                     TxtEmail.Enabled = false;
                     TxtPassword.Enabled = false;
 
-                    goto case "editar";
+                    goto case OPCION_EDITAR;
                 case null:
                     break;
                 default:
@@ -74,10 +78,29 @@ namespace PresentacionWebSimple
         {
             Debug.WriteLine(opcion, "USUARIOS");
 
+            //Label1.Text = opcion;
+            //Label2.Text = id.ToString();
+
             if (IsValid)
             {
-                long id = long.Parse(TxtId.Text);
-                usuarios.Add(id, new Usuario(id, TxtEmail.Text, TxtPassword.Text));
+                //long id = long.Parse(TxtId.Text);
+                Usuario usuario = new Usuario(id, TxtEmail.Text, TxtPassword.Text);
+
+                switch (opcion)
+                {
+                    case OPCION_EDITAR:
+                        usuarios[id] = usuario;
+                        break;
+
+                    case OPCION_ELIMINAR:
+                        usuarios.Remove(id);
+                        break;
+
+                    default:
+                        usuarios.Add(id, usuario);
+                        break;
+                }
+                
 
                 EnlazarDatos();
 
@@ -98,6 +121,38 @@ namespace PresentacionWebSimple
         protected void Borrar(object sender, GridViewDeleteEventArgs e)
         {
 
+        }
+
+        protected void ProcesarOpcionRejilla(object sender, CommandEventArgs e)
+        {
+            string opcion = e.CommandName;
+            string sId = (string)e.CommandArgument;
+            long id = long.Parse(sId);
+
+            switch (opcion)
+            {
+                case OPCION_EDITAR:
+                    Usuario usuario = usuarios[id];
+
+                    TxtId.Text = id.ToString();
+                    TxtEmail.Text = usuario.Email;
+                    TxtPassword.Text = usuario.Password;
+
+                    this.opcion = opcion;
+                    this.id = id;
+
+                    break;
+                case OPCION_ELIMINAR:
+                    TxtId.ReadOnly = true;
+                    TxtEmail.Enabled = false;
+                    TxtPassword.Enabled = false;
+
+                    goto case OPCION_EDITAR;
+                case null:
+                    break;
+                default:
+                    throw new NotImplementedException("No existe esa opción");
+            }
         }
     }
 }
