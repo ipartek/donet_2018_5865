@@ -15,8 +15,10 @@ namespace PresentacionWebSimple
         private const string OPCION_ELIMINAR = "eliminar";
         private static Dictionary<long, Usuario> usuarios = new Dictionary<long, Usuario>();
 
+        /*
         private string opcion;
         private long id;
+        */
 
         static Usuarios()
         {
@@ -31,6 +33,7 @@ namespace PresentacionWebSimple
                 EnlazarDatos();
             }
 
+            /*
             string opcion = Request["opcion"];
             string sId = Request["id"];
 
@@ -59,6 +62,7 @@ namespace PresentacionWebSimple
                 default:
                     throw new NotImplementedException("No existe esa opción");
             }
+            */
         }
 
         private void EnlazarDatos()
@@ -72,40 +76,6 @@ namespace PresentacionWebSimple
             RUsuarios.DataBind();
 
             //DataBind();
-        }
-
-        protected void BtnAceptar_Click(object sender, EventArgs e)
-        {
-            Debug.WriteLine(opcion, "USUARIOS");
-
-            //Label1.Text = opcion;
-            //Label2.Text = id.ToString();
-
-            if (IsValid)
-            {
-                //long id = long.Parse(TxtId.Text);
-                Usuario usuario = new Usuario(id, TxtEmail.Text, TxtPassword.Text);
-
-                switch (opcion)
-                {
-                    case OPCION_EDITAR:
-                        usuarios[id] = usuario;
-                        break;
-
-                    case OPCION_ELIMINAR:
-                        usuarios.Remove(id);
-                        break;
-
-                    default:
-                        usuarios.Add(id, usuario);
-                        break;
-                }
-                
-
-                EnlazarDatos();
-
-                Dni dni = new Dni(TxtDni.Text);
-            }
         }
 
         protected void ValidadorDni_ServerValidate(object source, ServerValidateEventArgs args)
@@ -127,7 +97,22 @@ namespace PresentacionWebSimple
         {
             string opcion = e.CommandName;
             string sId = (string)e.CommandArgument;
-            long id = long.Parse(sId);
+            long id;
+
+            if (opcion != null)
+            {
+                BtnAceptar.CommandName = opcion;
+            }
+
+            if (!string.IsNullOrEmpty(sId))
+            {
+                id = long.Parse(sId);
+                BtnAceptar.CommandArgument = sId;
+            }
+            else
+            {
+                id = -1;
+            }
 
             switch (opcion)
             {
@@ -138,20 +123,65 @@ namespace PresentacionWebSimple
                     TxtEmail.Text = usuario.Email;
                     TxtPassword.Text = usuario.Password;
 
-                    this.opcion = opcion;
-                    this.id = id;
-
                     break;
                 case OPCION_ELIMINAR:
                     TxtId.ReadOnly = true;
                     TxtEmail.Enabled = false;
                     TxtPassword.Enabled = false;
+                    RfvPassword.Enabled = false;
 
                     goto case OPCION_EDITAR;
                 case null:
                     break;
                 default:
                     throw new NotImplementedException("No existe esa opción");
+            }
+        }
+
+        protected void BtnAceptar_Command(object sender, CommandEventArgs e)
+        {
+            string opcion = e.CommandName;
+            string sId = (string)e.CommandArgument;
+            long id;
+
+            if (opcion != null)
+            {
+                BtnAceptar.CommandName = opcion;
+            }
+
+            if (!string.IsNullOrEmpty(sId))
+            {
+                id = long.Parse(sId);
+                BtnAceptar.CommandArgument = sId;
+            }
+            else
+            {
+                id = -1;
+            }
+
+            if (IsValid)
+            {
+                //long id = long.Parse(TxtId.Text);
+                Usuario usuario = new Usuario(id, TxtEmail.Text, TxtPassword.Text);
+
+                switch (opcion)
+                {
+                    case OPCION_EDITAR:
+                        usuarios[long.Parse(TxtId.Text)] = usuario;
+                        break;
+
+                    case OPCION_ELIMINAR:
+                        usuarios.Remove(id);
+                        break;
+
+                    default:
+                        usuarios.Add(id, usuario);
+                        break;
+                }
+                
+                EnlazarDatos();
+
+                Dni dni = new Dni(TxtDni.Text);
             }
         }
     }
