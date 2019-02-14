@@ -12,6 +12,7 @@
             <asp:TextBox CssClass="form-control col-sm-10 col-12" ID="TxtEmail" runat="server" TextMode="Email" ValidationGroup="usuario"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="El Email es obligatorio" ControlToValidate="TxtEmail" Display="Dynamic" ValidationGroup="usuario">*</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TxtEmail" Display="Dynamic" ErrorMessage="El email no tiene el formato adecuado" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="usuario">*</asp:RegularExpressionValidator>
+            <asp:CustomValidator ID="ValidadorEmail" runat="server" ErrorMessage="El email no es válido" Text="*" ControlToValidate="TxtEmail" OnServerValidate="ValidadorEmail_ServerValidate" ValidationGroup="usuario"></asp:CustomValidator>
         </div>
         <div class="form-group row">
             <asp:Label CssClass="col-sm-2 col-12" ID="Label2" runat="server" Text="Label">Password</asp:Label>
@@ -65,7 +66,7 @@
             </tbody>
         </table>
         
-        <asp:GridView AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover table-sm" ID="GvUsuarios" runat="server" OnRowDeleting="Borrar" OnRowEditing="Editar">
+        <asp:GridView AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-hover table-sm" ID="GvUsuarios" runat="server">
             <Columns>
                 <asp:BoundField DataField="Email" HeaderText="Email"></asp:BoundField>
                 <asp:BoundField DataField="Password" HeaderText="Contraseña"></asp:BoundField>

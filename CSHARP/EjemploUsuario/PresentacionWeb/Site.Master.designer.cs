@@ -13,6 +13,15 @@ namespace PresentacionWeb {
     public partial class SiteMaster {
         
         /// <summary>
+        /// Control Cabecera.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder Cabecera;
+        
+        /// <summary>
         /// Control MainContent.
         /// </summary>
         /// <remarks>

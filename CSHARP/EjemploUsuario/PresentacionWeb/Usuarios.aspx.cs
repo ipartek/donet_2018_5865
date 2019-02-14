@@ -14,12 +14,7 @@ namespace PresentacionWebSimple
         private const string OPCION_EDITAR = "editar";
         private const string OPCION_ELIMINAR = "eliminar";
         private static Dictionary<long, Usuario> usuarios = new Dictionary<long, Usuario>();
-
-        /*
-        private string opcion;
-        private long id;
-        */
-
+        
         static Usuarios()
         {
             usuarios.Add(1L, new Usuario(1L, "pepe@email.net", "contrapepe"));
@@ -32,37 +27,6 @@ namespace PresentacionWebSimple
             {
                 EnlazarDatos();
             }
-
-            /*
-            string opcion = Request["opcion"];
-            string sId = Request["id"];
-
-            switch (opcion)
-            {
-                case OPCION_EDITAR:
-                    long id = long.Parse(sId);
-                    Usuario usuario = usuarios[id];
-
-                    TxtId.Text = sId;
-                    TxtEmail.Text = usuario.Email;
-                    TxtPassword.Text = usuario.Password;
-
-                    this.opcion = opcion;
-                    this.id = id;
-
-                    break;
-                case OPCION_ELIMINAR:
-                    TxtId.ReadOnly = true;
-                    TxtEmail.Enabled = false;
-                    TxtPassword.Enabled = false;
-
-                    goto case OPCION_EDITAR;
-                case null:
-                    break;
-                default:
-                    throw new NotImplementedException("No existe esa opción");
-            }
-            */
         }
 
         private void EnlazarDatos()
@@ -80,17 +44,17 @@ namespace PresentacionWebSimple
 
         protected void ValidadorDni_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = Dni.EsValido(args.Value);
-        }
-
-        protected void Editar(object sender, GridViewEditEventArgs e)
-        {
-
-        }
-
-        protected void Borrar(object sender, GridViewDeleteEventArgs e)
-        {
-
+            //args.IsValid = Dni.EsValido(args.Value);
+            try
+            {
+                new Dni(args.Value);
+                args.IsValid = true;
+            }
+            catch (Exception e)
+            {
+                ValidadorDni.ErrorMessage = e.Message;
+                args.IsValid = false;
+            }
         }
 
         protected void ProcesarOpcionRejilla(object sender, CommandEventArgs e)
@@ -153,8 +117,8 @@ namespace PresentacionWebSimple
         {
             string opcion = e.CommandName;
 
-            if (IsValid)
-            {
+            //if (IsValid)
+            //{
                 long id = long.Parse(TxtId.Text);
                 Usuario usuario = new Usuario(id, TxtEmail.Text, TxtPassword.Text);
 
@@ -182,6 +146,19 @@ namespace PresentacionWebSimple
 
                 BtnAceptar.CommandName = "";
                 BtnAceptar.CommandArgument = "";
+            //}
+        }
+
+        protected void ValidadorEmail_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            try
+            {
+                new Usuario().Email = args.Value;
+                args.IsValid = true;
+            } catch(Exception e)
+            {
+                ValidadorEmail.ErrorMessage = e.Message;
+                args.IsValid = false;
             }
         }
     }
