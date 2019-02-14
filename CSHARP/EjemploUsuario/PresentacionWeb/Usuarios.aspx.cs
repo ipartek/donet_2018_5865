@@ -115,6 +115,7 @@ namespace PresentacionWebSimple
 
         protected void BtnAceptar_Command(object sender, CommandEventArgs e)
         {
+            Trace.Warn("USUARIOS", "DENTRO DE BOTON ACEPTAR");
             string opcion = e.CommandName;
 
             //if (IsValid)
@@ -151,6 +152,8 @@ namespace PresentacionWebSimple
 
         protected void ValidadorEmail_ServerValidate(object source, ServerValidateEventArgs args)
         {
+            Trace.Warn("USUARIOS", "DENTRO DE SERVER VALIDATE DE EMAIL");
+
             try
             {
                 new Usuario().Email = args.Value;
