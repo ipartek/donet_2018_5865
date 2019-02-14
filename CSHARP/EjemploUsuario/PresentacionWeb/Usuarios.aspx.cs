@@ -118,8 +118,8 @@ namespace PresentacionWebSimple
             Trace.Warn("USUARIOS", "DENTRO DE BOTON ACEPTAR");
             string opcion = e.CommandName;
 
-            //if (IsValid)
-            //{
+            if (IsValid)
+            {
                 long id = long.Parse(TxtId.Text);
                 Usuario usuario = new Usuario(id, TxtEmail.Text, TxtPassword.Text);
 
@@ -147,7 +147,7 @@ namespace PresentacionWebSimple
 
                 BtnAceptar.CommandName = "";
                 BtnAceptar.CommandArgument = "";
-            //}
+            }
         }
 
         protected void ValidadorEmail_ServerValidate(object source, ServerValidateEventArgs args)
