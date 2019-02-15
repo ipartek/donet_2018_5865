@@ -44,21 +44,17 @@
                 <asp:Repeater ID="RUsuarios" runat="server">
                     <ItemTemplate>
                         <tr>
-                            <td><%# DataBinder.Eval(Container.DataItem, "Email") %></td>
+                            <td><%# Eval("Email") %></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "Password") %></td>
                             <td>
                                 <asp:Button CssClass="btn btn-primary" ID="BtnEditar" runat="server"
-                                    CommandName="editar" CommandArgument='<%# DataBinder.Eval(
-                                        Container.DataItem, "Id") %>' Text="Editar" OnCommand="ProcesarOpcionRejilla" />
+                                    CommandName="editar" CommandArgument='<%# Eval("Id") %>' Text="Editar" OnCommand="ProcesarOpcionRejilla" />
                                 <asp:Button CssClass="btn btn-danger" ID="BtnEliminar" runat="server"
-                                    CommandName="eliminar" CommandArgument='<%# DataBinder.Eval(
-                                        Container.DataItem, "Id") %>' Text="Eliminar" OnCommand="ProcesarOpcionRejilla" />
+                                    CommandName="eliminar" CommandArgument='<%# Eval("Id") %>' Text="Eliminar" OnCommand="ProcesarOpcionRejilla" />
 
                                 <a class="btn btn-primary" 
-                                    href="?opcion=editar&id=<%# DataBinder.Eval(
-                                        Container.DataItem, "Id") %>">Editar</a>
-                                <a class="btn btn-danger" href="?opcion=eliminar&id=<%# DataBinder.Eval(
-                                        Container.DataItem, "Id") %>">Eliminar</a>
+                                    href="?opcion=editar&id=<%# Eval("Id") %>">Editar</a>
+                                <a class="btn btn-danger" href="?opcion=eliminar&id=<%# Eval("Id") %>">Eliminar</a>
                             </td>
                         </tr>
                     </ItemTemplate>
