@@ -33,6 +33,10 @@ namespace PresentacionWeb
             // para la producción, use la herramienta de compilación disponible en https://modernizr.com para seleccionar solo las pruebas que necesite
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
+
+            // Validador DNI
+            bundles.Add(new ScriptBundle("~/bundles/validadordni").Include(
+                            "~/Scripts/validadordni.js"));
         }
     }
 }
