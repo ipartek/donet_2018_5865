@@ -85,6 +85,7 @@ namespace PresentacionWebSimple
                 case OPCION_EDITAR:
                     Usuario usuario = usuarios[id];
 
+                    TxtId.ReadOnly = true;
                     TxtId.Text = id.ToString();
                     TxtEmail.Text = usuario.Email;
                     TxtPassword.Text = usuario.Password;

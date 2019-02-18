@@ -23,7 +23,7 @@
         <div class="form-group row">
             <asp:Label CssClass="col-sm-2 col-12" ID="Label3" runat="server" Text="Label">DNI</asp:Label>
             <asp:TextBox CssClass="form-control col-sm-10 col-12" ID="TxtDni" runat="server"></asp:TextBox>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TxtDni" Display="Dynamic" ErrorMessage="El DNI no tiene el formato adecuado" ValidationExpression="^[\dXYZ]\d{7}[A-Z]$" ValidationGroup="usuario">*</asp:RegularExpressionValidator>
+            <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TxtDni" Display="Dynamic" ErrorMessage="El DNI no tiene el formato adecuado" ValidationExpression="^[\dXYZ]\d{7}[A-Z]$" ValidationGroup="usuario">*</asp:RegularExpressionValidator>--%>
             <asp:CustomValidator ID="ValidadorDni" runat="server" ErrorMessage="El DNI no es válido" Text="*" ControlToValidate="TxtDni" OnServerValidate="ValidadorDni_ServerValidate" ClientValidationFunction="validarDni" ValidationGroup="usuario"></asp:CustomValidator>
         </div>
         <div class="form-group row">
@@ -81,9 +81,17 @@
         
     </div>
     <script>
-        function validarDni(object, args) {
+        function validarDni(validador, args) {
             'use strict';
-            var numero, letra, letras;
+            var numero, letra, letras, dni;
+
+            dni = args.Value;
+
+            if (!/^[\dXYZ]\d{7}[A-Z]$/.test(dni)) {
+                args.IsValid = false;
+                validador.errormessage = "El DNI debe ser del formato A1234567A o 12345678A";
+                return;
+            }
 
             letras = 'TRWAGMYFPDXBNJZSQVHLCKE';
 
@@ -93,7 +101,11 @@
 
             numero = numero.replace('X', '0').replace('Y', '1').replace('Z', '2');
 
-            args.IsValid = letra === letras[numero % 23];
+            args.IsValid = letra === letras[numero % 23]
+
+            if (!args.IsValid) {
+                validador.errormessage = "El cálculo de la letra de DNI no concuerda";
+            }
         }
     </script>
 </asp:Content>
