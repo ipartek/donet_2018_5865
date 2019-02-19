@@ -35,6 +35,9 @@ namespace PresentacionWebSimple
             chat.Append(usuario.Email).Append(": ").Append(TxtChat.Text).Append("<br />");
 
             LblChat.Text = ((StringBuilder)Application["chat"]).ToString();
+
+            //Guardar en el input type="hidden" de ViewState para recibirlo de vuelta
+            //ViewState["lakjsdlk"] = "laskdfjlaks";
         }
     }
 }
