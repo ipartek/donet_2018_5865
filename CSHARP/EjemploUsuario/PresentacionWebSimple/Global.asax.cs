@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Tipos;
+
+namespace PresentacionWebSimple
+{
+    public class Global : System.Web.HttpApplication
+    {
+
+        protected void Application_Start(object sender, EventArgs e)
+        {
+            Dictionary<string, Usuario> usuarios = new Dictionary<string, Usuario>();
+
+            usuarios.Add("javierlete@email.net", new Usuario("javierlete@email.net", "contra"));
+            usuarios.Add("pepe@email.net", new Usuario("pepe@email.net", "yepa"));
+
+            Application["usuarios"] = usuarios;
+
+            Application["chat"] = new StringBuilder("Bienvenido a este chat<br />");
+        }
+
+        protected void Session_Start(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_End(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
