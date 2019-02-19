@@ -7,7 +7,7 @@ namespace PresentacionWebSimple
 {
     public class Global : System.Web.HttpApplication
     {
-
+        // Método que se ejecuta sólo cuando se arranca la aplicación
         protected void Application_Start(object sender, EventArgs e)
         {
             Dictionary<string, Usuario> usuarios = new Dictionary<string, Usuario>();
@@ -20,6 +20,7 @@ namespace PresentacionWebSimple
             Application["chat"] = new StringBuilder("Bienvenido a este chat<br />");
         }
 
+        //Cuando un navegador inicia comunicaciones con nosotros
         protected void Session_Start(object sender, EventArgs e)
         {
 
