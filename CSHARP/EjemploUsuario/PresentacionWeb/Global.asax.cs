@@ -6,6 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Web.UI;
 
 namespace PresentacionWeb
 {
@@ -16,6 +17,13 @@ namespace PresentacionWeb
             // Código que se ejecuta al iniciar la aplicación
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ScriptManager.ScriptResourceMapping.AddDefinition("moment", new ScriptResourceDefinition
+            {
+                Path = "~/Scripts/moment-with-locales.min.js",
+                DebugPath = "~/Scripts/moment-with-locales.js",
+                LoadSuccessExpression = "moment"
+            });
         }
     }
 }
