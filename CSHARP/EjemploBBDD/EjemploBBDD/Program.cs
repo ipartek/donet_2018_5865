@@ -95,17 +95,19 @@ namespace EjemploBBDD
 
         private static void MostrarTabla()
         {
-            DbDataReader dr = comSelect.ExecuteReader();
+            using(DbDataReader dr = comSelect.ExecuteReader()) {
 
-            while (dr.Read())
-            {
-                //Console.WriteLine("{0}, {1}, {2}", dr["Id"], dr["Email"], dr["Password"]);
-                Console.WriteLine($"{dr["Id"]}, {dr["Email"]}, {dr["Password"]}");
+                while (dr.Read())
+                {
+                    //Console.WriteLine("{0}, {1}, {2}", dr["Id"], dr["Email"], dr["Password"]);
+                    Console.WriteLine($"{dr["Id"]}, {dr["Email"]}, {dr["Password"]}");
+                }
+
+                //dr.Close(); //Al usar el using, los cierres son implícitos
             }
 
-            dr.Close();
-
             Console.WriteLine("---------------------------------------------------");
+            
         }
     }
 }
