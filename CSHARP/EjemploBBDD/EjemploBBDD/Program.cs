@@ -1,16 +1,37 @@
-﻿using System;
+﻿using AccesoDatos;
+using System;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using Tipos;
 
 namespace EjemploBBDD
 {
     class Program
     {
+        static void Main()
+        {
+            string cadenaConexion = @"Data Source=DESKTOP-9GKENR5\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
+
+            IDao<Usuario> usuarioDao = new UsuarioSqlDao(cadenaConexion);
+
+            Usuario usuario = usuarioDao.BuscarPorId(14);
+
+            if (usuario == null)
+            {
+                Console.WriteLine("No se ha encontrado ese usuario");
+            }
+            else
+            {
+                Console.WriteLine(usuario);
+            }
+        }
+
+
         private static DbConnection con;
         private static DbCommand comSelect;
 
-        static void Main(string[] args)
+        static void MainBasico(string[] args)
         {
             Inicializacion();
 
