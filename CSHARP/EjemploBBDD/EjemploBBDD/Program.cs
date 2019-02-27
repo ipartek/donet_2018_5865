@@ -55,7 +55,7 @@ namespace EjemploBBDD
         {
             DbCommand com = con.CreateCommand();
             //com.CommandText = $"INSERT INTO usuarios (Email, Password) VALUES ('{email}', '{password}')";
-            com.CommandText = "INSERT INTO usuarios (Email, Password) VALUES (@email, @password)";
+            com.CommandText = "INSERT INT usuarios (Email, Password) VALUES (@email, @password)";
             DbParameter parEmail = CrearParametro(DbType.String, "@email", email, com);
 
             DbParameter parPassword = com.CreateParameter();
