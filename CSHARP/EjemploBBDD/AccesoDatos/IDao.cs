@@ -4,11 +4,11 @@ namespace AccesoDatos
 {
     public interface IDao<T>
     {
-        long Insertar(T tipo);
-        long Modificar(T tipo);
-        long Borrar(T tipo);
-        long Borrar(long id);
+        int Insertar(T tipo);
+        int Modificar(T tipo);
+        int Borrar(T tipo);
+        int Borrar(int id);
         List<T> BuscarTodos();
-        T BuscarPorId(long id);
+        T BuscarPorId(int id);
     }
 }

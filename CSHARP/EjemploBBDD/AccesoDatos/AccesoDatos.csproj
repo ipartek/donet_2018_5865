@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AccesoDatosException.cs" />
     <Compile Include="IDao.cs" />
     <Compile Include="IUsuarioDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

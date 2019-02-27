@@ -11,19 +11,45 @@ namespace EjemploBBDD
     {
         static void Main()
         {
-            string cadenaConexion = @"Data Source=DESKTOP-9GKENR5\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
-
-            IDao<Usuario> usuarioDao = new UsuarioSqlDao(cadenaConexion);
-
-            Usuario usuario = usuarioDao.BuscarPorId(14);
-
-            if (usuario == null)
+            try
             {
-                Console.WriteLine("No se ha encontrado ese usuario");
+                string cadenaConexion = @"Data Source=DESKTOP-9GKENR5\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
+
+                try
+                {
+                    IDao<Usuario> usuarioDao = new UsuarioSqlDao(cadenaConexion);
+
+                    try
+                    {
+                        Usuario usuario = usuarioDao.BuscarPorId(14);
+
+                        if (usuario == null)
+                        {
+                            Console.WriteLine("No se ha encontrado ese usuario");
+                        }
+                        else
+                        {
+                            Console.WriteLine(usuario);
+                        }
+                    }
+                    catch (AccesoDatosException ade)
+                    {
+                        Console.WriteLine("Problema al buscar por Id");
+
+                        Console.WriteLine(ade.Source);
+
+                        Console.WriteLine(ade.InnerException.Source);
+                        Console.WriteLine(ade.InnerException.Message);
+                    }
+                }
+                catch (AccesoDatosException ade)
+                {
+                    Console.WriteLine(ade.Message);
+                }
             }
-            else
+            catch (Exception)
             {
-                Console.WriteLine(usuario);
+                Console.WriteLine("Error no esperado");
             }
         }
 
