@@ -45,7 +45,7 @@ namespace EjemploBBDD
 
                     try
                     {
-                        usuarioDao.Insertar(new Usuario("javierlete@email.net", "contra"));
+                        Console.WriteLine(usuarioDao.Insertar(new Usuario("javierlete@email.net", "contra")));
                     }
                     catch(AccesoDatosException)
                     {
