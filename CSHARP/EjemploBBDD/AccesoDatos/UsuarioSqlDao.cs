@@ -123,7 +123,15 @@ namespace AccesoDatos
 
                     comando.Parameters.Add(parPassword);
 
-                    return comando.ExecuteNonQuery();
+                    int filasModificadas = comando.ExecuteNonQuery();
+
+                    if(filasModificadas != 1)
+                    {
+                        throw new AccesoDatosException("Se han modificado más de una fila");
+                    }
+
+                    //TODO: Devolver el id autogenerado
+                    return filasModificadas;
                 }
             }
             catch (Exception e)
