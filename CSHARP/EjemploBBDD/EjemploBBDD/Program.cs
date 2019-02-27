@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 
@@ -17,7 +18,7 @@ namespace EjemploBBDD
 
             MostrarTabla();
 
-            Insertar();
+            Insertar("Prueba", "Pruebez'); DELETE FROM usuarios; --");
 
             MostrarTabla();
 
@@ -50,13 +51,36 @@ namespace EjemploBBDD
             Console.WriteLine($"Se han modificado {filasModificadas} filas");
         }
 
-        private static void Insertar()
+        private static void Insertar(string email, string password)
         {
             DbCommand com = con.CreateCommand();
-            com.CommandText = "INSERT INTO usuarios (Email, Password) VALUES ('Prueba', 'Pruebez')";
+            //com.CommandText = $"INSERT INTO usuarios (Email, Password) VALUES ('{email}', '{password}')";
+            com.CommandText = "INSERT INTO usuarios (Email, Password) VALUES (@email, @password)";
+            DbParameter parEmail = CrearParametro(DbType.String, "@email", email, com);
+
+            DbParameter parPassword = com.CreateParameter();
+            parPassword.DbType = DbType.String;
+            parPassword.ParameterName = "@password";
+            parPassword.Value = password;
+
+            com.Parameters.Add(parPassword);
+
             int filasModificadas = com.ExecuteNonQuery();
 
             Console.WriteLine($"Se han insertado {filasModificadas} filas");
+        }
+
+        private static DbParameter CrearParametro(DbType tipo, string nombre, object valor, DbCommand com)
+        {
+            DbParameter parametro = com.CreateParameter();
+
+            parametro.DbType = tipo;
+            parametro.ParameterName = nombre;
+            parametro.Value = valor;
+
+            com.Parameters.Add(parametro);
+
+            return parametro;
         }
 
         private static void Inicializacion()
