@@ -1,5 +1,6 @@
 ﻿using AccesoDatos;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -40,6 +41,36 @@ namespace EjemploBBDD
 
                         Console.WriteLine(ade.InnerException.Source);
                         Console.WriteLine(ade.InnerException.Message);
+                    }
+
+                    try
+                    {
+                        usuarioDao.Insertar(new Usuario("javierlete@email.net", "contra"));
+                    }
+                    catch(AccesoDatosException)
+                    {
+                        Console.WriteLine("No se pudo insertar el usuario");
+                    }
+
+                    try
+                    {
+                        List<Usuario> usuarios = usuarioDao.BuscarTodos();
+
+                        if (usuarios.Count == 0)
+                        {
+                            Console.WriteLine("No se ha encontrado ningún usuario");
+                        }
+                        else
+                        {
+                            foreach (Usuario u in usuarios)
+                            {
+                                Console.WriteLine(u);
+                            }
+                        }
+                    }
+                    catch (AccesoDatosException)
+                    {
+                        Console.WriteLine("No se ha podido acceder a la lista de usuarios");
                     }
                 }
                 catch (AccesoDatosException ade)

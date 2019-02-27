@@ -70,12 +70,66 @@ namespace AccesoDatos
 
         public List<Usuario> BuscarTodos()
         {
-            throw new NotImplementedException();
+            List<Usuario> usuarios = new List<Usuario>();
+
+            try
+            {
+                using (DbConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+
+                    DbCommand comando = conexion.CreateCommand();
+                    comando.CommandText = "SELECT Id, Email, Password FROM usuarios";
+
+                    using (DbDataReader dr = comando.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            usuarios.Add(new Usuario(dr.GetInt32(0), dr.GetString(1), dr.GetString(2)));
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new AccesoDatosException(e.Message, e);
+            }
+
+            return usuarios;
         }
 
-        public int Insertar(Usuario tipo)
+        public int Insertar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (DbConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+
+                    DbCommand comando = conexion.CreateCommand();
+                    comando.CommandText = "INSERT INTO usuarios (Email, Password) VALUES (@email, @password)";
+
+                    DbParameter parEmail = comando.CreateParameter();
+                    parEmail.DbType = System.Data.DbType.String;
+                    parEmail.ParameterName = "@email";
+                    parEmail.Value = usuario.Email;
+
+                    comando.Parameters.Add(parEmail);
+
+                    DbParameter parPassword = comando.CreateParameter();
+                    parPassword.DbType = System.Data.DbType.String;
+                    parPassword.ParameterName = "@password";
+                    parPassword.Value = usuario.Password;
+
+                    comando.Parameters.Add(parPassword);
+
+                    return comando.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new AccesoDatosException(e.Message, e);
+            }
         }
 
         public int Modificar(Usuario tipo)

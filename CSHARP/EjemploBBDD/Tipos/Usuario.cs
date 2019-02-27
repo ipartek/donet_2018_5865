@@ -16,6 +16,8 @@ namespace Tipos
             Password = password ?? throw new ArgumentNullException(nameof(password));
         }
 
+        public Usuario(string email, string password) : this(0, email, password) { }
+
         public override string ToString() => $"{Id}, {Email}, {Password}";
     }
 }
