@@ -78,6 +78,15 @@ namespace EjemploBBDD
 
                     try
                     {
+                        Console.WriteLine(usuarioDao.Modificar(new Usuario(14, "modificado@email.net", "modificadocontra")));
+                    }
+                    catch (AccesoDatosException)
+                    {
+                        Console.WriteLine("No se pudo modificar el usuario");
+                    }
+
+                    try
+                    {
                         List<Usuario> usuarios = usuarioDao.BuscarTodos();
 
                         if (usuarios.Count == 0)

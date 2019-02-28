@@ -171,9 +171,52 @@ namespace AccesoDatos
             }
         }
 
-        public int Modificar(Usuario tipo)
+        public int Modificar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (DbConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+
+                    DbCommand comando = conexion.CreateCommand();
+                    comando.CommandText = "UPDATE usuarios SET Email=@email, Password=@password WHERE Id=@id;";
+
+                    DbParameter parEmail = comando.CreateParameter();
+                    parEmail.DbType = System.Data.DbType.String;
+                    parEmail.ParameterName = "@email";
+                    parEmail.Value = usuario.Email;
+
+                    comando.Parameters.Add(parEmail);
+
+                    DbParameter parPassword = comando.CreateParameter();
+                    parPassword.DbType = System.Data.DbType.String;
+                    parPassword.ParameterName = "@password";
+                    parPassword.Value = usuario.Password;
+
+                    comando.Parameters.Add(parPassword);
+
+                    DbParameter parId = comando.CreateParameter();
+                    parId.DbType = System.Data.DbType.Int32;
+                    parId.ParameterName = "@id";
+                    parId.Value = usuario.Id;
+
+                    comando.Parameters.Add(parId);
+
+                    int filasModificadas = comando.ExecuteNonQuery();
+
+                    if (filasModificadas != 1)
+                    {
+                        throw new AccesoDatosException("Se han modificado más de una fila");
+                    }
+
+                    return filasModificadas;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new AccesoDatosException(e.Message, e);
+            }
         }
     }
 }
