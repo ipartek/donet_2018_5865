@@ -18,6 +18,7 @@ namespace EjemploBBDD
 
                 try
                 {
+                    //IUsuarioDao usuarioDao = new UsuarioSqlDao(cadenaConexion);
                     IDao<Usuario> usuarioDao = new UsuarioSqlDao(cadenaConexion);
 
                     try
@@ -36,6 +37,29 @@ namespace EjemploBBDD
                     catch (AccesoDatosException ade)
                     {
                         Console.WriteLine("Problema al buscar por Id");
+
+                        Console.WriteLine(ade.Source);
+
+                        Console.WriteLine(ade.InnerException.Source);
+                        Console.WriteLine(ade.InnerException.Message);
+                    }
+
+                    try
+                    {
+                        Usuario usuario = ((IUsuarioDao)usuarioDao).BuscarPorEmail("javierlete@email.net");
+
+                        if (usuario == null)
+                        {
+                            Console.WriteLine("No se ha encontrado ese usuario");
+                        }
+                        else
+                        {
+                            Console.WriteLine(usuario);
+                        }
+                    }
+                    catch (AccesoDatosException ade)
+                    {
+                        Console.WriteLine("Problema al buscar por Email");
 
                         Console.WriteLine(ade.Source);
 

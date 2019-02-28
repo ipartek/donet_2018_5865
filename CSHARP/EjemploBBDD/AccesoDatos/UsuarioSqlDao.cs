@@ -28,7 +28,39 @@ namespace AccesoDatos
 
         public Usuario BuscarPorEmail(string email)
         {
-            throw new NotImplementedException();
+            Usuario usuario = null;
+
+            try
+            {
+                using (DbConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+
+                    DbCommand comando = conexion.CreateCommand();
+                    comando.CommandText = "SELECT Id, Email, Password FROM usuarios WHERE Email = @email";
+
+                    DbParameter parEmail = comando.CreateParameter();
+                    parEmail.DbType = System.Data.DbType.String;
+                    parEmail.ParameterName = "@email";
+                    parEmail.Value = email;
+
+                    comando.Parameters.Add(parEmail);
+
+                    using (DbDataReader dr = comando.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            usuario = new Usuario(dr.GetInt32(0), dr.GetString(1), dr.GetString(2));
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new AccesoDatosException(e.Message, e);
+            }
+
+            return usuario;
         }
 
         public Usuario BuscarPorId(int id)
