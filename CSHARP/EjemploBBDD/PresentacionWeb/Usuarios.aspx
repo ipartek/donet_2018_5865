@@ -1,32 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="PresentacionWeb.Usuarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="formulario">
+    <div id="formulario" class="form-horizontal">
         <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+            <asp:Label AssociatedControlID="TxtEmail" CssClass="col-sm-2 control-label" runat="server">Email</asp:Label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                <asp:TextBox TextMode="Email" CssClass="form-control" ID="TxtEmail" placeholder="Email" runat="server" />
+
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+            <asp:Label AssociatedControlID="TxtPassword" CssClass="col-sm-2 control-label" runat="server">Email</asp:Label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                <asp:TextBox TextMode="Password" CssClass="form-control" ID="TxtPassword" placeholder="Email" runat="server" />
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox">
-                        Remember me
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Sign in</button>
+                <asp:Button CssClass="btn btn-default" Text="Sign in" runat="server"/>
             </div>
         </div>
 

@@ -9,6 +9,7 @@ body {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    padding-top: 1em;
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
@@ -23,9 +24,5 @@ textarea {
 @media screen and (min-width: 768px) {
     .jumbotron {
         margin-top: 20px;
-    }
-
-    .body-content {
-        padding: 0;
     }
 }
