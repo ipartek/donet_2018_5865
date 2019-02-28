@@ -10,14 +10,14 @@
             </div>
         </div>
         <div class="form-group">
-            <asp:Label AssociatedControlID="TxtPassword" CssClass="col-sm-2 control-label" runat="server">Email</asp:Label>
+            <asp:Label AssociatedControlID="TxtPassword" CssClass="col-sm-2 control-label" runat="server">Contraseña</asp:Label>
             <div class="col-sm-10">
-                <asp:TextBox TextMode="Password" CssClass="form-control" ID="TxtPassword" placeholder="Email" runat="server" />
+                <asp:TextBox TextMode="Password" CssClass="form-control" ID="TxtPassword" placeholder="Contraseña" runat="server" />
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <asp:Button CssClass="btn btn-default" Text="Sign in" runat="server"/>
+                <asp:Button ID="BtnAceptar" CssClass="btn btn-default" Text="Aceptar" OnClick="BtnAceptar_Click" runat="server"/>
             </div>
         </div>
 
