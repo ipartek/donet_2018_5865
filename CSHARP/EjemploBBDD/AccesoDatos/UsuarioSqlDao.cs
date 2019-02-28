@@ -16,6 +16,8 @@ namespace AccesoDatos
             this.cadenaConexion = cadenaConexion;
         }
 
+        #region Métodos del DAO
+
         public int Borrar(Usuario usuario)
         {
             return ConsultaDeModificacionDeTabla(usuario, "DELETE FROM usuarios WHERE Id=@id;");
@@ -277,6 +279,10 @@ namespace AccesoDatos
             */
         }
 
+        #endregion
+
+        #region Métodos privados
+
         private int ConsultaDeModificacionDeTabla(Usuario usuario, string sql)
         {
             try
@@ -402,6 +408,8 @@ namespace AccesoDatos
                     throw new AccesoDatosException("Se ha recibido más de un resultado en una consulta de un resultado");
             }
         }
+
+        #endregion
 
     }
 }
