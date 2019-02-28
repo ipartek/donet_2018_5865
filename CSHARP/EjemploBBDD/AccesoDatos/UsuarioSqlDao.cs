@@ -64,6 +64,10 @@ namespace AccesoDatos
 
         public Usuario BuscarPorEmail(string email)
         {
+            return ConsultaDeUnaFila(
+                "SELECT Id, Email, Password FROM usuarios WHERE Email = @email", 
+                new Usuario(email, null));
+            /*
             Usuario usuario = null;
 
             try
@@ -97,10 +101,15 @@ namespace AccesoDatos
             }
 
             return usuario;
+            */
         }
 
         public Usuario BuscarPorId(int id)
         {
+            return ConsultaDeUnaFila(
+                "SELECT Id, Email, Password FROM usuarios WHERE Id = @id",
+                new Usuario(id, null, null));
+            /*
             Usuario usuario = null;
 
             try
@@ -134,10 +143,13 @@ namespace AccesoDatos
             }
 
             return usuario;
+            */
         }
 
         public List<Usuario> BuscarTodos()
         {
+            return ConsultaDeDatosMultiples("SELECT Id, Email, Password FROM usuarios");
+            /*
             List<Usuario> usuarios = new List<Usuario>();
 
             try
@@ -164,6 +176,7 @@ namespace AccesoDatos
             }
 
             return usuarios;
+            */
         }
 
         public int Insertar(Usuario usuario)
@@ -320,5 +333,75 @@ namespace AccesoDatos
                 throw new AccesoDatosException(e.Message, e);
             }
         }
+
+        private List<Usuario> ConsultaDeDatosMultiples(string sql, Usuario usuario = null)
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+
+            try
+            {
+                using (DbConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+
+                    DbCommand comando = conexion.CreateCommand();
+                    comando.CommandText = sql; //"SELECT Id, Email, Password FROM usuarios";
+
+                    if (usuario != null)
+                    {
+                        DbParameter parId = comando.CreateParameter();
+                        parId.DbType = System.Data.DbType.Int32;
+                        parId.ParameterName = "@id";
+                        parId.Value = usuario.Id;
+
+                        comando.Parameters.Add(parId);
+
+                        DbParameter parEmail = comando.CreateParameter();
+                        parEmail.DbType = System.Data.DbType.String;
+                        parEmail.ParameterName = "@email";
+                        parEmail.Value = usuario.Email;
+
+                        comando.Parameters.Add(parEmail);
+
+                        DbParameter parPassword = comando.CreateParameter();
+                        parPassword.DbType = System.Data.DbType.String;
+                        parPassword.ParameterName = "@password";
+                        parPassword.Value = usuario.Password;
+
+                        comando.Parameters.Add(parPassword);
+                    }
+
+                    using (DbDataReader dr = comando.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            usuarios.Add(new Usuario(dr.GetInt32(0), dr.GetString(1), dr.GetString(2)));
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new AccesoDatosException(e.Message, e);
+            }
+
+            return usuarios;
+        }
+
+        private Usuario ConsultaDeUnaFila(string sql, Usuario usuario = null)
+        {
+            List<Usuario> usuarios = ConsultaDeDatosMultiples(sql, usuario);
+
+            switch(usuarios.Count)
+            {
+                case 1:
+                    return usuarios[0];
+                case 0:
+                    return null;
+                default:
+                    throw new AccesoDatosException("Se ha recibido más de un resultado en una consulta de un resultado");
+            }
+        }
+
     }
 }
