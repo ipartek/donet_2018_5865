@@ -20,6 +20,9 @@ namespace PresentacionWeb
             {
                 GvUsuarios.DataSource = usuariosDao.BuscarTodos();
                 GvUsuarios.DataBind();
+
+                RUsuarios.DataSource = usuariosDao.BuscarTodos();
+                RUsuarios.DataBind();
             }
         }
     }
