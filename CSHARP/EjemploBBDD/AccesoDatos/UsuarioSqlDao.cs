@@ -18,11 +18,17 @@ namespace AccesoDatos
 
         public int Borrar(Usuario usuario)
         {
+            return ConsultaDeModificacionDeTabla(usuario, "DELETE FROM usuarios WHERE Id=@id;");
+            /*
             return Borrar(usuario.Id);
+            */
         }
 
         public int Borrar(int id)
         {
+            return Borrar(new Usuario(id, null, null));
+
+            /*
             try
             {
                 using (DbConnection conexion = new SqlConnection(cadenaConexion))
@@ -53,6 +59,7 @@ namespace AccesoDatos
             {
                 throw new AccesoDatosException(e.Message, e);
             }
+            */
         }
 
         public Usuario BuscarPorEmail(string email)
@@ -161,6 +168,10 @@ namespace AccesoDatos
 
         public int Insertar(Usuario usuario)
         {
+            return ConsultaDeModificacionDeTabla(usuario, 
+                "INSERT INTO usuarios (Email, Password) VALUES (@email, @password); " +
+                "SELECT CAST(SCOPE_IDENTITY() AS int);");
+            /*
             try
             {
                 using (DbConnection conexion = new SqlConnection(cadenaConexion))
@@ -198,10 +209,14 @@ namespace AccesoDatos
             {
                 throw new AccesoDatosException(e.Message, e);
             }
+            */
         }
 
         public int Modificar(Usuario usuario)
         {
+            return ConsultaDeModificacionDeTabla(usuario,
+                "UPDATE usuarios SET Email=@email, Password=@password WHERE Id=@id;");
+            /*
             try
             {
                 using (DbConnection conexion = new SqlConnection(cadenaConexion))
@@ -240,6 +255,64 @@ namespace AccesoDatos
                     }
 
                     return filasModificadas;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new AccesoDatosException(e.Message, e);
+            }
+            */
+        }
+
+        private int ConsultaDeModificacionDeTabla(Usuario usuario, string sql)
+        {
+            try
+            {
+                using (DbConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+
+                    DbCommand comando = conexion.CreateCommand();
+                    comando.CommandText = sql; //"INSERT INTO usuarios (Email, Password) VALUES (@email, @password); SELECT CAST(SCOPE_IDENTITY() AS int);";
+
+                    DbParameter parId = comando.CreateParameter();
+                    parId.DbType = System.Data.DbType.Int32;
+                    parId.ParameterName = "@id";
+                    parId.Value = usuario.Id;
+
+                    comando.Parameters.Add(parId);
+
+                    DbParameter parEmail = comando.CreateParameter();
+                    parEmail.DbType = System.Data.DbType.String;
+                    parEmail.ParameterName = "@email";
+                    parEmail.Value = usuario.Email;
+
+                    comando.Parameters.Add(parEmail);
+
+                    DbParameter parPassword = comando.CreateParameter();
+                    parPassword.DbType = System.Data.DbType.String;
+                    parPassword.ParameterName = "@password";
+                    parPassword.Value = usuario.Password;
+
+                    comando.Parameters.Add(parPassword);
+
+                    int valor;
+
+                    if (sql.Contains("INSERT") && sql.Contains("SELECT"))
+                    {
+                        valor = (int)comando.ExecuteScalar();
+                    }
+                    else
+                    {
+                        valor = comando.ExecuteNonQuery();
+
+                        if (valor != 1)
+                        {
+                            throw new AccesoDatosException("Se han modificado más de una fila");
+                        }
+                    }
+
+                    return valor;
                 }
             }
             catch (Exception e)
