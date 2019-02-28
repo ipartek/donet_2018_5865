@@ -67,44 +67,23 @@ namespace EjemploBBDD
                         Console.WriteLine(ade.InnerException.Message);
                     }
 
-                    try
-                    {
-                        Console.WriteLine(usuarioDao.Insertar(new Usuario("javierlete@email.net", "contra")));
-                    }
-                    catch(AccesoDatosException)
-                    {
-                        Console.WriteLine("No se pudo insertar el usuario");
-                    }
+                    int id;
 
                     try
                     {
-                        Console.WriteLine(usuarioDao.Modificar(new Usuario(14, "modificado@email.net", "modificadocontra")));
+                        id = usuarioDao.Insertar(new Usuario("javierlete@email.net", "contra"));
+                        MostrarTodos(usuarioDao);
+                        Console.WriteLine(usuarioDao.Modificar(new Usuario(id, "modificado@email.net", "modificadocontra")));
+                        MostrarTodos(usuarioDao);
+                        Console.WriteLine(usuarioDao.Borrar(new Usuario(id, "", "")));
+                        MostrarTodos(usuarioDao);
                     }
                     catch (AccesoDatosException)
                     {
-                        Console.WriteLine("No se pudo modificar el usuario");
+                        Console.WriteLine("No se pudo realizar alguna modificación en el usuario");
                     }
 
-                    try
-                    {
-                        List<Usuario> usuarios = usuarioDao.BuscarTodos();
-
-                        if (usuarios.Count == 0)
-                        {
-                            Console.WriteLine("No se ha encontrado ningún usuario");
-                        }
-                        else
-                        {
-                            foreach (Usuario u in usuarios)
-                            {
-                                Console.WriteLine(u);
-                            }
-                        }
-                    }
-                    catch (AccesoDatosException)
-                    {
-                        Console.WriteLine("No se ha podido acceder a la lista de usuarios");
-                    }
+                    
                 }
                 catch (AccesoDatosException ade)
                 {
@@ -117,6 +96,31 @@ namespace EjemploBBDD
             }
         }
 
+        private static void MostrarTodos(IDao<Usuario> usuarioDao)
+        {
+            try
+            {
+                List<Usuario> usuarios = usuarioDao.BuscarTodos();
+
+                if (usuarios.Count == 0)
+                {
+                    Console.WriteLine("No se ha encontrado ningún usuario");
+                }
+                else
+                {
+                    foreach (Usuario u in usuarios)
+                    {
+                        Console.WriteLine(u);
+                    }
+                }
+
+                Console.WriteLine("-----------------------------------------------------");
+            }
+            catch (AccesoDatosException)
+            {
+                Console.WriteLine("No se ha podido acceder a la lista de usuarios");
+            }
+        }
 
         private static DbConnection con;
         private static DbCommand comSelect;

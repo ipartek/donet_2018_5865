@@ -16,14 +16,43 @@ namespace AccesoDatos
             this.cadenaConexion = cadenaConexion;
         }
 
-        public int Borrar(Usuario tipo)
+        public int Borrar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            return Borrar(usuario.Id);
         }
 
         public int Borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (DbConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+
+                    DbCommand comando = conexion.CreateCommand();
+                    comando.CommandText = "DELETE FROM usuarios WHERE Id=@id;";
+
+                    DbParameter parId = comando.CreateParameter();
+                    parId.DbType = System.Data.DbType.Int32;
+                    parId.ParameterName = "@id";
+                    parId.Value = id;
+
+                    comando.Parameters.Add(parId);
+
+                    int filasModificadas = comando.ExecuteNonQuery();
+
+                    if (filasModificadas != 1)
+                    {
+                        throw new AccesoDatosException("Se han borrado más de una fila");
+                    }
+
+                    return filasModificadas;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new AccesoDatosException(e.Message, e);
+            }
         }
 
         public Usuario BuscarPorEmail(string email)
