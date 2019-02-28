@@ -139,7 +139,7 @@ namespace AccesoDatos
                     conexion.Open();
 
                     DbCommand comando = conexion.CreateCommand();
-                    comando.CommandText = "INSERT INTO usuarios (Email, Password) VALUES (@email, @password)";
+                    comando.CommandText = "INSERT INTO usuarios (Email, Password) VALUES (@email, @password); SELECT CAST(IDENT_CURRENT('usuarios') AS int);";
 
                     DbParameter parEmail = comando.CreateParameter();
                     parEmail.DbType = System.Data.DbType.String;
@@ -155,15 +155,14 @@ namespace AccesoDatos
 
                     comando.Parameters.Add(parPassword);
 
-                    int filasModificadas = comando.ExecuteNonQuery();
+                    int idGenerado = (int)comando.ExecuteScalar();
 
-                    if(filasModificadas != 1)
-                    {
-                        throw new AccesoDatosException("Se han modificado más de una fila");
-                    }
+                    //if(filasModificadas != 1)
+                    //{
+                    //    throw new AccesoDatosException("Se han modificado más de una fila");
+                    //}
 
-                    //TODO: Devolver el id autogenerado
-                    return filasModificadas;
+                    return idGenerado;
                 }
             }
             catch (Exception e)
