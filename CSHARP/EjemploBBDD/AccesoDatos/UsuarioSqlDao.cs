@@ -139,7 +139,7 @@ namespace AccesoDatos
                     conexion.Open();
 
                     DbCommand comando = conexion.CreateCommand();
-                    comando.CommandText = "INSERT INTO usuarios (Email, Password) VALUES (@email, @password); SELECT CAST(IDENT_CURRENT('usuarios') AS int);";
+                    comando.CommandText = "INSERT INTO usuarios (Email, Password) VALUES (@email, @password); SELECT CAST(SCOPE_IDENTITY() AS int);";
 
                     DbParameter parEmail = comando.CreateParameter();
                     parEmail.DbType = System.Data.DbType.String;
