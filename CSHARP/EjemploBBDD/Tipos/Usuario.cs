@@ -12,8 +12,8 @@ namespace Tipos
         public Usuario(int id, string email, string password)
         {
             Id = id;
-            Email = email ?? throw new ArgumentNullException(nameof(email));
-            Password = password ?? throw new ArgumentNullException(nameof(password));
+            Email = email; //?? throw new ArgumentNullException(nameof(email));
+            Password = password; //?? throw new ArgumentNullException(nameof(password));
         }
 
         public Usuario(string email, string password) : this(0, email, password) { }
