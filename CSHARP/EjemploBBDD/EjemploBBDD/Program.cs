@@ -14,7 +14,7 @@ namespace EjemploBBDD
         {
             try
             {
-                string cadenaConexion = @"Data Source=DESKTOP-9GKENR5\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
+                string cadenaConexion = @"Data Source=.\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
 
                 try
                 {
