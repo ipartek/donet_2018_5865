@@ -67,7 +67,7 @@ namespace AccesoDatos
         public Usuario BuscarPorEmail(string email)
         {
             return ConsultaDeUnaFila(
-                "SELECT Id, Email, Password FROM usuarios WHERE Email = @email", 
+                "SELECT Id, Email, Password FROM usuarios WHERE Email = @email",
                 new Usuario(email, null));
             /*
             Usuario usuario = null;
@@ -183,7 +183,7 @@ namespace AccesoDatos
 
         public int Insertar(Usuario usuario)
         {
-            return ConsultaDeModificacionDeTabla(usuario, 
+            return ConsultaDeModificacionDeTabla(usuario,
                 "INSERT INTO usuarios (Email, Password) VALUES (@email, @password); " +
                 "SELECT CAST(SCOPE_IDENTITY() AS int);");
             /*
@@ -301,19 +301,25 @@ namespace AccesoDatos
 
                     comando.Parameters.Add(parId);
 
-                    DbParameter parEmail = comando.CreateParameter();
-                    parEmail.DbType = System.Data.DbType.String;
-                    parEmail.ParameterName = "@email";
-                    parEmail.Value = usuario.Email;
+                    if (usuario.Email != null)
+                    {
+                        DbParameter parEmail = comando.CreateParameter();
+                        parEmail.DbType = System.Data.DbType.String;
+                        parEmail.ParameterName = "@email";
+                        parEmail.Value = usuario.Email;
 
-                    comando.Parameters.Add(parEmail);
+                        comando.Parameters.Add(parEmail);
+                    }
 
-                    DbParameter parPassword = comando.CreateParameter();
-                    parPassword.DbType = System.Data.DbType.String;
-                    parPassword.ParameterName = "@password";
-                    parPassword.Value = usuario.Password;
+                    if (usuario.Password != null)
+                    {
+                        DbParameter parPassword = comando.CreateParameter();
+                        parPassword.DbType = System.Data.DbType.String;
+                        parPassword.ParameterName = "@password";
+                        parPassword.Value = usuario.Password;
 
-                    comando.Parameters.Add(parPassword);
+                        comando.Parameters.Add(parPassword);
+                    }
 
                     int valor;
 
@@ -362,19 +368,25 @@ namespace AccesoDatos
 
                         comando.Parameters.Add(parId);
 
-                        DbParameter parEmail = comando.CreateParameter();
-                        parEmail.DbType = System.Data.DbType.String;
-                        parEmail.ParameterName = "@email";
-                        parEmail.Value = usuario.Email;
+                        if (usuario.Email != null)
+                        {
+                            DbParameter parEmail = comando.CreateParameter();
+                            parEmail.DbType = System.Data.DbType.String;
+                            parEmail.ParameterName = "@email";
+                            parEmail.Value = usuario.Email;
 
-                        comando.Parameters.Add(parEmail);
+                            comando.Parameters.Add(parEmail);
+                        }
 
-                        DbParameter parPassword = comando.CreateParameter();
-                        parPassword.DbType = System.Data.DbType.String;
-                        parPassword.ParameterName = "@password";
-                        parPassword.Value = usuario.Password;
+                        if (usuario.Password != null)
+                        {
+                            DbParameter parPassword = comando.CreateParameter();
+                            parPassword.DbType = System.Data.DbType.String;
+                            parPassword.ParameterName = "@password";
+                            parPassword.Value = usuario.Password;
 
-                        comando.Parameters.Add(parPassword);
+                            comando.Parameters.Add(parPassword);
+                        }
                     }
 
                     using (DbDataReader dr = comando.ExecuteReader())
@@ -398,7 +410,7 @@ namespace AccesoDatos
         {
             List<Usuario> usuarios = ConsultaDeDatosMultiples(sql, usuario);
 
-            switch(usuarios.Count)
+            switch (usuarios.Count)
             {
                 case 1:
                     return usuarios[0];
