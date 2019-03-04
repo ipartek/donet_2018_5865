@@ -9,6 +9,8 @@ namespace Tipos
         public string Email { get; set; }
         public string Password { get; set; }
 
+        public Usuario() { }
+
         public Usuario(int id, string email, string password)
         {
             Id = id;

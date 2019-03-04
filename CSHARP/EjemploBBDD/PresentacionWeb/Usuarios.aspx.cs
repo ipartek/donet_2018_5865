@@ -16,10 +16,10 @@ namespace PresentacionWeb
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
+            //if (!IsPostBack)
+            //{
                 RefrescarEnlazados();
-            }
+            //}
         }
 
         private void RefrescarEnlazados()
@@ -27,8 +27,10 @@ namespace PresentacionWeb
             GvUsuarios.DataSource = usuariosDao.BuscarTodos();
             GvUsuarios.DataBind();
 
-            RUsuarios.DataSource = usuariosDao.BuscarTodos();
-            RUsuarios.DataBind();
+            //DataBind();
+
+            //RUsuarios.DataSource = usuariosDao.BuscarTodos();
+            //RUsuarios.DataBind();
         }
 
         protected void BtnAceptar_Click(object sender, EventArgs e)
@@ -36,6 +38,11 @@ namespace PresentacionWeb
             usuariosDao.Insertar(new Usuario(TxtEmail.Text, TxtPassword.Text));
 
             RefrescarEnlazados();
+        }
+
+        protected void RefrescarGvCompleto(object sender, ObjectDataSourceStatusEventArgs e)
+        {
+            GvCompleto.DataBind();
         }
     }
 }

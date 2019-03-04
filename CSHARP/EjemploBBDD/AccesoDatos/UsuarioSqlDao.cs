@@ -10,6 +10,9 @@ namespace AccesoDatos
     public class UsuarioSqlDao : IUsuarioDao
     {
         private string cadenaConexion;
+        private const string CADENA_CONEXION_POR_DEFECTO = @"Data Source=.\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
+
+        public UsuarioSqlDao() : this(CADENA_CONEXION_POR_DEFECTO) { }
 
         public UsuarioSqlDao(string cadenaConexion)
         {

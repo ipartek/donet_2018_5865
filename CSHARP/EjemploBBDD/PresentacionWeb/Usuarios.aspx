@@ -17,17 +17,70 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <asp:Button ID="BtnAceptar" CssClass="btn btn-default" Text="Aceptar" OnClick="BtnAceptar_Click" runat="server"/>
+                <asp:Button ID="BtnAceptar" CssClass="btn btn-default" Text="Aceptar" OnClick="BtnAceptar_Click" runat="server" />
             </div>
         </div>
 
     </div>
 
-    <asp:GridView CssClass="table" ID="GvUsuarios" runat="server"></asp:GridView>
+    <asp:ObjectDataSource ID="OdsUsuarios" runat="server" DataObjectTypeName="Tipos.Usuario" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarTodos" TypeName="AccesoDatos.UsuarioSqlDao" UpdateMethod="Modificar">
+
+        <DeleteParameters>
+            <asp:Parameter Name="id" Type="Int32"></asp:Parameter>
+        </DeleteParameters>
+    </asp:ObjectDataSource>
+    
+    <asp:ObjectDataSource ID="OdsForm" runat="server" DataObjectTypeName="Tipos.Usuario" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarPorId" TypeName="AccesoDatos.UsuarioSqlDao" UpdateMethod="Modificar" OnDeleted="RefrescarGvCompleto" OnInserted="RefrescarGvCompleto" OnUpdated="RefrescarGvCompleto">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="GvCompleto" PropertyName="SelectedValue" Name="id" Type="Int32"></asp:ControlParameter>
+        </SelectParameters>
+    </asp:ObjectDataSource>
+    
+    <asp:FormView ID="FvCompleto" runat="server" DataSourceID="OdsForm" AllowPaging="True" DataKeyNames="Id">
+        <EditItemTemplate>
+            Id:
+            <asp:TextBox Text='<%# Bind("Id") %>' runat="server" ID="IdTextBox" /><br />
+            Email:
+            <asp:TextBox Text='<%# Bind("Email") %>' runat="server" ID="EmailTextBox" /><br />
+            Password:
+            <asp:TextBox Text='<%# Bind("Password") %>' runat="server" ID="PasswordTextBox" /><br />
+            <asp:LinkButton runat="server" Text="Actualizar" CommandName="Update" ID="UpdateButton" CausesValidation="True" />&nbsp;<asp:LinkButton runat="server" Text="Cancelar" CommandName="Cancel" ID="UpdateCancelButton" CausesValidation="False" />
+        </EditItemTemplate>
+        <InsertItemTemplate>
+            Id:
+            <asp:TextBox Text='<%# Bind("Id") %>' runat="server" ID="IdTextBox" /><br />
+            Email:
+            <asp:TextBox Text='<%# Bind("Email") %>' runat="server" ID="EmailTextBox" /><br />
+            Password:
+            <asp:TextBox Text='<%# Bind("Password") %>' runat="server" ID="PasswordTextBox" /><br />
+            <asp:LinkButton runat="server" Text="Insertar" CommandName="Insert" ID="InsertButton" CausesValidation="True" />&nbsp;<asp:LinkButton runat="server" Text="Cancelar" CommandName="Cancel" ID="InsertCancelButton" CausesValidation="False" />
+        </InsertItemTemplate>
+        <ItemTemplate>
+            Id:
+            <asp:Label Text='<%# Bind("Id") %>' runat="server" ID="IdLabel" /><br />
+            Email:
+            <asp:Label Text='<%# Bind("Email") %>' runat="server" ID="EmailLabel" /><br />
+            Password:
+            <asp:Label Text='<%# Bind("Password") %>' runat="server" ID="PasswordLabel" /><br />
+            <asp:LinkButton runat="server" Text="Editar" CommandName="Edit" ID="EditButton" CausesValidation="False" />&nbsp;<asp:LinkButton runat="server" Text="Eliminar" CommandName="Delete" ID="DeleteButton" CausesValidation="False" OnClientClick="return confirm('¿Seguro que quieres borrar?');" />&nbsp;<asp:LinkButton runat="server" Text="Nuevo" CommandName="New" ID="NewButton" CausesValidation="False" />
+        </ItemTemplate>
+    </asp:FormView>
+
+    <asp:GridView ID="GvCompleto" runat="server" DataSourceID="OdsUsuarios" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="Id">
+        <Columns>
+            <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" ShowSelectButton="True"></asp:CommandField>
+            <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id"></asp:BoundField>
+            <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email"></asp:BoundField>
+            <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password"></asp:BoundField>
+        </Columns>
+    </asp:GridView>
+
+    <asp:GridView CssClass="table" ID="GvUsuarios" runat="server">
+    </asp:GridView>
 
     <asp:Button runat="server" Text="Refrescar" />
 
-    <table class="table">
+    <%--<table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -46,5 +99,5 @@
                 </ItemTemplate>
             </asp:Repeater>
         </tbody>
-    </table>
+    </table>--%>
 </asp:Content>
