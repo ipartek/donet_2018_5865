@@ -44,5 +44,10 @@ namespace PresentacionWeb
         {
             GvCompleto.DataBind();
         }
+
+        protected void GvCompleto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FvCompleto.ChangeMode(FormViewMode.Edit);
+        }
     }
 }
