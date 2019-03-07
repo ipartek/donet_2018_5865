@@ -19,6 +19,8 @@ namespace AccesoDatos
             this.cadenaConexion = cadenaConexion;
         }
 
+        public RolSqlDao() : this(CADENA_CONEXION_POR_DEFECTO) { }
+
         #region CRUD
         public int Borrar(Rol tipo)
         {

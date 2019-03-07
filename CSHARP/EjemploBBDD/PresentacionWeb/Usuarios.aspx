@@ -30,7 +30,11 @@
         </div>
 
     </div>
-
+    <asp:ObjectDataSource ID="OdsRoles" runat="server" DataObjectTypeName="Tipos.Rol" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarTodos" TypeName="AccesoDatos.RolSqlDao" UpdateMethod="Modificar">
+        <DeleteParameters>
+            <asp:Parameter Name="id" Type="Int32"></asp:Parameter>
+        </DeleteParameters>
+    </asp:ObjectDataSource>
     <asp:ObjectDataSource ID="OdsUsuarios" runat="server" DataObjectTypeName="Tipos.Usuario" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarTodosConRol" TypeName="AccesoDatos.UsuarioSqlDao" UpdateMethod="Modificar">
 
         <DeleteParameters>
@@ -52,6 +56,13 @@
             <asp:TextBox Text='<%# Bind("Email") %>' runat="server" ID="EmailTextBox" /><br />
             Password:
             <asp:TextBox Text='<%# Bind("Password") %>' runat="server" ID="PasswordTextBox" /><br />
+            Rol:
+            <asp:DropDownList ID="FvDdlRoles" runat="server"
+                DataSourceID="OdsRoles" 
+                DataValueField='Id' 
+                DataTextField="Descripcion" 
+
+                SelectedValue='<%# Eval("Rol.Id") %>' />
             <asp:LinkButton runat="server" Text="Actualizar" CommandName="Update" ID="UpdateButton" CausesValidation="True" />&nbsp;<asp:LinkButton runat="server" Text="Cancelar" CommandName="Cancel" ID="UpdateCancelButton" CausesValidation="False" />
         </EditItemTemplate>
         <InsertItemTemplate>
@@ -68,6 +79,8 @@
             <asp:Label Text='<%# Bind("Email") %>' runat="server" ID="EmailLabel" /><br />
             Password:
             <asp:Label Text='<%# Bind("Password") %>' runat="server" ID="PasswordLabel" /><br />
+            Rol
+            <asp:Label Text='<%# Bind("Rol.Descripcion") %>' runat="server" ID="RolLabel" /><br />
             <asp:LinkButton runat="server" Text="Editar" CommandName="Edit" ID="EditButton" CausesValidation="False" />&nbsp;<asp:LinkButton runat="server" Text="Eliminar" CommandName="Delete" ID="DeleteButton" CausesValidation="False" OnClientClick="return confirm('¿Seguro que quieres borrar?');" />&nbsp;<asp:LinkButton runat="server" Text="Nuevo" CommandName="New" ID="NewButton" CausesValidation="False" />
         </ItemTemplate>
     </asp:FormView>
