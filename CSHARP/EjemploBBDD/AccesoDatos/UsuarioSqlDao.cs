@@ -109,7 +109,7 @@ namespace AccesoDatos
             */
         }
 
-        public Usuario BuscarPorId(int id)
+        public Usuario BuscarPorIdSinRoles(int id)
         {
             return ConsultaDeUnaFila(
                 "SELECT Id, Email, Password FROM usuarios WHERE Id = @id",
@@ -316,6 +316,47 @@ namespace AccesoDatos
             }
 
             return usuarios;
+        }
+
+
+        public Usuario BuscarPorId(int id)
+        {
+            Usuario usuario = null;
+
+            try
+            {
+                using (DbConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+
+                    DbCommand comando = conexion.CreateCommand();
+                    comando.CommandText = @"SELECT Usuarios.Id, Usuarios.Email, Usuarios.Password, Usuarios.IdRol, Roles.Rol, Roles.Descripcion
+                                            FROM Roles INNER JOIN Usuarios ON Roles.Id = Usuarios.IdRol
+                                            WHERE Usuarios.Id=@Id";
+
+                    DbParameter parId = comando.CreateParameter();
+                    parId.DbType = System.Data.DbType.Int32;
+                    parId.ParameterName = "@id";
+                    parId.Value = id;
+
+                    comando.Parameters.Add(parId);
+
+                    using (DbDataReader dr = comando.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            usuario = new Usuario(dr.GetInt32(0), dr.GetString(1), dr.GetString(2));
+                            usuario.Rol = new Rol(dr.GetInt32(3), dr.GetString(4), dr.GetString(5));
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new AccesoDatosException(e.Message, e);
+            }
+
+            return usuario;
         }
 
         #endregion

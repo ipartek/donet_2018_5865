@@ -25,6 +25,8 @@ namespace EjemploBBDD
             {
                 Console.WriteLine(usuario);
             }
+
+            Console.WriteLine(daoUsuario.BuscarPorId(2));
         }
 
         static void MainAnterior()
