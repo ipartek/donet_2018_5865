@@ -12,6 +12,16 @@ namespace EjemploBBDD
     {
         static void Main()
         {
+            IDao<Rol> dao = new RolSqlDao();
+
+            foreach (Rol rol in dao.BuscarTodos())
+            {
+                Console.WriteLine(rol);
+            }
+        }
+
+        static void MainAnterior()
+        {
             try
             {
                 string cadenaConexion = @"Data Source=.\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
