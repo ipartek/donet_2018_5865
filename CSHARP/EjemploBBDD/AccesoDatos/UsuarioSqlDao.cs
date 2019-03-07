@@ -187,7 +187,7 @@ namespace AccesoDatos
         public int Insertar(Usuario usuario)
         {
             return ConsultaDeModificacionDeTabla(usuario,
-                "INSERT INTO usuarios (Email, Password) VALUES (@email, @password); " +
+                "INSERT INTO usuarios (Email, Password, IdRol) VALUES (@email, @password, @idrol); " +
                 "SELECT CAST(SCOPE_IDENTITY() AS int);");
             /*
             try

@@ -71,6 +71,14 @@
             <asp:TextBox Text='<%# Bind("Email") %>' runat="server" ID="EmailTextBox" /><br />
             Password:
             <asp:TextBox Text='<%# Bind("Password") %>' runat="server" ID="PasswordTextBox" /><br />
+            <label>Rol:</label>
+            <asp:DropDownList ID="FvDdlRoles" runat="server"
+                DataSourceID="OdsRoles" 
+                DataValueField='Id' 
+                DataTextField="Descripcion" 
+
+                SelectedValue='<%# Bind("IdRol") %>' />
+            <br />
             <asp:LinkButton runat="server" Text="Insertar" CommandName="Insert" ID="InsertButton" CausesValidation="True" />&nbsp;<asp:LinkButton runat="server" Text="Cancelar" CommandName="Cancel" ID="InsertCancelButton" CausesValidation="False" />
         </InsertItemTemplate>
         <ItemTemplate>
