@@ -31,7 +31,7 @@
 
     </div>
 
-    <asp:ObjectDataSource ID="OdsUsuarios" runat="server" DataObjectTypeName="Tipos.Usuario" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarTodos" TypeName="AccesoDatos.UsuarioSqlDao" UpdateMethod="Modificar">
+    <asp:ObjectDataSource ID="OdsUsuarios" runat="server" DataObjectTypeName="Tipos.Usuario" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarTodosConRol" TypeName="AccesoDatos.UsuarioSqlDao" UpdateMethod="Modificar">
 
         <DeleteParameters>
             <asp:Parameter Name="id" Type="Int32"></asp:Parameter>
@@ -77,6 +77,8 @@
             <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id"></asp:BoundField>
             <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email"></asp:BoundField>
             <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password"></asp:BoundField>
+            <asp:BoundField DataField="Rol.Descripcion" HeaderText="Rol" SortExpression="Rol"></asp:BoundField>
+            
             <asp:CommandField ShowEditButton="True" ShowDeleteButton="False" ShowSelectButton="False" ControlStyle-CssClass="btn btn-primary"></asp:CommandField>
             <asp:CommandField ShowEditButton="False" ShowDeleteButton="True" ShowSelectButton="False" ControlStyle-CssClass="btn btn-danger"></asp:CommandField>
             <asp:CommandField ShowEditButton="False" ShowDeleteButton="False" ShowSelectButton="True" ControlStyle-CssClass="btn btn-default"></asp:CommandField>
