@@ -94,6 +94,15 @@ namespace PresentacionWeb {
         protected global::System.Web.UI.WebControls.GridView GvCompleto;
         
         /// <summary>
+        /// Control PGvUsuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PGvUsuarios;
+        
+        /// <summary>
         /// Control GvUsuarios.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,15 @@ namespace PresentacionWeb {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GvUsuarios;
+        
+        /// <summary>
+        /// Control BtnOcultar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnOcultar;
         
         /// <summary>
         /// Control RUsuarios.

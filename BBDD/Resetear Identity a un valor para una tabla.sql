@@ -1,0 +1,1 @@
+DBCC CHECKIDENT ('Usuarios', RESEED, 3);  

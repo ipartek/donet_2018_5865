@@ -41,13 +41,13 @@
             <asp:Parameter Name="id" Type="Int32"></asp:Parameter>
         </DeleteParameters>
     </asp:ObjectDataSource>
-    
+
     <asp:ObjectDataSource ID="OdsForm" runat="server" DataObjectTypeName="Tipos.Usuario" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarPorId" TypeName="AccesoDatos.UsuarioSqlDao" UpdateMethod="Modificar" OnDeleted="RefrescarGvCompleto" OnInserted="RefrescarGvCompleto" OnUpdated="RefrescarGvCompleto">
         <SelectParameters>
             <asp:ControlParameter ControlID="GvCompleto" PropertyName="SelectedValue" Name="id" Type="Int32"></asp:ControlParameter>
         </SelectParameters>
     </asp:ObjectDataSource>
-    
+
     <asp:FormView ID="FvCompleto" runat="server" DataSourceID="OdsForm" AllowPaging="True" DataKeyNames="Id" DefaultMode="Insert">
         <EditItemTemplate>
             <label>Id:</label>
@@ -58,10 +58,9 @@
             <asp:TextBox Text='<%# Bind("Password") %>' runat="server" ID="PasswordTextBox" /><br />
             <label>Rol:</label>
             <asp:DropDownList ID="FvDdlRoles" runat="server"
-                DataSourceID="OdsRoles" 
-                DataValueField='Id' 
-                DataTextField="Descripcion" 
-
+                DataSourceID="OdsRoles"
+                DataValueField='Id'
+                DataTextField="Descripcion"
                 SelectedValue='<%# Bind("IdRol") %>' />
             <br />
             <asp:LinkButton runat="server" Text="Actualizar" CommandName="Update" ID="UpdateButton" CausesValidation="True" />&nbsp;<asp:LinkButton runat="server" Text="Cancelar" CommandName="Cancel" ID="UpdateCancelButton" CausesValidation="False" />
@@ -73,10 +72,9 @@
             <asp:TextBox Text='<%# Bind("Password") %>' runat="server" ID="PasswordTextBox" /><br />
             <label>Rol:</label>
             <asp:DropDownList ID="FvDdlRoles" runat="server"
-                DataSourceID="OdsRoles" 
-                DataValueField='Id' 
-                DataTextField="Descripcion" 
-
+                DataSourceID="OdsRoles"
+                DataValueField='Id'
+                DataTextField="Descripcion"
                 SelectedValue='<%# Bind("IdRol") %>' />
             <br />
             <asp:LinkButton runat="server" Text="Insertar" CommandName="Insert" ID="InsertButton" CausesValidation="True" />&nbsp;<asp:LinkButton runat="server" Text="Cancelar" CommandName="Cancel" ID="InsertCancelButton" CausesValidation="False" />
@@ -94,22 +92,27 @@
         </ItemTemplate>
     </asp:FormView>
 
+
     <asp:GridView CssClass="table" ID="GvCompleto" runat="server" DataSourceID="OdsUsuarios" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="Id" OnSelectedIndexChanged="GvCompleto_SelectedIndexChanged">
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id"></asp:BoundField>
             <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email"></asp:BoundField>
             <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password"></asp:BoundField>
             <asp:BoundField DataField="Rol.Descripcion" HeaderText="Rol" SortExpression="Rol"></asp:BoundField>
-            
+
             <asp:CommandField ShowEditButton="True" ShowDeleteButton="False" ShowSelectButton="False" ControlStyle-CssClass="btn btn-primary"></asp:CommandField>
             <asp:CommandField ShowEditButton="False" ShowDeleteButton="True" ShowSelectButton="False" ControlStyle-CssClass="btn btn-danger"></asp:CommandField>
             <asp:CommandField ShowEditButton="False" ShowDeleteButton="False" ShowSelectButton="True" ControlStyle-CssClass="btn btn-default"></asp:CommandField>
         </Columns>
-        
+
     </asp:GridView>
 
-    <asp:GridView CssClass="table" ID="GvUsuarios" runat="server">
-    </asp:GridView>
+    <asp:Panel ID="PGvUsuarios" runat="server" Visible="true">
+        <asp:GridView CssClass="table" ID="GvUsuarios" runat="server">
+        </asp:GridView>
+
+        <asp:Button ID="BtnOcultar" Text="Ocultar" runat="server" OnClick="BtnOcultar_Click" />
+    </asp:Panel>
 
     <asp:Button runat="server" Text="Refrescar" />
 

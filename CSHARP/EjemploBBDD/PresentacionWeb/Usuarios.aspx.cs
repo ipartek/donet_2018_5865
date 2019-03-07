@@ -57,5 +57,10 @@ namespace PresentacionWeb
         {
             FvCompleto.ChangeMode(FormViewMode.Edit);
         }
+
+        protected void BtnOcultar_Click(object sender, EventArgs e)
+        {
+            PGvUsuarios.Visible = false;
+        }
     }
 }
