@@ -9,6 +9,21 @@ namespace Tipos
         public string Email { get; set; }
         public string Password { get; set; }
 
+        public int IdRol
+        {
+            get { return Rol == null ? Rol.ID_POR_DEFECTO : Rol.Id; }
+            set {
+                if (Rol != null)
+                {
+                    Rol.Id = value;
+                }
+                else
+                {
+                    Rol = new Rol(value);
+                }
+            }
+        }
+
         public Rol Rol { get; set; }
 
         public Usuario() { }

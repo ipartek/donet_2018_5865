@@ -233,7 +233,7 @@ namespace AccesoDatos
         public int Modificar(Usuario usuario)
         {
             return ConsultaDeModificacionDeTabla(usuario,
-                "UPDATE usuarios SET Email=@email, Password=@password WHERE Id=@id;");
+                "UPDATE usuarios SET Email=@email, Password=@password, IdRol=@idrol WHERE Id=@id;");
             /*
             try
             {
@@ -380,6 +380,16 @@ namespace AccesoDatos
                     parId.Value = usuario.Id;
 
                     comando.Parameters.Add(parId);
+
+                    if(usuario.Rol != null && usuario.Rol.Id != Rol.ID_POR_DEFECTO)
+                    {
+                        DbParameter parIdRol = comando.CreateParameter();
+                        parIdRol.DbType = System.Data.DbType.Int32;
+                        parIdRol.ParameterName = "@idrol";
+                        parIdRol.Value = usuario.Rol.Id;
+
+                        comando.Parameters.Add(parIdRol);
+                    }
 
                     if (usuario.Email != null)
                     {

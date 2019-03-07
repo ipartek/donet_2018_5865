@@ -62,7 +62,7 @@
                 DataValueField='Id' 
                 DataTextField="Descripcion" 
 
-                SelectedValue='<%# Eval("Rol.Id") %>' />
+                SelectedValue='<%# Bind("IdRol") %>' />
             <br />
             <asp:LinkButton runat="server" Text="Actualizar" CommandName="Update" ID="UpdateButton" CausesValidation="True" />&nbsp;<asp:LinkButton runat="server" Text="Cancelar" CommandName="Cancel" ID="UpdateCancelButton" CausesValidation="False" />
         </EditItemTemplate>
