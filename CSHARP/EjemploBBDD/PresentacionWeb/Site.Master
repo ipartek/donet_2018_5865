@@ -69,7 +69,7 @@
 
     </form>
     <script>
-        $('#MainContent_GvCompleto tbody tr td:nth-child(5) a').click(function () {
+        $('#MainContent_GvCompleto tbody tr td a.btn-danger').click(function () {
             return confirm('¿Estás seguro?');
         });
     </script>
