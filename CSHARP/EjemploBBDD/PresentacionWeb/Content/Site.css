@@ -26,3 +26,7 @@ textarea {
         margin-top: 20px;
     }
 }
+
+#MainContent_FvCompleto label {
+    width: 5em;
+}

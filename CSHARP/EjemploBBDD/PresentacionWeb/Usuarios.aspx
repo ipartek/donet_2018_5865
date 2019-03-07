@@ -50,19 +50,20 @@
     
     <asp:FormView ID="FvCompleto" runat="server" DataSourceID="OdsForm" AllowPaging="True" DataKeyNames="Id" DefaultMode="Insert">
         <EditItemTemplate>
-            Id:
+            <label>Id:</label>
             <asp:Label Text='<%# Bind("Id") %>' runat="server" ID="IdTextBox" /><br />
-            Email:
+            <label>Email:</label>
             <asp:TextBox Text='<%# Bind("Email") %>' runat="server" ID="EmailTextBox" /><br />
-            Password:
+            <label>Password:</label>
             <asp:TextBox Text='<%# Bind("Password") %>' runat="server" ID="PasswordTextBox" /><br />
-            Rol:
+            <label>Rol:</label>
             <asp:DropDownList ID="FvDdlRoles" runat="server"
                 DataSourceID="OdsRoles" 
                 DataValueField='Id' 
                 DataTextField="Descripcion" 
 
                 SelectedValue='<%# Eval("Rol.Id") %>' />
+            <br />
             <asp:LinkButton runat="server" Text="Actualizar" CommandName="Update" ID="UpdateButton" CausesValidation="True" />&nbsp;<asp:LinkButton runat="server" Text="Cancelar" CommandName="Cancel" ID="UpdateCancelButton" CausesValidation="False" />
         </EditItemTemplate>
         <InsertItemTemplate>
