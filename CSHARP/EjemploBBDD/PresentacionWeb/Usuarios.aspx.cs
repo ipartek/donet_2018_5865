@@ -37,8 +37,8 @@ namespace PresentacionWeb
 
             //DataBind();
 
-            //RUsuarios.DataSource = usuariosDao.BuscarTodos();
-            //RUsuarios.DataBind();
+            RUsuarios.DataSource = ((IUsuarioDao)usuariosDao).BuscarTodosConRol();
+            RUsuarios.DataBind();
         }
 
         protected void BtnAceptar_Click(object sender, EventArgs e)

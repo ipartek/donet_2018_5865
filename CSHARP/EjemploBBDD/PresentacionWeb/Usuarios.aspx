@@ -89,12 +89,13 @@
 
     <asp:Button runat="server" Text="Refrescar" />
 
-    <%--<table class="table">
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Email</th>
                 <th>Password</th>
+                <th>Rol</th>
             </tr>
         </thead>
         <tbody>
@@ -104,9 +105,10 @@
                         <td><%# Eval("Id") %></td>
                         <td><%# Eval("Email") %></td>
                         <td><%# Eval("Password") %></td>
+                        <td><%# Eval("Rol.Descripcion") %></td>
                     </tr>
                 </ItemTemplate>
             </asp:Repeater>
         </tbody>
-    </table>--%>
+    </table>
 </asp:Content>
