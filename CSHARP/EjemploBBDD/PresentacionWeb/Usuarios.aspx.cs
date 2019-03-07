@@ -13,6 +13,7 @@ namespace PresentacionWeb
     {
         private const string cadenaConexion = @"Data Source=.\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
         private IDao<Usuario> usuariosDao = new UsuarioSqlDao(cadenaConexion);
+        private IDao<Rol> rolesDao = new RolSqlDao(cadenaConexion);
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,6 +27,13 @@ namespace PresentacionWeb
         {
             GvUsuarios.DataSource = usuariosDao.BuscarTodos();
             GvUsuarios.DataBind();
+
+            DdlRoles.DataSource = rolesDao.BuscarTodos();
+
+            DdlRoles.DataValueField = "Id";
+            DdlRoles.DataTextField = "Nombre";
+
+            DdlRoles.DataBind();
 
             //DataBind();
 

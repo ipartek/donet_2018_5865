@@ -12,6 +12,12 @@ namespace AccesoDatos
     public class RolSqlDao : IDao<Rol>
     {
         private const string CADENA_CONEXION_POR_DEFECTO = @"Data Source=.\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
+        private string cadenaConexion;
+
+        public RolSqlDao(string cadenaConexion = CADENA_CONEXION_POR_DEFECTO)
+        {
+            this.cadenaConexion = cadenaConexion;
+        }
 
         #region CRUD
         public int Borrar(Rol tipo)
@@ -54,7 +60,7 @@ namespace AccesoDatos
 
             try
             {
-                using (DbConnection conexion = new SqlConnection(CADENA_CONEXION_POR_DEFECTO))
+                using (DbConnection conexion = new SqlConnection(cadenaConexion))
                 {
                     conexion.Open();
 

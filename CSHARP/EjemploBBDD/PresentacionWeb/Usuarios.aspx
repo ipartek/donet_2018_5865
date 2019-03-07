@@ -16,6 +16,14 @@
             </div>
         </div>
         <div class="form-group">
+            <asp:Label AssociatedControlID="DdlRoles" CssClass="col-sm-2 control-label" runat="server">Rol</asp:Label>
+            <div class="col-sm-10">
+                <asp:DropDownList CssClass="form-control" ID="DdlRoles" runat="server">
+                    <%--<asp:ListItem Value="1" Text="ADMIN" />--%>
+                </asp:DropDownList>
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <asp:Button ID="BtnAceptar" CssClass="btn btn-default" Text="Aceptar" OnClick="BtnAceptar_Click" runat="server" />
             </div>
