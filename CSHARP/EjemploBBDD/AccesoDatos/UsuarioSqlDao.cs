@@ -282,6 +282,42 @@ namespace AccesoDatos
             */
         }
 
+        public List<Usuario> BuscarTodosConRol()
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+
+            try
+            {
+                using (DbConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+
+                    DbCommand comando = conexion.CreateCommand();
+                    comando.CommandText = @"SELECT Usuarios.Id, Usuarios.Email, Usuarios.Password, Usuarios.IdRol, Roles.Rol, Roles.Descripcion
+                                            FROM Roles INNER JOIN Usuarios ON Roles.Id = Usuarios.IdRol";
+                    
+                    using (DbDataReader dr = comando.ExecuteReader())
+                    {
+                        Usuario usuario;
+
+                        while (dr.Read())
+                        {
+                            usuario = new Usuario(dr.GetInt32(0), dr.GetString(1), dr.GetString(2));
+                            usuario.Rol = new Rol(dr.GetInt32(3), dr.GetString(4), dr.GetString(5));
+                            
+                            usuarios.Add(usuario);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new AccesoDatosException(e.Message, e);
+            }
+
+            return usuarios;
+        }
+
         #endregion
 
         #region Métodos privados

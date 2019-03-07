@@ -10,5 +10,6 @@ namespace AccesoDatos
     public interface IUsuarioDao : IDao<Usuario>
     {
         Usuario BuscarPorEmail(string email);
+        List<Usuario> BuscarTodosConRol();
     }
 }

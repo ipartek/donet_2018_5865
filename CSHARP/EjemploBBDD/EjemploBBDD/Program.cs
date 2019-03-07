@@ -18,6 +18,13 @@ namespace EjemploBBDD
             {
                 Console.WriteLine(rol);
             }
+
+            IUsuarioDao daoUsuario = new UsuarioSqlDao();
+
+            foreach (Usuario usuario in daoUsuario.BuscarTodosConRol())
+            {
+                Console.WriteLine(usuario);
+            }
         }
 
         static void MainAnterior()

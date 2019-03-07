@@ -9,6 +9,8 @@ namespace Tipos
         public string Email { get; set; }
         public string Password { get; set; }
 
+        public Rol Rol { get; set; }
+
         public Usuario() { }
 
         public Usuario(int id, string email, string password)
@@ -20,6 +22,6 @@ namespace Tipos
 
         public Usuario(string email, string password) : this(0, email, password) { }
 
-        public override string ToString() => $"{Id}, {Email}, {Password}";
+        public override string ToString() => $"{Id}, {Email}, {Password}, {Rol}";
     }
 }
