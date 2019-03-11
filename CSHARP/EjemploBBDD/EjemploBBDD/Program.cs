@@ -21,6 +21,10 @@ namespace EjemploBBDD
 
             da.Fill(ds); //Abre conexión, rellena el ds y cierra conexión
 
+            ds.Tables[0].Rows[0]["Password"] = "modificada";
+
+            //da.Update(ds); //Necesitamos UpdateCommand
+
             IEnumerable<DataRow> filas = from DataRow fila in ds.Tables[0].AsEnumerable()
                                             where ((string)fila["Email"]).Contains("javier")
                                             select fila;
