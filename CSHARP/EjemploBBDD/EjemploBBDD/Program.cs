@@ -21,7 +21,11 @@ namespace EjemploBBDD
 
             da.Fill(ds); //Abre conexión, rellena el ds y cierra conexión
 
-            foreach (DataRow dataRow in ds.Tables[0].Rows)
+            IEnumerable<DataRow> filas = from DataRow fila in ds.Tables[0].AsEnumerable()
+                                            where ((string)fila["Email"]).Contains("javier")
+                                            select fila;
+
+            foreach (DataRow dataRow in filas)
             {
                 Console.WriteLine($"{dataRow["Email"]}, {dataRow["Password"]}");
             }
