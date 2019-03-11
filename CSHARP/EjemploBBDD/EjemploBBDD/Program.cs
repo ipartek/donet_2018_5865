@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+
+using System.Linq;
+
 using Tipos;
 
 namespace EjemploBBDD
@@ -14,6 +17,39 @@ namespace EjemploBBDD
         private const string FILE_NAME = @"ExportacionDataTableUsuarios.xml";
 
         static void Main()
+        {
+            using (var ctx = new UsuarioDbContext())
+            {
+                var usuario = new Usuario(email: "javier", password: "contra");
+
+                ctx.Usuarios.Add(usuario); // INSERT INTO Usuarios ...
+                ctx.SaveChanges();
+
+                foreach (Usuario u in ctx.Usuarios.ToList<Usuario>()) // SELECT * FROM Usuarios
+                {
+                    Console.WriteLine(u);
+                }
+
+                usuario = ctx.Usuarios.Find(2); // SELECT * FROM Usuarios WHERE Id=2
+
+                usuario.Password = "modificada"; // UPDATE Usuarios Set Password = 'modificada'
+
+                ctx.SaveChanges();
+
+                ctx.Usuarios.Remove(ctx.Usuarios.Find(3)); // DELETE FROM Usuarios WHERE ID = 3
+
+                var emailJavier = from u in ctx.Usuarios //SELECT Email, Password FROM Usuarios WHERE Email LIKE '%javier%'
+                                  where u.Email.Contains("javier")
+                                  select new { u.Email, u.Password };
+
+                foreach (var u in emailJavier)
+                {
+                    Console.WriteLine(u);
+                }
+            }
+        }
+
+        static void MainDataSetTipado()
         {
             EjemploBBDD.UsuariosDataTable dt = new EjemploBBDD.UsuariosDataTable();
 

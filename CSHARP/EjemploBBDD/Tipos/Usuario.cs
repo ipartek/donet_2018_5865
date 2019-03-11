@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 //csc /t:library Usuario.cs /out:Tipos.dll
 
 namespace Tipos
