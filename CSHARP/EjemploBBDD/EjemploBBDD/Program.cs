@@ -10,9 +10,24 @@ namespace EjemploBBDD
 {
     class Program
     {
+        private static string CADENA_CONEXION = @"Data Source=.\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
         private const string FILE_NAME = @"ExportacionDataTableUsuarios.xml";
 
         static void Main()
+        {
+            DataAdapter da = new SqlDataAdapter("SELECT * FROM Usuarios", CADENA_CONEXION);
+
+            DataSet ds = new DataSet();
+
+            da.Fill(ds); //Abre conexión, rellena el ds y cierra conexión
+
+            foreach (DataRow dataRow in ds.Tables[0].Rows)
+            {
+                Console.WriteLine($"{dataRow["Email"]}, {dataRow["Password"]}");
+            }
+        }
+
+        static void MainDataSet()
         {
             DataSet ds = new DataSet();
 
@@ -78,12 +93,10 @@ namespace EjemploBBDD
         {
             try
             {
-                string cadenaConexion = @"Data Source=.\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
-
                 try
                 {
-                    //IUsuarioDao usuarioDao = new UsuarioSqlDao(cadenaConexion);
-                    IDao<Usuario> usuarioDao = new UsuarioSqlDao(cadenaConexion);
+                    //IUsuarioDao usuarioDao = new UsuarioSqlDao(CADENA_CONEXION);
+                    IDao<Usuario> usuarioDao = new UsuarioSqlDao(CADENA_CONEXION);
 
                     try
                     {
