@@ -15,6 +15,21 @@ namespace EjemploBBDD
 
         static void Main()
         {
+            EjemploBBDD.UsuariosDataTable dt = new EjemploBBDD.UsuariosDataTable();
+
+            EjemploBBDDTableAdapters.UsuariosTableAdapter ta = 
+                new EjemploBBDDTableAdapters.UsuariosTableAdapter();
+
+            ta.Fill(dt);
+
+            foreach (EjemploBBDD.UsuariosRow usuariosRow in dt.Rows)
+            {
+                Console.WriteLine($"{usuariosRow.Email}, {usuariosRow.Password}");
+            }
+        }
+
+        static void MainDataAdapter()
+        {
             DataAdapter da = new SqlDataAdapter("SELECT * FROM Usuarios", CADENA_CONEXION);
 
             DataSet ds = new DataSet();
