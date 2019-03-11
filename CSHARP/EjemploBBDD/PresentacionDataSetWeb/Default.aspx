@@ -6,7 +6,7 @@
 
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" EmptyDataText="No hay registros de datos para mostrar." AllowPaging="True" AllowSorting="True">
     <Columns>
-        <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />
+        <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
         <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" InsertVisible="False" />
         <asp:BoundField DataField="IdRol" HeaderText="IdRol" SortExpression="IdRol" />
         <asp:BoundField DataField="IdTutor" HeaderText="IdTutor" SortExpression="IdTutor" />
@@ -40,7 +40,7 @@
             <asp:Parameter Name="Original_Password" Type="String" />
         </UpdateParameters>
     </asp:ObjectDataSource>
-    <asp:FormView ID="FormView1" runat="server" DataKeyNames="Id" DataSourceID="SqlDataSource2">
+    <asp:FormView ID="FormView1" runat="server" DataKeyNames="Id" DataSourceID="SqlDataSource2" DefaultMode="Insert" OnItemInserted="FormView1_ItemInserted">
         <EditItemTemplate>
             Id:
             <asp:Label ID="IdLabel1" runat="server" Text='<%# Eval("Id") %>' />

@@ -13,5 +13,10 @@ namespace PresentacionDataSetWeb
         {
 
         }
+
+        protected void FormView1_ItemInserted(object sender, FormViewInsertedEventArgs e)
+        {
+            DataBind();
+        }
     }
 }
