@@ -14,11 +14,11 @@ namespace EjemploBBDD
 
         static void Main()
         {
-            DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
 
-            dt.ReadXml(FILE_NAME);
+            ds.ReadXml(FILE_NAME);
 
-            foreach (DataRow dataRow in dt.Rows)
+            foreach (DataRow dataRow in ds.Tables["Usuarios"].Rows)
             {
                 Console.WriteLine($"{dataRow["Email"]}, {dataRow["Password"]}");
             }
@@ -26,7 +26,9 @@ namespace EjemploBBDD
         
         static void MainDataTableWriteXml()
         {
-            DataTable dt = new DataTable("usuarios");
+            DataSet ds = new DataSet("EjemploBBDD");
+
+            DataTable dt = new DataTable("Usuarios");
             dt.Columns.Add("Email", typeof(string));
             dt.Columns.Add(new DataColumn("Password", typeof(string)));
 
@@ -35,6 +37,8 @@ namespace EjemploBBDD
             dr["Password"] = "contra";
 
             dt.Rows.Add(dr);
+
+            ds.Tables.Add(dt);
 
             foreach (DataRow dataRow in dt.Rows)
             {
@@ -48,7 +52,7 @@ namespace EjemploBBDD
                 Console.WriteLine();
             }
 
-            dt.WriteXml(FILE_NAME, XmlWriteMode.WriteSchema);
+            ds.WriteXml(FILE_NAME, XmlWriteMode.WriteSchema);
         }
 
         static void MainTestDao()
