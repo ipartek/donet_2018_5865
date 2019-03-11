@@ -10,7 +10,21 @@ namespace EjemploBBDD
 {
     class Program
     {
+        private const string FILE_NAME = "ExportacionDataTableUsuarios.xml";
+
         static void Main()
+        {
+            DataTable dt = new DataTable();
+
+            dt.ReadXml(FILE_NAME);
+
+            foreach (DataRow dataRow in dt.Rows)
+            {
+                Console.WriteLine($"{dataRow["Email"]}, {dataRow["Password"]}");
+            }
+        }
+        
+        static void MainDataTableWriteXml()
         {
             DataTable dt = new DataTable("usuarios");
             dt.Columns.Add("Email", typeof(string));
@@ -34,7 +48,7 @@ namespace EjemploBBDD
                 Console.WriteLine();
             }
 
-            dt.WriteXml("ExportacionDataTableUsuarios.xml", XmlWriteMode.WriteSchema);
+            dt.WriteXml(FILE_NAME, XmlWriteMode.WriteSchema);
         }
 
         static void MainTestDao()
