@@ -10,7 +10,7 @@ namespace EjemploBBDD
 {
     class Program
     {
-        private const string FILE_NAME = "ExportacionDataTableUsuarios.xml";
+        private const string FILE_NAME = @"ExportacionDataTableUsuarios.xml";
 
         static void Main()
         {
