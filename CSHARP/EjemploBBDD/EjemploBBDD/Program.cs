@@ -23,6 +23,8 @@ namespace EjemploBBDD
                 var usuario = new Usuario(email: "javier", password: "contra");
 
                 ctx.Usuarios.Add(usuario); // INSERT INTO Usuarios ...
+                ctx.Usuarios.Add(new Usuario("pepe", "perez"));
+
                 ctx.SaveChanges();
 
                 foreach (Usuario u in ctx.Usuarios.ToList<Usuario>()) // SELECT * FROM Usuarios
@@ -30,13 +32,13 @@ namespace EjemploBBDD
                     Console.WriteLine(u);
                 }
 
-                usuario = ctx.Usuarios.Find(2); // SELECT * FROM Usuarios WHERE Id=2
+                usuario = ctx.Usuarios.Find(1); // SELECT * FROM Usuarios WHERE Id=2
 
                 usuario.Password = "modificada"; // UPDATE Usuarios Set Password = 'modificada'
 
                 ctx.SaveChanges();
 
-                ctx.Usuarios.Remove(ctx.Usuarios.Find(3)); // DELETE FROM Usuarios WHERE ID = 3
+                ctx.Usuarios.Remove(ctx.Usuarios.Find(2)); // DELETE FROM Usuarios WHERE ID = 3
 
                 var emailJavier = from u in ctx.Usuarios //SELECT Email, Password FROM Usuarios WHERE Email LIKE '%javier%'
                                   where u.Email.Contains("javier")

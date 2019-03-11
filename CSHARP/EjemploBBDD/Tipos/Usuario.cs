@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 //csc /t:library Usuario.cs /out:Tipos.dll
 
@@ -7,9 +8,12 @@ namespace Tipos
     public class Usuario
     {
         public int Id { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
         public string Password { get; set; }
 
+        [NotMapped]
         public int IdRol
         {
             get { return Rol == null ? Rol.ID_POR_DEFECTO : Rol.Id; }

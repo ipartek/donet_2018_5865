@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Tipos
 {
+    [Table("Roles")]
     public class Rol
     {
         public const int ID_POR_DEFECTO = -1;
