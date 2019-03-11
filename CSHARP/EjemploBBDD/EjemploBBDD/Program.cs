@@ -12,6 +12,33 @@ namespace EjemploBBDD
     {
         static void Main()
         {
+            DataTable dt = new DataTable("usuarios");
+            dt.Columns.Add("Email", typeof(string));
+            dt.Columns.Add(new DataColumn("Password", typeof(string)));
+
+            DataRow dr = dt.NewRow();
+            dr["Email"] = "javierlete@email.net";
+            dr["Password"] = "contra";
+
+            dt.Rows.Add(dr);
+
+            foreach (DataRow dataRow in dt.Rows)
+            {
+                Console.WriteLine($"Fila: {dataRow["Email"]}, {dataRow["Password"]}");
+
+                foreach (DataColumn dataColumn in dt.Columns)
+                {
+                    Console.Write($"{dataRow[dataColumn]} ");
+                }
+
+                Console.WriteLine();
+            }
+
+            dt.WriteXml("ExportacionDataTableUsuarios.xml", XmlWriteMode.WriteSchema);
+        }
+
+        static void MainTestDao()
+        {
             IDao<Rol> dao = new RolSqlDao();
 
             foreach (Rol rol in dao.BuscarTodos())
