@@ -9,12 +9,7 @@ namespace AccesoDatos
 {
     public class RolEntityDao : IDao<Rol>
     {
-        private IpartekDbContext ctx = new IpartekDbContext();
-
-        public RolEntityDao()
-        {
-            ctx.Database.Log = Console.Write;
-        }
+        private IpartekDbContext ctx = IpartekDbContext.GetInstance();
 
         public int Borrar(Rol rol)
         {

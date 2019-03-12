@@ -9,12 +9,7 @@ namespace AccesoDatos
 {
     public class UsuarioEntityDao : IUsuarioDao
     {
-        private IpartekDbContext ctx = new IpartekDbContext();
-
-        public UsuarioEntityDao()
-        {
-            ctx.Database.Log = Console.Write;
-        }
+        private IpartekDbContext ctx = IpartekDbContext.GetInstance();
 
         public int Borrar(Usuario usuario)
         {

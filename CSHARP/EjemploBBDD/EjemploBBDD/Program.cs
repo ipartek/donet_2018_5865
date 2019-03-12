@@ -50,7 +50,7 @@ namespace EjemploBBDD
 
         static void MainEntity()
         {
-            using (var ctx = new IpartekDbContext())
+            using (var ctx = IpartekDbContext.GetInstance())
             {
                 var usuario = new Usuario(email: "javier", password: "contra");
 
