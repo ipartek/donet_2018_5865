@@ -19,6 +19,31 @@ namespace EjemploBBDD
 
         static void Main()
         {
+            //Nullable<DateTime> dtn = null;
+            DateTime? dtn = null;
+
+            if (!dtn.HasValue)
+                dtn = DateTime.Now;
+
+            Console.WriteLine($"{dtn.Value.Hour}:{dtn.Value.Minute}");
+
+            DateTime dt = dtn.Value;
+
+            Console.WriteLine($"{dt.Hour}:{dt.Minute}");
+
+            Console.WriteLine(dt.ToString("'Hoy es 'd' de 'MMMM' de 'yyyy"));
+            Console.WriteLine(dt.ToString("hh:mm"));
+            Console.WriteLine(dt.ToString("yyyy-MM-dd"));
+            Console.WriteLine(dt.ToString("yyyy-MM-ddThh:mm"));
+            Console.WriteLine(dt.ToString("f"));
+
+            dtn = DateTime.Parse("2010-11-10");
+
+            Console.WriteLine(dtn);
+        }
+
+        static void MainEntityDao()
+        {
             string tipoDao = ConfigurationManager.AppSettings["usuariodao"];
 
             IUsuarioDao usuarioDao = FabricaDao.GetDaoUsuario(tipoDao); //new UsuarioEntityDao();
