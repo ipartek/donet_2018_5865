@@ -18,7 +18,7 @@ namespace EjemploBBDD
 
         static void Main()
         {
-            using (var ctx = new UsuarioDbContext())
+            using (var ctx = new IpartekDbContext())
             {
                 var usuario = new Usuario(email: "javier", password: "contra");
 
@@ -27,18 +27,18 @@ namespace EjemploBBDD
 
                 ctx.SaveChanges();
 
-                foreach (Usuario u in ctx.Usuarios.ToList<Usuario>()) // SELECT * FROM Usuarios
+                foreach (Usuario u in ctx.Usuarios.ToList()) // SELECT * FROM Usuarios
                 {
                     Console.WriteLine(u);
                 }
 
                 usuario = ctx.Usuarios.Find(1); // SELECT * FROM Usuarios WHERE Id=2
 
-                usuario.Password = "modificada"; // UPDATE Usuarios Set Password = 'modificada'
+                usuario.Password = "modificada"; // UPDATE Usuarios Set Password = 'modificada' WHERE Id=1 AND Email='javier' AND Password='contra'
 
                 ctx.SaveChanges();
 
-                ctx.Usuarios.Remove(ctx.Usuarios.Find(2)); // DELETE FROM Usuarios WHERE ID = 3
+                ctx.Usuarios.Remove(ctx.Usuarios.Find(2)); // DELETE FROM Usuarios WHERE ID = 2 AND Email='pepe' AND Password='perez'
 
                 var emailJavier = from u in ctx.Usuarios //SELECT Email, Password FROM Usuarios WHERE Email LIKE '%javier%'
                                   where u.Email.Contains("javier")
@@ -48,6 +48,35 @@ namespace EjemploBBDD
                 {
                     Console.WriteLine(u);
                 }
+
+                Rol rol = new Rol(nombre: "ADMIN", descripcion: "Administradores");
+                ctx.Roles.Add(rol);
+
+                usuario.Rol = rol;
+
+                ctx.SaveChanges();
+
+                rol = new Rol(1, nombre: "PRUEBAS", descripcion: "Pruebas");
+
+                Rol rolConectado = ctx.Roles.Find(rol.Id);
+
+                //rolConectado = rol; //NO FUNCIONA PORQUE NO HACE CAMBIOS SOBRE LA REFERENCIA ORIGINAL
+                
+                //Mueve todos los datos de un objeto al otro
+                ctx.Entry(rolConectado).CurrentValues.SetValues(rol);
+                
+                ctx.SaveChanges();
+
+                Console.WriteLine(ctx.Roles.Find(1));
+
+                //No funciona el Attach en el contexto
+                //Usuario user = new Usuario(1, "pepe", "yepa");
+                //user.Rol = new Rol(1);
+
+                //ctx.Usuarios.Attach(user);
+                //ctx.Entry(user).State = System.Data.Entity.EntityState.Modified;
+
+                //ctx.SaveChanges();
             }
         }
 
