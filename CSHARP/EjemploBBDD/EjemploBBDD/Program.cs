@@ -18,6 +18,38 @@ namespace EjemploBBDD
 
         static void Main()
         {
+            IUsuarioDao usuarioDao = new UsuarioEntityDao();
+            IDao<Rol> rolDao = new RolEntityDao();
+            
+            Rol admin = new Rol(nombre: "ADMIN", descripcion: "Administradores");
+            Rol user = new Rol(nombre: "USER", descripcion: "Usuarios");
+
+            Usuario usuario1 = new Usuario("javier@email.net", "contra");
+            usuario1.Rol = admin;
+
+            Usuario usuario2 = new Usuario("pepe@email.net", "perez");
+
+            usuarioDao.Insertar(usuario1);
+            usuarioDao.Insertar(usuario2);
+
+            Console.WriteLine("USUARIOS");
+
+            foreach (Usuario usuario in usuarioDao.BuscarTodos())
+            {
+                Console.WriteLine(usuario);
+            }
+
+            Console.WriteLine("USUARIOS CON ROL");
+
+            foreach (Usuario usuario in usuarioDao.BuscarTodosConRol())
+            {
+                Console.WriteLine(usuario);
+            }
+
+        }
+
+        static void MainEntity()
+        {
             using (var ctx = new IpartekDbContext())
             {
                 var usuario = new Usuario(email: "javier", password: "contra");

@@ -23,6 +23,8 @@ namespace Tipos
             Descripcion = descripcion;
         }
 
+        public Rol() : this(ID_POR_DEFECTO) { }
+
         public override string ToString() => $"{Id}, {Nombre}, {Descripcion}";
     }
 }

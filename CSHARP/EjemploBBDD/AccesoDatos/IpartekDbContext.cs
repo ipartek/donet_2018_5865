@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using Tipos;
 
-namespace EjemploBBDD
+namespace AccesoDatos
 {
     public class IpartekDbContext : DbContext
     {
