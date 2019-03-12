@@ -1,6 +1,7 @@
 ﻿using AccesoDatos;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -18,7 +19,9 @@ namespace EjemploBBDD
 
         static void Main()
         {
-            IUsuarioDao usuarioDao = new UsuarioEntityDao();
+            string tipoDao = ConfigurationManager.AppSettings["usuariodao"];
+
+            IUsuarioDao usuarioDao = FabricaDao.GetDaoUsuario(tipoDao); //new UsuarioEntityDao();
             IDao<Rol> rolDao = new RolEntityDao();
             
             Rol admin = new Rol(nombre: "ADMIN", descripcion: "Administradores");

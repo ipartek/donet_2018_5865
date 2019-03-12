@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AccesoDatosException.cs" />
+    <Compile Include="FabricaDao.cs" />
     <Compile Include="IDao.cs" />
     <Compile Include="IpartekDbContext.cs" />
     <Compile Include="IUsuarioDao.cs" />
