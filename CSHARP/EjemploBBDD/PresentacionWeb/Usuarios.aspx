@@ -35,14 +35,14 @@
             <asp:Parameter Name="id" Type="Int32"></asp:Parameter>
         </DeleteParameters>
     </asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="OdsUsuarios" runat="server" DataObjectTypeName="Tipos.Usuario" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarTodosConRol" TypeName="AccesoDatos.UsuarioSqlDao" UpdateMethod="Modificar">
+    <asp:ObjectDataSource ID="OdsUsuarios" runat="server" DataObjectTypeName="Tipos.Usuario" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarTodosConRol" TypeName="AccesoDatos.UsuarioEntityDao" UpdateMethod="Modificar">
 
         <DeleteParameters>
             <asp:Parameter Name="id" Type="Int32"></asp:Parameter>
         </DeleteParameters>
     </asp:ObjectDataSource>
 
-    <asp:ObjectDataSource ID="OdsForm" runat="server" DataObjectTypeName="Tipos.Usuario" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarPorId" TypeName="AccesoDatos.UsuarioSqlDao" UpdateMethod="Modificar" OnDeleted="RefrescarGvCompleto" OnInserted="RefrescarGvCompleto" OnUpdated="RefrescarGvCompleto">
+    <asp:ObjectDataSource ID="OdsForm" runat="server" DataObjectTypeName="Tipos.Usuario" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarPorId" TypeName="AccesoDatos.UsuarioEntityDao" UpdateMethod="Modificar" OnDeleted="RefrescarGvCompleto" OnInserted="RefrescarGvCompleto" OnUpdated="RefrescarGvCompleto">
         <SelectParameters>
             <asp:ControlParameter ControlID="GvCompleto" PropertyName="SelectedValue" Name="id" Type="Int32"></asp:ControlParameter>
         </SelectParameters>

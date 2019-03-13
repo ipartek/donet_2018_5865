@@ -12,7 +12,7 @@ namespace PresentacionWeb
     public partial class Usuarios : System.Web.UI.Page
     {
         private const string cadenaConexion = @"Data Source=.\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
-        private IDao<Usuario> usuariosDao = new UsuarioSqlDao(cadenaConexion);
+        private IDao<Usuario> usuariosDao = FabricaDao.GetDaoUsuario("entity"); //new UsuarioSqlDao(cadenaConexion);
         private IDao<Rol> rolesDao = new RolSqlDao(cadenaConexion);
         
         protected void Page_Load(object sender, EventArgs e)
