@@ -20,6 +20,8 @@ namespace AccesoDatos
         {
             ctx.Usuarios.Remove(BuscarPorId(id));
 
+            ctx.SaveChanges();
+
             return 1;
         }
 
