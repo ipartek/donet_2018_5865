@@ -26,5 +26,10 @@ namespace AccesoDatos
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Rol> Roles { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Usuario>().Property(p => p.IdRol).HasColumnType("char(5)");
+        }
     }
 }
