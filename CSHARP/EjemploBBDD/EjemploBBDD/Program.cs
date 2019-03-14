@@ -19,6 +19,38 @@ namespace EjemploBBDD
 
         static void Main()
         {
+            using (DbConnection con = new SqlConnection(CADENA_CONEXION))
+            {
+                con.Open();
+
+                using(DbCommand com = con.CreateCommand())
+                {
+                    com.CommandText = "EntradasDeBlogPorUsuarioPorId"; //Nombre del procedimiento
+                    com.CommandType = CommandType.StoredProcedure; //Declaro que llamo a un procedimiento
+
+                    DbParameter parId = com.CreateParameter();
+
+                    //parId.Direction = ParameterDirection.Input;
+                    parId.DbType = DbType.Int32;
+                    parId.ParameterName = "@IdUsuario"; //Parámetro del procedimiento
+
+                    com.Parameters.Add(parId);
+
+                    parId.Value = 1;
+
+                    using (DbDataReader dr = com.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            Console.WriteLine($"{dr["Fecha"]}, {dr["Titulo"]}, {dr["Texto"]}");
+                        }
+                    }
+                }
+            }
+        }
+
+        static void MainNullablesYDateTime()
+        {
             //Nullable<DateTime> dtn = null;
             DateTime? dtn = null;
 
