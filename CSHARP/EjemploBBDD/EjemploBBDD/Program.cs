@@ -23,7 +23,49 @@ namespace EjemploBBDD
             {
                 con.Open();
 
-                using(DbCommand com = con.CreateCommand())
+                using (DbCommand com = con.CreateCommand())
+                {
+                    com.CommandText = "RolesInsertar"; //Nombre del procedimiento
+                    com.CommandType = CommandType.StoredProcedure; //Declaro que llamo a un procedimiento
+
+                    DbParameter parIdGenerado = com.CreateParameter();
+
+                    parIdGenerado.Direction = ParameterDirection.Output; //Tipo OUTPUT
+                    parIdGenerado.DbType = DbType.Int32;
+                    parIdGenerado.ParameterName = "@Id"; //Parámetro del procedimiento
+
+                    com.Parameters.Add(parIdGenerado);
+
+                    parIdGenerado.Value = 1;
+
+                    DbParameter parNombre = com.CreateParameter();
+                    parNombre.DbType = System.Data.DbType.String;
+                    parNombre.ParameterName = "@Rol";
+                    parNombre.Value = "NUEVOROL";
+
+                    com.Parameters.Add(parNombre);
+                    
+                    DbParameter parDescripcion = com.CreateParameter();
+                    parDescripcion.DbType = System.Data.DbType.String;
+                    parDescripcion.ParameterName = "@Descripcion";
+                    parDescripcion.Value = "Descripción del rol nuevo";
+
+                    com.Parameters.Add(parDescripcion);
+
+                    com.ExecuteNonQuery();
+
+                    Console.WriteLine(parIdGenerado.Value);
+                }
+            }
+        }
+
+        static void MainProcedimientoAlmacenadoTipoInput()
+        {
+            using (DbConnection con = new SqlConnection(CADENA_CONEXION))
+            {
+                con.Open();
+
+                using (DbCommand com = con.CreateCommand())
                 {
                     com.CommandText = "EntradasDeBlogPorUsuarioPorId"; //Nombre del procedimiento
                     com.CommandType = CommandType.StoredProcedure; //Declaro que llamo a un procedimiento
@@ -80,7 +122,7 @@ namespace EjemploBBDD
 
             IUsuarioDao usuarioDao = FabricaDao.GetDaoUsuario(tipoDao); //new UsuarioEntityDao();
             IDao<Rol> rolDao = new RolEntityDao();
-            
+
             Rol admin = new Rol(nombre: "ADMIN", descripcion: "Administradores");
             Rol user = new Rol(nombre: "USER", descripcion: "Usuarios");
 
@@ -153,10 +195,10 @@ namespace EjemploBBDD
                 Rol rolConectado = ctx.Roles.Find(rol.Id);
 
                 //rolConectado = rol; //NO FUNCIONA PORQUE NO HACE CAMBIOS SOBRE LA REFERENCIA ORIGINAL
-                
+
                 //Mueve todos los datos de un objeto al otro
                 ctx.Entry(rolConectado).CurrentValues.SetValues(rol);
-                
+
                 ctx.SaveChanges();
 
                 Console.WriteLine(ctx.Roles.Find(1));
@@ -176,7 +218,7 @@ namespace EjemploBBDD
         {
             EjemploBBDD.UsuariosDataTable dt = new EjemploBBDD.UsuariosDataTable();
 
-            EjemploBBDDTableAdapters.UsuariosTableAdapter ta = 
+            EjemploBBDDTableAdapters.UsuariosTableAdapter ta =
                 new EjemploBBDDTableAdapters.UsuariosTableAdapter();
 
             ta.Fill(dt);
@@ -200,8 +242,8 @@ namespace EjemploBBDD
             //da.Update(ds); //Necesitamos UpdateCommand
 
             IEnumerable<DataRow> filas = from DataRow fila in ds.Tables[0].AsEnumerable()
-                                            where ((string)fila["Email"]).Contains("javier")
-                                            select fila;
+                                         where ((string)fila["Email"]).Contains("javier")
+                                         select fila;
 
             foreach (DataRow dataRow in filas)
             {
@@ -220,7 +262,7 @@ namespace EjemploBBDD
                 Console.WriteLine($"{dataRow["Email"]}, {dataRow["Password"]}");
             }
         }
-        
+
         static void MainDataTableWriteXml()
         {
             DataSet ds = new DataSet("EjemploBBDD");
@@ -342,7 +384,7 @@ namespace EjemploBBDD
                         Console.WriteLine("No se pudo realizar alguna modificación en el usuario");
                     }
 
-                    
+
                 }
                 catch (AccesoDatosException ade)
                 {
@@ -469,7 +511,8 @@ namespace EjemploBBDD
 
         private static void MostrarTabla()
         {
-            using(DbDataReader dr = comSelect.ExecuteReader()) {
+            using (DbDataReader dr = comSelect.ExecuteReader())
+            {
 
                 while (dr.Read())
                 {
@@ -481,7 +524,7 @@ namespace EjemploBBDD
             }
 
             Console.WriteLine("---------------------------------------------------");
-            
+
         }
     }
 }
