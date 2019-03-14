@@ -51,7 +51,12 @@ namespace AccesoDatos
 
         public int Insertar(Usuario usuario)
         {
+            if(usuario.Rol != null && usuario.Rol.Id != Rol.ID_POR_DEFECTO)
+            {
+                usuario.Rol = ctx.Roles.Find(usuario.Rol.Id);
+            }
             ctx.Usuarios.Add(usuario);
+
             ctx.SaveChanges();
 
             return usuario.Id;
@@ -60,6 +65,11 @@ namespace AccesoDatos
         public int Modificar(Usuario usuario)
         {
             Usuario usuarioConectado = BuscarPorId(usuario.Id);
+
+            if (usuario.Rol != null && usuario.Rol.Id != Rol.ID_POR_DEFECTO)
+            {
+                usuarioConectado.Rol = ctx.Roles.Find(usuario.Rol.Id);
+            }
 
             ctx.Entry(usuarioConectado).CurrentValues.SetValues(usuario);
             ctx.Entry(usuarioConectado).State = System.Data.Entity.EntityState.Modified;

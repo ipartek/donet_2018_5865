@@ -13,14 +13,14 @@ namespace PresentacionWeb
     {
         private const string cadenaConexion = @"Data Source=.\SQLEXPRESS;Initial Catalog=ipartek;Integrated Security=True";
         private IDao<Usuario> usuariosDao = FabricaDao.GetDaoUsuario("entity"); //new UsuarioSqlDao(cadenaConexion);
-        private IDao<Rol> rolesDao = new RolSqlDao(cadenaConexion);
+        private IDao<Rol> rolesDao = FabricaDao.GetDaoRol("entity"); // new RolSqlDao(cadenaConexion);
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
+            if (!IsPostBack)
+            {
                 RefrescarEnlazados();
-            //}
+            }
         }
 
         private void RefrescarEnlazados()
@@ -43,7 +43,10 @@ namespace PresentacionWeb
 
         protected void BtnAceptar_Click(object sender, EventArgs e)
         {
-            usuariosDao.Insertar(new Usuario(TxtEmail.Text, TxtPassword.Text));
+            Usuario usuario = new Usuario(TxtEmail.Text, TxtPassword.Text);
+            usuario.IdRol = int.Parse(DdlRoles.SelectedValue);
+
+            usuariosDao.Insertar(usuario);
 
             RefrescarEnlazados();
         }

@@ -30,7 +30,7 @@
         </div>
 
     </div>
-    <asp:ObjectDataSource ID="OdsRoles" runat="server" DataObjectTypeName="Tipos.Rol" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarTodos" TypeName="AccesoDatos.RolSqlDao" UpdateMethod="Modificar">
+    <asp:ObjectDataSource ID="OdsRoles" runat="server" DataObjectTypeName="Tipos.Rol" DeleteMethod="Borrar" InsertMethod="Insertar" SelectMethod="BuscarTodos" TypeName="AccesoDatos.RolEntityDao" UpdateMethod="Modificar">
         <DeleteParameters>
             <asp:Parameter Name="id" Type="Int32"></asp:Parameter>
         </DeleteParameters>
@@ -61,7 +61,7 @@
                 DataSourceID="OdsRoles"
                 DataValueField='Id'
                 DataTextField="Descripcion"
-                SelectedValue='<%# Bind("IdRol") %>' />
+                SelectedValue='<%# Bind("Rol") %>' />
             <br />
             <asp:LinkButton runat="server" Text="Actualizar" CommandName="Update" ID="UpdateButton" CausesValidation="True" />&nbsp;<asp:LinkButton runat="server" Text="Cancelar" CommandName="Cancel" ID="UpdateCancelButton" CausesValidation="False" />
         </EditItemTemplate>
@@ -98,13 +98,22 @@
             <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id"></asp:BoundField>
             <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email"></asp:BoundField>
             <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password"></asp:BoundField>
-            <asp:BoundField DataField="Rol.Descripcion" HeaderText="Rol" SortExpression="Rol"></asp:BoundField>
+            
+            <asp:TemplateField HeaderText="Rol">
+                <ItemTemplate>
+                    <asp:DropDownList ID="GvDdlRoles" runat="server"
+                        DataSourceID="OdsRoles"
+                        DataValueField='Id'
+                        DataTextField="Descripcion"
+                        SelectedValue='<%# Bind("IdRol") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
 
             <asp:CommandField ShowEditButton="True" ShowDeleteButton="False" ShowSelectButton="False" ControlStyle-CssClass="btn btn-primary"></asp:CommandField>
             <asp:CommandField ShowEditButton="False" ShowDeleteButton="True" ShowSelectButton="False" ControlStyle-CssClass="btn btn-danger"></asp:CommandField>
             <asp:CommandField ShowEditButton="False" ShowDeleteButton="False" ShowSelectButton="True" ControlStyle-CssClass="btn btn-default"></asp:CommandField>
         </Columns>
-
+        
     </asp:GridView>
 
     <asp:Panel ID="PGvUsuarios" runat="server" Visible="true">
