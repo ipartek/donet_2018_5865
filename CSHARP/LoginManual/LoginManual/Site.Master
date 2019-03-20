@@ -55,6 +55,10 @@
                         <li><a runat="server" href="~/About">Acerca de</a></li>
                         <li><a runat="server" href="~/Contact">Contacto</a></li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="navbar-text"><%=Session["usuario"] %></li>
+                        <li><asp:LinkButton ID="HlLogout" runat="server" OnClick="HlLogout_Click" Text="Logout" /></li>
+                    </ul>
                 </div>
             </div>
         </div>
