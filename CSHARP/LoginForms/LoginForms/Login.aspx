@@ -13,4 +13,6 @@
         <AnonymousTemplate>No estás logueado</AnonymousTemplate>
         <LoggedInTemplate>Logueado</LoggedInTemplate>
     </asp:LoginView>
+
+    <%=User.Identity.Name %>
 </asp:Content>
