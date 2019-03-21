@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,11 +52,81 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntradaBlog.cs">
+      <DependentUpon>IpartekModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntradasDeBlogPorUsuarioPorId_Result.cs">
+      <DependentUpon>IpartekModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntradasDeBlogPorUsuario_Result.cs">
+      <DependentUpon>IpartekModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IpartekModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IpartekModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IpartekModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IpartekModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IpartekModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IpartekModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Parciales\Rol.cs" />
+    <Compile Include="Parciales\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rol.cs">
+      <DependentUpon>IpartekModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RolesActivos.cs">
+      <DependentUpon>IpartekModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>IpartekModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosDeRolUser.cs">
+      <DependentUpon>IpartekModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosInsert_Result.cs">
+      <DependentUpon>IpartekModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosSelect_Result.cs">
+      <DependentUpon>IpartekModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuariosUpdate_Result.cs">
+      <DependentUpon>IpartekModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="IpartekModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IpartekModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="IpartekModel.edmx.diagram">
+      <DependentUpon>IpartekModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IpartekModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IpartekModel.Context.cs</LastGenOutput>
+      <DependentUpon>IpartekModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="IpartekModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IpartekModel.edmx</DependentUpon>
+      <LastGenOutput>IpartekModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
