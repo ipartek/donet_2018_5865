@@ -27,6 +27,8 @@ namespace CodeFirstFromDB
 
         public bool Borrado { get; set; }
 
+        public string Notas { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }

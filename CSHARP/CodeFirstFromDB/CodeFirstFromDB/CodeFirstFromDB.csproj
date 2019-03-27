@@ -54,6 +54,19 @@
   <ItemGroup>
     <Compile Include="EntradaBlog.cs" />
     <Compile Include="IpartekModel.cs" />
+    <Compile Include="Migrations\201903221300275_Creado campo Notas en Rol.cs" />
+    <Compile Include="Migrations\201903221300275_Creado campo Notas en Rol.Designer.cs">
+      <DependentUpon>201903221300275_Creado campo Notas en Rol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903221318036_Nuevo campo Notas en Usuario.cs" />
+    <Compile Include="Migrations\201903221318036_Nuevo campo Notas en Usuario.Designer.cs">
+      <DependentUpon>201903221318036_Nuevo campo Notas en Usuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903221321559_Nuevo campo notas en EntradaBlog.cs" />
+    <Compile Include="Migrations\201903221321559_Nuevo campo notas en EntradaBlog.Designer.cs">
+      <DependentUpon>201903221321559_Nuevo campo notas en EntradaBlog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rol.cs" />
@@ -64,6 +77,17 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903221300275_Creado campo Notas en Rol.resx">
+      <DependentUpon>201903221300275_Creado campo Notas en Rol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903221318036_Nuevo campo Notas en Usuario.resx">
+      <DependentUpon>201903221318036_Nuevo campo Notas en Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903221321559_Nuevo campo notas en EntradaBlog.resx">
+      <DependentUpon>201903221321559_Nuevo campo notas en EntradaBlog.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

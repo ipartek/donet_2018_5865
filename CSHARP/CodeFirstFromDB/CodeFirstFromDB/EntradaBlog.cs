@@ -28,6 +28,8 @@ namespace CodeFirstFromDB
         [Column(TypeName = "datetime2")]
         public DateTime Fecha { get; set; }
 
+        public string Notas { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }

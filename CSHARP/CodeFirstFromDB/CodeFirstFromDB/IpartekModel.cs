@@ -10,6 +10,7 @@ namespace CodeFirstFromDB
         public IpartekModel()
             : base("name=IpartekModelConnection")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<IpartekModel, Migrations.Configuration>());
         }
 
         public virtual DbSet<EntradaBlog> EntradasBlog { get; set; }

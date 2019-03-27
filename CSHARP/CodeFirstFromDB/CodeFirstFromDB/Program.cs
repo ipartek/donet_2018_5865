@@ -8,7 +8,17 @@ namespace CodeFirstFromDB
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
+        {
+            IpartekModel ctx = new IpartekModel();
+            Rol rol = ctx.Roles.Find(1);
+
+            rol.Notas = "Importatísimo";
+
+            ctx.SaveChanges();
+        }
+
+        static void MainAnterior(string[] args)
         {
             IpartekModel ctx = new IpartekModel();
 
