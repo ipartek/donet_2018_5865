@@ -13,10 +13,12 @@
 @using (Html.BeginForm(null, null, FormMethod.Get))
 {
     <p>
-        <label for="SearchString">Title:</label> @Html.TextBox("SearchString") <br />
-        <input type="submit" value="Filter" />
+        <label for="SearchString">Title:</label> @Html.TextBox("SearchString",null, new { @class = "form-control" }) <br />
+        <label for="movieGenre">Genre:</label>@Html.DropDownList("movieGenre", null, "All", new { @class = "form-control" })
+        <input type="submit" value="Filter" class="btn btn-primary" />
     </p>
 }
+
 
 <table class="table">
     <tr>
