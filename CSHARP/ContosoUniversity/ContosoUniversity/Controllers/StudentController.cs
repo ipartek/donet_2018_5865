@@ -1,8 +1,10 @@
 ﻿using ContosoUniversity.DAL;
 using ContosoUniversity.Models;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Web.Mvc;
 
@@ -12,10 +14,39 @@ namespace ContosoUniversity.Controllers
     {
         private SchoolContext db = new SchoolContext();
 
+        /*
         // GET: Student
         public ActionResult Index()
         {
             return View(db.Students.ToList());
+        }
+        */
+
+        public ActionResult Index(string sortOrder)
+        {
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            var students = from s in db.Students
+                           select s;
+
+            //IQueryable<Student> students = db.Students.Select(s => s);
+            
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    students = students.OrderByDescending(s => s.LastName);
+                    break;
+                case "Date":
+                    students = students.OrderBy(s => s.EnrollmentDate);
+                    break;
+                case "date_desc":
+                    students = students.OrderByDescending(s => s.EnrollmentDate);
+                    break;
+                default:
+                    students = students.OrderBy(s => s.LastName);
+                    break;
+            }
+            return View(students.ToList());
         }
 
         // GET: Student/Details/5
