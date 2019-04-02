@@ -13,8 +13,6 @@ namespace EjemploCrudoWeb
 
         public void ProcessRequest(HttpContext context)
         {
-            context.Response.ContentType = "texto/html";
-
             Usuario usuario = new Usuario()
             {
                 Email = context.Request["email"],
@@ -23,11 +21,24 @@ namespace EjemploCrudoWeb
 
             if(usuario.Email == "javierlete@email.net" && usuario.Password == "contra")
             {
-                context.Response.Redirect("Principal.htm");
+                //context.Response.Redirect("/Vistas/Principal.htm");
+                context.Response.ContentType = "text/html";
+                context.Response.Write(@"
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = 'utf-8' />
+    <title></title>
+</head>
+<body>
+    <h1>" + usuario.Email + @"</h1>
+</body>
+</html>
+");
             }
             else
             {
-                context.Response.Redirect("Default.htm");
+                context.Response.Redirect("/Vistas/Default.htm");
             }
         }
 
