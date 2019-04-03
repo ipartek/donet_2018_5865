@@ -15,5 +15,10 @@ namespace BookService.Models
         public int AuthorId { get; set; }
         // Navigation property
         public Author Author { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id}, {Title}, {Year}, {Price}, {Genre}, {AuthorId}";
+        }
     }
 }

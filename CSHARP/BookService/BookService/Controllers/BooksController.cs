@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,13 +19,20 @@ namespace BookService.Controllers
         private BookServiceContext db = new BookServiceContext();
 
         // GET: api/Books
-        public IQueryable<Book> GetBooks()
+        public List<Book> GetBooks()
         {
+            List<Book> books;
             //LAZY LOADING
             //return db.Books;
-
+            books = db.Books.ToList();
+            
             //EAGER LOADING
-            return db.Books.Include(b => b.Author);
+            //books = db.Books.Include(b => b.Author).ToList();
+
+            Debug.WriteLine(books[0].Author);
+            Debug.WriteLine(books[0]);
+
+            return books;
         }
 
         // GET: api/Books/5
