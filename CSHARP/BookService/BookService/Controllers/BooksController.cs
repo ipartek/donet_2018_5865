@@ -19,20 +19,22 @@ namespace BookService.Controllers
         private BookServiceContext db = new BookServiceContext();
 
         // GET: api/Books
-        public List<Book> GetBooks()
+        public IQueryable<Book> GetBooks()
         {
-            List<Book> books;
+            //List<Book> books;
             //LAZY LOADING
             //return db.Books;
-            books = db.Books.ToList();
-            
+            //books = db.Books.ToList();
+
             //EAGER LOADING
             //books = db.Books.Include(b => b.Author).ToList();
 
-            Debug.WriteLine(books[0].Author);
-            Debug.WriteLine(books[0]);
+            //Debug.WriteLine(books[0].Author);
+            //Debug.WriteLine(books[0]);
 
-            return books;
+            //db.Books.ToList();
+
+            return db.Books;
         }
 
         // GET: api/Books/5
