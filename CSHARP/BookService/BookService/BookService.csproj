@@ -177,6 +177,10 @@
     <Compile Include="Migrations\201904031129283_Initial.Designer.cs">
       <DependentUpon>201904031129283_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904050810183_CascadeDelete.cs" />
+    <Compile Include="Migrations\201904050810183_CascadeDelete.Designer.cs">
+      <DependentUpon>201904050810183_CascadeDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
@@ -274,6 +278,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904031129283_Initial.resx">
       <DependentUpon>201904031129283_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904050810183_CascadeDelete.resx">
+      <DependentUpon>201904050810183_CascadeDelete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

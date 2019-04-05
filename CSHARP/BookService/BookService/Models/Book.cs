@@ -12,9 +12,9 @@ namespace BookService.Models
         public string Genre { get; set; }
 
         // Foreign Key
-        public int AuthorId { get; set; }
+        public int? AuthorId { get; set; }
         // Navigation property
-        public virtual Author Author { get; set; }
+        public Author Author { get; set; }
 
         public override string ToString()
         {

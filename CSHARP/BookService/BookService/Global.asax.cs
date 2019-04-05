@@ -14,7 +14,11 @@ namespace BookService
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            
+            //La línea siguiente no se añade cuando a un proyecto
+            //de MVC a secas, le agregas un controlador de Web API
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

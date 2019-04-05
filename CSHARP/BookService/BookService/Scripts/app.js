@@ -14,7 +14,7 @@
             contentType: 'application/json',
             data: data ? JSON.stringify(data) : null
         }).fail(function (jqXHR, textStatus, errorThrown) {
-            self.error(errorThrown);
+            self.error(jqXHR.status === 500 ? jqXHR.responseJSON.ExceptionMessage : errorThrown);
         });
     }
 
@@ -67,6 +67,21 @@
     };
 
     getAuthors();
+
+    self.booksFromAuthor = ko.observableArray();
+
+    self.getBooksFromAuthor = function (author) {
+        ajaxHelper(authorsUri + author.Id + '/books', 'GET').done(function (data) {
+            self.booksFromAuthor(data);
+        });
+    };
+
+    self.removeAuthor = function (author) {
+        ajaxHelper(authorsUri + author.Id, 'DELETE').done(function (item) {
+            getAllBooks();
+            getAuthors();
+        });
+    };
 };
 
 ko.applyBindings(new ViewModel());

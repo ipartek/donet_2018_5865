@@ -23,5 +23,13 @@ namespace BookService.Models
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Book>()
+                .HasOptional(b => b.Author)
+                .WithMany(a => a.Books)
+                .HasForeignKey(b => b.AuthorId)
+                .WillCascadeOnDelete(false);
+        }
     }
 }

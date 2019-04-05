@@ -13,9 +13,26 @@ using BookService.Models;
 
 namespace BookService.Controllers
 {
+    [RoutePrefix("api/authors")]
     public class AuthorsController : ApiController
     {
         private BookServiceContext db = new BookServiceContext();
+
+        [Route("{authorId}/books")]
+        [HttpGet] //Si ponemos el prefijo Get en el método, se asume este atributo
+        public IQueryable<BookDTO> BooksFromAuthor(int authorId)
+        {
+            var books = from b in db.Books
+                        where b.AuthorId == authorId
+                        select new BookDTO()
+                        {
+                            Id = b.Id,
+                            Title = b.Title,
+                            AuthorName = b.Author.Name
+                        };
+
+            return books;
+        }
 
         // GET: api/Authors
         public IQueryable<Author> GetAuthors()
@@ -97,7 +114,14 @@ namespace BookService.Controllers
             }
 
             db.Authors.Remove(author);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch(DbUpdateException due)
+            {
+                throw new Exception("No se puede borrar el autor, porque tiene libros dependientes de él", due);
+            }
 
             return Ok(author);
         }
