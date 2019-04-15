@@ -11,16 +11,25 @@ namespace RepasoMVC.Models
         protected override void Seed(RepasoMVCContext context)
         {
             Rol admin = new Rol() { Codigo = "ADMIN", NombreDescriptivo = "Administrador" };
-            context.Roles.Add(admin);
-            context.SaveChanges();
+            Rol user = new Rol() { Codigo = "USER", NombreDescriptivo = "Usuario" };
 
-            context.Usuarios.Add(new Usuario()
+            context.Roles.AddRange(new[] { admin, user });
+            context.SaveChanges();
+            
+            context.Usuarios.AddRange(new[] {
+                new Usuario()
                 {
                     Email = "javierlete@email.net",
                     Password = "contra",
                     Rol = admin
+                },
+                new Usuario()
+                {
+                    Email = "pepe@perez.net",
+                    Password = "perez",
+                    Rol = user
                 }
-            );
+            });
 
             context.SaveChanges();
         }
