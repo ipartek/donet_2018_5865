@@ -19,22 +19,29 @@ namespace RepasoMVC.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Index(Usuario usuario)
+        public ActionResult Index([Bind(Include = "Email,Password")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                Usuario autenticado =
-                    ctx.Usuarios
-                        .Where(u => u.Email == usuario.Email && u.Password == usuario.Password)
-                        .SingleOrDefault();
+                Usuario autenticado = (from u in ctx.Usuarios
+                                       where u.Email == usuario.Email && u.Password == usuario.Password
+                                       select u)
+                                      .SingleOrDefault();
+
+                //Usuario autenticado =
+                //    ctx.Usuarios
+                //        .Where(u => u.Email == usuario.Email && u.Password == usuario.Password)
+                //        .SingleOrDefault();
                 //if (ctx.Usuarios.Find(usuario.Email) != null)
 
                 if (autenticado != null)
                 {
                     return RedirectToAction("Index", "Home");
                 }
-            }
 
+                ModelState.AddModelError("", "Email o contraseña incorrectos");
+            }
+            
             return View(usuario);
         }
     }
