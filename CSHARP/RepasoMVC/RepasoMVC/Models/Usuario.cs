@@ -13,6 +13,7 @@ namespace RepasoMVC.Models
         public string Email { get; set; }
 
         [Required]
+        [Display(Name ="Contraseña")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
