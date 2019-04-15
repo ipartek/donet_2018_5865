@@ -154,7 +154,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UF2215Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Alumnos">
+        <EntityType Name="Alumno">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -172,7 +172,7 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Imparticiones" Relationship="Self.FK_Imparticiones_Alumnos" FromRole="Alumnos" ToRole="Imparticiones" />
         </EntityType>
-        <EntityType Name="Clientes">
+        <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -187,7 +187,7 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Cursos" Relationship="Self.FK_Cursos_Clientes" FromRole="Clientes" ToRole="Cursos" />
         </EntityType>
-        <EntityType Name="Cursos">
+        <EntityType Name="Curso">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -202,11 +202,11 @@
           <Property Name="Temario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Clientes" Relationship="Self.FK_Cursos_Clientes" FromRole="Cursos" ToRole="Clientes" />
-          <NavigationProperty Name="Profesores" Relationship="Self.FK_Cursos_Profesores" FromRole="Cursos" ToRole="Profesores" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cursos_Clientes" FromRole="Cursos" ToRole="Clientes" />
+          <NavigationProperty Name="Profesor" Relationship="Self.FK_Cursos_Profesores" FromRole="Cursos" ToRole="Profesores" />
           <NavigationProperty Name="Imparticiones" Relationship="Self.FK_Imparticiones_Cursos" FromRole="Cursos" ToRole="Imparticiones" />
         </EntityType>
-        <EntityType Name="Imparticiones">
+        <EntityType Name="Imparticion">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -214,10 +214,10 @@
           <Property Name="IdCurso" Type="Int32" Nullable="false" />
           <Property Name="IdAlumno" Type="Int32" Nullable="false" />
           <Property Name="FechaMatriculacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Alumnos" Relationship="Self.FK_Imparticiones_Alumnos" FromRole="Imparticiones" ToRole="Alumnos" />
-          <NavigationProperty Name="Cursos" Relationship="Self.FK_Imparticiones_Cursos" FromRole="Imparticiones" ToRole="Cursos" />
+          <NavigationProperty Name="Alumno" Relationship="Self.FK_Imparticiones_Alumnos" FromRole="Imparticiones" ToRole="Alumnos" />
+          <NavigationProperty Name="Curso" Relationship="Self.FK_Imparticiones_Cursos" FromRole="Imparticiones" ToRole="Cursos" />
         </EntityType>
-        <EntityType Name="Profesores">
+        <EntityType Name="Profesor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -236,8 +236,8 @@
           <NavigationProperty Name="Cursos" Relationship="Self.FK_Cursos_Profesores" FromRole="Profesores" ToRole="Cursos" />
         </EntityType>
         <Association Name="FK_Imparticiones_Alumnos">
-          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="1" />
-          <End Role="Imparticiones" Type="Self.Imparticiones" Multiplicity="*" />
+          <End Role="Alumnos" Type="UF2215Model.Alumno" Multiplicity="1" />
+          <End Role="Imparticiones" Type="UF2215Model.Imparticion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Alumnos">
               <PropertyRef Name="Id" />
@@ -248,8 +248,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cursos_Clientes">
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
-          <End Role="Cursos" Type="Self.Cursos" Multiplicity="*" />
+          <End Role="Clientes" Type="UF2215Model.Cliente" Multiplicity="0..1" />
+          <End Role="Cursos" Type="UF2215Model.Curso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clientes">
               <PropertyRef Name="Id" />
@@ -260,8 +260,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cursos_Profesores">
-          <End Role="Profesores" Type="Self.Profesores" Multiplicity="0..1" />
-          <End Role="Cursos" Type="Self.Cursos" Multiplicity="*" />
+          <End Role="Profesores" Type="UF2215Model.Profesor" Multiplicity="0..1" />
+          <End Role="Cursos" Type="UF2215Model.Curso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profesores">
               <PropertyRef Name="Id" />
@@ -272,8 +272,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Imparticiones_Cursos">
-          <End Role="Cursos" Type="Self.Cursos" Multiplicity="1" />
-          <End Role="Imparticiones" Type="Self.Imparticiones" Multiplicity="*" />
+          <End Role="Cursos" Type="UF2215Model.Curso" Multiplicity="1" />
+          <End Role="Imparticiones" Type="UF2215Model.Imparticion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cursos">
               <PropertyRef Name="Id" />
@@ -284,11 +284,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="UF2215Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Alumnos" EntityType="Self.Alumnos" />
-          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
-          <EntitySet Name="Cursos" EntityType="Self.Cursos" />
-          <EntitySet Name="Imparticiones" EntityType="Self.Imparticiones" />
-          <EntitySet Name="Profesores" EntityType="Self.Profesores" />
+          <EntitySet Name="Alumnos" EntityType="UF2215Model.Alumno" />
+          <EntitySet Name="Clientes" EntityType="UF2215Model.Cliente" />
+          <EntitySet Name="Cursos" EntityType="UF2215Model.Curso" />
+          <EntitySet Name="Imparticiones" EntityType="UF2215Model.Imparticion" />
+          <EntitySet Name="Profesores" EntityType="UF2215Model.Profesor" />
           <AssociationSet Name="FK_Imparticiones_Alumnos" Association="Self.FK_Imparticiones_Alumnos">
             <End Role="Alumnos" EntitySet="Alumnos" />
             <End Role="Imparticiones" EntitySet="Imparticiones" />
@@ -313,7 +313,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="UF2215ModelStoreContainer" CdmEntityContainer="UF2215Entities">
           <EntitySetMapping Name="Alumnos">
-            <EntityTypeMapping TypeName="UF2215Model.Alumnos">
+            <EntityTypeMapping TypeName="UF2215Model.Alumno">
               <MappingFragment StoreEntitySet="Alumnos">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -331,7 +331,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Clientes">
-            <EntityTypeMapping TypeName="UF2215Model.Clientes">
+            <EntityTypeMapping TypeName="UF2215Model.Cliente">
               <MappingFragment StoreEntitySet="Clientes">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -346,7 +346,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cursos">
-            <EntityTypeMapping TypeName="UF2215Model.Cursos">
+            <EntityTypeMapping TypeName="UF2215Model.Curso">
               <MappingFragment StoreEntitySet="Cursos">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdProfesor" ColumnName="IdProfesor" />
@@ -363,7 +363,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Imparticiones">
-            <EntityTypeMapping TypeName="UF2215Model.Imparticiones">
+            <EntityTypeMapping TypeName="UF2215Model.Imparticion">
               <MappingFragment StoreEntitySet="Imparticiones">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdCurso" ColumnName="IdCurso" />
@@ -373,7 +373,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Profesores">
-            <EntityTypeMapping TypeName="UF2215Model.Profesores">
+            <EntityTypeMapping TypeName="UF2215Model.Profesor">
               <MappingFragment StoreEntitySet="Profesores">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="NumeroSeguridadSocial" ColumnName="NumeroSeguridadSocial" />

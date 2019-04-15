@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6e4f9ecb031046568a868b8e788f8a83" Name="Diagram1">
-        <EntityTypeShape EntityType="UF2215Model.Alumnos" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="UF2215Model.Clientes" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="UF2215Model.Cursos" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="UF2215Model.Imparticiones" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UF2215Model.Profesores" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UF2215Model.Alumno" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UF2215Model.Cliente" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="UF2215Model.Curso" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="UF2215Model.Imparticion" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UF2215Model.Profesor" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <AssociationConnector Association="UF2215Model.FK_Imparticiones_Alumnos" ManuallyRouted="false" />
         <AssociationConnector Association="UF2215Model.FK_Cursos_Clientes" ManuallyRouted="false" />
         <AssociationConnector Association="UF2215Model.FK_Cursos_Profesores" ManuallyRouted="false" />
