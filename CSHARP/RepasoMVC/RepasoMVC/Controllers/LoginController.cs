@@ -9,6 +9,7 @@ namespace RepasoMVC.Controllers
 {
     public class LoginController : Controller
     {
+        private RepasoMVCContext ctx = new RepasoMVCContext();
         // GET: Login
         [HttpGet]
         public ActionResult Index()
@@ -22,7 +23,16 @@ namespace RepasoMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");
+                Usuario autenticado =
+                    ctx.Usuarios
+                        .Where(u => u.Email == usuario.Email && u.Password == usuario.Password)
+                        .SingleOrDefault();
+                //if (ctx.Usuarios.Find(usuario.Email) != null)
+
+                if (autenticado != null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
 
             return View(usuario);
