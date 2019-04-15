@@ -10,6 +10,7 @@ using RepasoMVC.Models;
 
 namespace RepasoMVC.Controllers
 {
+    [RoutePrefix("Usuarios")]
     public class UsuariosController : Controller
     {
         private RepasoMVCContext db = new RepasoMVCContext();
@@ -17,6 +18,11 @@ namespace RepasoMVC.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
+            if (ObtenerRol() != "USER" && ObtenerRol() != "ADMIN")
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             var usuarios = db.Usuarios.Include(u => u.Rol);
             return View(usuarios.ToList());
         }
@@ -24,6 +30,11 @@ namespace RepasoMVC.Controllers
         // GET: Usuarios/Details/5
         public ActionResult Details(int? id)
         {
+            if (ObtenerRol() != "USER" && ObtenerRol() != "ADMIN")
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +50,11 @@ namespace RepasoMVC.Controllers
         // GET: Usuarios/Create
         public ActionResult Create()
         {
+            if (ObtenerRol() != "ADMIN")
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             ViewBag.RolId = new SelectList(db.Roles, "Id", "Codigo");
             return View();
         }
@@ -50,6 +66,11 @@ namespace RepasoMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Email,Password,RolId")] Usuario usuario)
         {
+            if (ObtenerRol() != "ADMIN")
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Usuarios.Add(usuario);
@@ -64,6 +85,11 @@ namespace RepasoMVC.Controllers
         // GET: Usuarios/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (ObtenerRol() != "ADMIN")
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,6 +110,11 @@ namespace RepasoMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Email,Password,RolId")] Usuario usuario)
         {
+            if (ObtenerRol() != "ADMIN")
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(usuario).State = EntityState.Modified;
@@ -97,6 +128,11 @@ namespace RepasoMVC.Controllers
         // GET: Usuarios/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (ObtenerRol() != "ADMIN")
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -114,10 +150,27 @@ namespace RepasoMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (ObtenerRol() != "ADMIN")
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             Usuario usuario = db.Usuarios.Find(id);
             db.Usuarios.Remove(usuario);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public string ObtenerRol()
+        {
+            Usuario usuario = (Usuario)Session["usuario"]; //Session["usuario"] as Usuario;
+
+            if (usuario == null)
+            {
+                return null;
+            }
+
+            return usuario.Rol.Codigo;
         }
 
         protected override void Dispose(bool disposing)

@@ -23,13 +23,13 @@ namespace RepasoMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                Usuario autenticado = (from u in ctx.Usuarios
+                Usuario autenticado = (from u in ctx.Usuarios.Include("Rol")
                                        where u.Email == usuario.Email && u.Password == usuario.Password
                                        select u)
                                       .SingleOrDefault();
 
                 //Usuario autenticado =
-                //    ctx.Usuarios
+                //    ctx.Usuarios.Include("Rol")
                 //        .Where(u => u.Email == usuario.Email && u.Password == usuario.Password)
                 //        .SingleOrDefault();
                 //if (ctx.Usuarios.Find(usuario.Email) != null)

@@ -13,6 +13,14 @@ namespace RepasoMVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapMvcAttributeRoutes();
+
+            //routes.MapRoute(
+            //    name: "Admin",
+            //    url: "admin/{accion}/{id}",
+            //    defaults: new { controller = "Usuarios", action = "VerificarAutorizado", id = UrlParameter.Optional }
+            //);
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

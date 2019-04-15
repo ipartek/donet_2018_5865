@@ -1,5 +1,9 @@
 ﻿@using RepasoMVC.Models
 
+@{
+    Usuario usuario = (Usuario)Session["usuario"];
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,16 +27,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Gestionar Usuarios", "Index", "Usuarios")</li>
+                    @if (usuario != null && (usuario.Rol.Codigo == "USER" || usuario.Rol.Codigo == "ADMIN"))
+                    {
+                        <li>@Html.ActionLink("Gestionar Usuarios", "Index", "Usuarios")</li>
+                    }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    @if (Session["usuario"] == null)
+                    @if (usuario == null)
                     {
                         <li>@Html.ActionLink("Inicio Sesión", "Index", "Login")</li>
                     }
                     else
                     {
-                        <li class="navbar-text">@(((Usuario)Session["usuario"]).Email)</li>
+                        <li class="navbar-text">@usuario.Email</li>
+                        <li class="navbar-text">@usuario.Rol.NombreDescriptivo</li>
                         <li>@Html.ActionLink("Cerrar sesión", "Logout", "Login")</li>
                     }
                 </ul>
