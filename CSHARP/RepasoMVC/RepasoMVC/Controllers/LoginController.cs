@@ -36,6 +36,7 @@ namespace RepasoMVC.Controllers
 
                 if (autenticado != null)
                 {
+                    Session["usuario"] = autenticado;
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -43,6 +44,12 @@ namespace RepasoMVC.Controllers
             }
             
             return View(usuario);
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using RepasoMVC.Models
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
@@ -24,7 +26,15 @@
                     <li>@Html.ActionLink("Gestionar Usuarios", "Index", "Usuarios")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Inicio Sesión", "Index", "Login")</li>
+                    @if (Session["usuario"] == null)
+                    {
+                        <li>@Html.ActionLink("Inicio Sesión", "Index", "Login")</li>
+                    }
+                    else
+                    {
+                        <li class="navbar-text">@(((Usuario)Session["usuario"]).Email)</li>
+                        <li>@Html.ActionLink("Cerrar sesión", "Logout", "Login")</li>
+                    }
                 </ul>
             </div>
         </div>
