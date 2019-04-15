@@ -21,6 +21,8 @@ namespace RepasoMVC.Models
             Database.SetInitializer(new RepasoMVCContextInicializador());
         }
 
-        public System.Data.Entity.DbSet<RepasoMVC.Models.Usuario> Usuarios { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Rol> Roles { get; set; }
+
     }
 }

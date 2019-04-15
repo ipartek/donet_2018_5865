@@ -16,5 +16,8 @@ namespace RepasoMVC.Models
         [Display(Name ="Contraseña")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public int RolId { get; set; }
+        public Rol Rol { get; set; }
     }
 }

@@ -17,7 +17,8 @@ namespace RepasoMVC.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            return View(db.Usuarios.ToList());
+            var usuarios = db.Usuarios.Include(u => u.Rol);
+            return View(usuarios.ToList());
         }
 
         // GET: Usuarios/Details/5
@@ -38,6 +39,7 @@ namespace RepasoMVC.Controllers
         // GET: Usuarios/Create
         public ActionResult Create()
         {
+            ViewBag.RolId = new SelectList(db.Roles, "Id", "Codigo");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace RepasoMVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Email,Password")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "Id,Email,Password,RolId")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace RepasoMVC.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.RolId = new SelectList(db.Roles, "Id", "Codigo", usuario.RolId);
             return View(usuario);
         }
 
@@ -70,6 +73,7 @@ namespace RepasoMVC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.RolId = new SelectList(db.Roles, "Id", "Codigo", usuario.RolId);
             return View(usuario);
         }
 
@@ -78,7 +82,7 @@ namespace RepasoMVC.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,Password")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "Id,Email,Password,RolId")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace RepasoMVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.RolId = new SelectList(db.Roles, "Id", "Codigo", usuario.RolId);
             return View(usuario);
         }
 
