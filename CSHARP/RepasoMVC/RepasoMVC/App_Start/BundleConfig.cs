@@ -26,6 +26,9 @@ namespace RepasoMVC
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/repasomvc.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/repasomvc").Include(
+                      "~/Scripts/repasomvc.js"));
         }
     }
 }
