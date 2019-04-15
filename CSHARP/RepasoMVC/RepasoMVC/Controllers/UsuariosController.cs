@@ -20,6 +20,7 @@ namespace RepasoMVC.Controllers
         {
             if (ObtenerRol() != "USER" && ObtenerRol() != "ADMIN")
             {
+                TempData["Error"] = "Necesitas ser usuario o administrador";
                 return RedirectToAction("Index", "Login");
             }
 
@@ -32,6 +33,7 @@ namespace RepasoMVC.Controllers
         {
             if (ObtenerRol() != "USER" && ObtenerRol() != "ADMIN")
             {
+                TempData["Error"] = "Necesitas ser usuario o administrador";
                 return RedirectToAction("Index", "Login");
             }
 
@@ -52,6 +54,7 @@ namespace RepasoMVC.Controllers
         {
             if (ObtenerRol() != "ADMIN")
             {
+                TempData["Error"] = "Necesitas ser <b>ADMINISTRADOR</b>";
                 return RedirectToAction("Index", "Login");
             }
 
@@ -68,6 +71,7 @@ namespace RepasoMVC.Controllers
         {
             if (ObtenerRol() != "ADMIN")
             {
+                TempData["Error"] = "Necesitas ser <b>ADMINISTRADOR</b>";
                 return RedirectToAction("Index", "Login");
             }
 
@@ -87,6 +91,7 @@ namespace RepasoMVC.Controllers
         {
             if (ObtenerRol() != "ADMIN")
             {
+                TempData["Error"] = "Necesitas ser <b>ADMINISTRADOR</b>";
                 return RedirectToAction("Index", "Login");
             }
 
@@ -112,6 +117,7 @@ namespace RepasoMVC.Controllers
         {
             if (ObtenerRol() != "ADMIN")
             {
+                TempData["Error"] = "Necesitas ser <b>ADMINISTRADOR</b>";
                 return RedirectToAction("Index", "Login");
             }
 
@@ -130,6 +136,7 @@ namespace RepasoMVC.Controllers
         {
             if (ObtenerRol() != "ADMIN")
             {
+                TempData["Error"] = "Necesitas ser <b>ADMINISTRADOR</b>";
                 return RedirectToAction("Index", "Login");
             }
 
@@ -152,6 +159,7 @@ namespace RepasoMVC.Controllers
         {
             if (ObtenerRol() != "ADMIN")
             {
+                TempData["Error"] = "Necesitas ser <b>ADMINISTRADOR</b>";
                 return RedirectToAction("Index", "Login");
             }
 

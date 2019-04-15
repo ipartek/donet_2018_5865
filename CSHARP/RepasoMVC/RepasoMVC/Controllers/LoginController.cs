@@ -14,6 +14,7 @@ namespace RepasoMVC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            //ViewBag.Error = TempData["Error"];
             return View();
         }
 
