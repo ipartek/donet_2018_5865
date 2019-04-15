@@ -158,7 +158,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UF2215Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UF2215Model.cs" />
     <Compile Include="Models\UF2215Model.Designer.cs">
       <DependentUpon>UF2215Model.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
