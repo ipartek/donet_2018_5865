@@ -49,7 +49,7 @@ namespace MF0966_3.Controllers
         }
 
         // GET: Cursos
-        public ActionResult Index(string orden, string terminoBusqueda)
+        public ActionResult Index(string orden, string terminoBusqueda, int? id)
         {
             if(orden == null)
             {
@@ -75,6 +75,12 @@ namespace MF0966_3.Controllers
                 case "profesor_desc": cursos = cursos.OrderByDescending(c => c.Profesor.Nombre); break;
                 case "cliente": cursos = cursos.OrderBy(c => c.Cliente.Nombre); break;
                 case "cliente_desc": cursos = cursos.OrderByDescending(c => c.Cliente.Nombre); break;
+            }
+
+            if (id.HasValue)
+            {
+                var alumnos = db.Imparticiones.Where(i => i.Curso.Id == id).Select(i => i.Alumno);
+                ViewBag.Alumnos = alumnos;
             }
 
             return View(cursos.ToList());

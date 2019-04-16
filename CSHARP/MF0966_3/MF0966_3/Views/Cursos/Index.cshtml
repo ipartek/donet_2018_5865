@@ -86,6 +86,7 @@
                 @Html.DisplayFor(modelItem => item.Profesor.Nombre)
             </td>
             <td>
+                @Html.ActionLink("Seleccionar", "Index", new { id = item.Id }) |
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
@@ -94,3 +95,85 @@
     }
 
 </table>
+
+@if (ViewBag.Alumnos != null)
+{
+    <h2>Alumnos</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Apellidos
+                </th>
+                <th>
+                    Fecha de Nacimiento
+                </th>
+                <th>
+                    Código Postal
+                </th>
+                <th>
+                    Telefono
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    DNI
+                </th>
+                <th>
+                    Número de Hermanos
+                </th>
+                <th>
+                    Activo
+                </th>
+                <th>
+                   
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in ViewBag.Alumnos)
+            {
+            <tr>
+                <td>
+                    @item.Nombre
+                </td>
+                <td>
+                    @item.Apellidos
+                </td>
+                <td>
+                    @item.FechaNacimiento.ToShortDateString()
+                </td>
+                <td>
+                    @item.CodigoPostal
+                </td>
+                <td>
+                    @item.Telefono
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.Dni
+                </td>
+                <td>
+                    @item.NumeroHermanos
+                </td>
+                <td>
+                    @(item.Activo?"Sí":"No")
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Alumnos", new { id = item.Id }, null) |
+                    @Html.ActionLink("Details", "Details", "Alumnos", new { id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Alumnos", new { id = item.Id }, null)
+                </td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+}
