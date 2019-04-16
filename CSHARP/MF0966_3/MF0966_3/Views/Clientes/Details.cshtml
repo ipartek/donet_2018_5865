@@ -1,4 +1,5 @@
-﻿@model MF0966_3.Models.Cliente
+﻿@using MF0966_3.Models
+@model Cliente
 
 @{
     ViewBag.Title = "Details";
@@ -80,3 +81,27 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Identificador</th>
+            <th>Fecha de inicio</th>
+            <th>Fecha de finalización</th>
+            <th>Número de horas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Curso curso in Model.Cursos)
+        {
+            <tr>
+                <td>@curso.Nombre</td>
+                <td>@curso.Identificador</td>
+                <td>@curso.FechaInicio.Value.ToShortDateString()</td>
+                <td>@curso.FechaFin.Value.ToShortDateString()</td>
+                <td>@curso.NumeroHoras</td>
+            </tr>
+        }
+    </tbody>
+</table>
