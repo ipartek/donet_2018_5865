@@ -31,5 +31,20 @@ namespace UF2215.Controllers
                     Profesor = new { c.Profesor.Nombre, c.Profesor.Apellidos }
                 });
         }
+
+        [Route("profesores/alumnos")]
+        public IQueryable GetCursosYProfesoresYAlumnos()
+        {
+            return ctx.Cursos.Select(c =>
+                new
+                {
+                    c.Nombre,
+                    c.Identificador,
+                    c.NumeroHoras,
+                    Profesor = new { c.Profesor.Nombre, c.Profesor.Apellidos },
+                    Alumnos = ctx.Imparticiones.Where(i => i.IdCurso == c.Id)
+                        .Select(i => new { i.Alumno.Nombre, i.Alumno.Apellidos })
+                });
+        }
     }
 }
