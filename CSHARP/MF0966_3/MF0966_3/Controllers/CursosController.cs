@@ -49,7 +49,7 @@ namespace MF0966_3.Controllers
         }
 
         // GET: Cursos
-        public ActionResult Index(string orden)
+        public ActionResult Index(string orden, string terminoBusqueda)
         {
             if(orden == null)
             {
@@ -61,6 +61,11 @@ namespace MF0966_3.Controllers
             ViewBag.OrdenCliente = Orden("cliente", orden);
 
             var cursos = db.Cursos.Include(c => c.Cliente).Include(c => c.Profesor);
+
+            if (!string.IsNullOrEmpty(terminoBusqueda))
+            {
+                cursos = cursos.Where(c => c.Nombre.Contains(terminoBusqueda));
+            }
 
             switch (orden)
             {
