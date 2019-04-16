@@ -30,6 +30,8 @@ namespace MF0966_3.Models
         public string Direccion;
         [Display(Name = "Población")]
         public string Poblacion;
+        [Display(Name = "CP")]
+        public string CodigoPostal;
         [Display(Name = "Teléfono")]
         public string Telefono;
         [Display(Name = "Número de Hermanos")]
