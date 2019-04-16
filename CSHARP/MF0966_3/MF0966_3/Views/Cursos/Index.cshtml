@@ -1,20 +1,20 @@
 ﻿@model IEnumerable<MF0966_3.Models.Curso>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cursos";
 }
 
-<h2>Index</h2>
+<h2>Cursos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Añadir un nuevo curso", "Create")
 </p>
 
 @using (Html.BeginForm())
 {
     <p>
         Buscar por nombre: @Html.TextBox("terminoBusqueda")
-        <input type="submit" value="Search" />
+        <input type="submit" value="Buscar" />
     </p>
 }
 <table class="table">
@@ -33,9 +33,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NumeroHoras)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Temario)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Activo)
@@ -71,9 +68,6 @@
                 @Html.DisplayFor(modelItem => item.NumeroHoras)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Temario)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Activo)
             </td>
             <td>
@@ -87,9 +81,9 @@
             </td>
             <td>
                 @Html.ActionLink("Seleccionar", "Index", new { id = item.Id }) |
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.Id })
             </td>
         </tr>
     }
