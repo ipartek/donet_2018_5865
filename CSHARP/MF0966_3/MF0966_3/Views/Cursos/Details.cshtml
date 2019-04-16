@@ -1,4 +1,5 @@
-﻿@model MF0966_3.Models.Curso
+﻿@using MF0966_3.Models
+@model Curso
 
 @{
     ViewBag.Title = "Details";
@@ -83,16 +84,60 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Profesor.NumeroSeguridadSocial)
+            Profesor
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Profesor.NumeroSeguridadSocial)
-        </dd>
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Profesor.Nombre)
+                </dt>
 
+                <dd>
+                    @Html.DisplayFor(model => model.Profesor.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Profesor.Apellidos)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Profesor.Apellidos)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Profesor.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Profesor.Email)
+                </dd>
+            </dl>
+        </dd>
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Email</th>
+            <th>Fecha de Nacimiento</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Imparticion imparticion in Model.Imparticiones)
+        {
+            <tr>
+                <td>@imparticion.Alumno.Nombre</td>
+                <td>@imparticion.Alumno.Apellidos</td>
+                <td>@imparticion.Alumno.Email</td>
+                <td>@imparticion.Alumno.FechaNacimiento.Value.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
