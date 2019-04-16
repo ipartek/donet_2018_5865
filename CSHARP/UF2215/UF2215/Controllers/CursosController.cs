@@ -8,13 +8,28 @@ using UF2215.Models;
 
 namespace UF2215.Controllers
 {
+    [RoutePrefix("api/cursos")]
     public class CursosController : ApiController
     {
         private UF2215Entities ctx = new UF2215Entities();
 
+        [Route("")]
         public IQueryable GetCursos()
         {
             return ctx.Cursos.Select(c => new { c.Nombre, c.Identificador, c.NumeroHoras });
+        }
+
+        [Route("profesores")]
+        public IQueryable GetCursosYProfesores()
+        {
+            return ctx.Cursos.Select(c => 
+                new
+                {
+                    c.Nombre,
+                    c.Identificador,
+                    c.NumeroHoras,
+                    Profesor = new { c.Profesor.Nombre, c.Profesor.Apellidos }
+                });
         }
     }
 }
