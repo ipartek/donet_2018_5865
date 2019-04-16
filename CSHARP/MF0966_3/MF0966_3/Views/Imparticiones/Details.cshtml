@@ -1,0 +1,42 @@
+﻿@model MF0966_3.Models.Imparticion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Imparticion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaMatriculacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaMatriculacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alumno.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alumno.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Curso.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Curso.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
