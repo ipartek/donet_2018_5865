@@ -27,12 +27,6 @@
             @Html.DisplayNameFor(model => model.Dni)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Poblacion)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.CodigoPostal)
         </th>
         <th>
@@ -59,16 +53,10 @@
             @Html.DisplayFor(modelItem => item.Apellidos)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            @item.FechaNacimiento.Value.ToShortDateString()
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Dni)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Poblacion)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CodigoPostal)

@@ -15,11 +15,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FechaMatriculacion)
+            @Model.FechaMatriculacion.ToShortDateString()
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Alumno.Nombre)
+            Alumno
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Curso.Nombre)
+            Curso
         </dt>
 
         <dd>

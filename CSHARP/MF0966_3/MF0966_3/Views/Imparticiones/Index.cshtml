@@ -15,10 +15,10 @@
             @Html.DisplayNameFor(model => model.FechaMatriculacion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Alumno.Nombre)
+            Alumno
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Curso.Nombre)
+            Curso
         </th>
         <th></th>
     </tr>
@@ -26,10 +26,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaMatriculacion)
+            @item.FechaMatriculacion.ToShortDateString()
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Alumno.Nombre)
+            @Html.DisplayFor(modelItem => item.Alumno.Nombre) @Html.DisplayFor(modelItem => item.Alumno.Apellidos)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Curso.Nombre)

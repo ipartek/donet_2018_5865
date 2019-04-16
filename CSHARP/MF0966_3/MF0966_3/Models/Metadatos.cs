@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace MF0966_3.Models
 {
     public class CursoMetadata
     {
         [Display(Name = "Fecha de Inicio")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? FechaInicio;
         [Display(Name = "Fecha de Fin")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? FechaFin;
         [Display(Name = "Número de Horas")]
         public int NumeroHoras;
@@ -25,6 +26,8 @@ namespace MF0966_3.Models
     public class AlumnoMetadata
     {
         [Display(Name = "Fecha de Nacimiento")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? FechaNacimiento;
         [Display(Name = "Dirección")]
         public string Direccion;
@@ -49,7 +52,9 @@ namespace MF0966_3.Models
         [Display(Name = "NSS")]
         public string NumeroSeguridadSocial;
         [Display(Name = "Fecha de Nacimiento")]
-        public Nullable<System.DateTime> FechaNacimiento;
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? FechaNacimiento;
         [Display(Name = "DNI")]
         public string Dni;
         [Display(Name = "Dirección")]
@@ -88,11 +93,14 @@ namespace MF0966_3.Models
 
     public class ImparticionMetadata
     {
-        [Display(Name = "Curso")]
-        public int IdCurso;
-        [Display(Name = "Alumno")]
-        public int IdAlumno;
+        //No cambia el aspecto
+        //[Display(Name = "Curso")]
+        //public int IdCurso { get; set; }
+        //[Display(Name = "Alumno")]
+        //public int IdAlumno { get; set; }
         [Display(Name = "Fecha de Matriculación")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaMatriculacion;
     }
 
