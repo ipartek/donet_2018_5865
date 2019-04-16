@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7bbc6bcdb3374137b7ca7ef921555d32" Name="Diagram1">
+        <EntityTypeShape EntityType="UF2215Model.Alumno" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UF2215Model.Cliente" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="UF2215Model.Curso" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="UF2215Model.Imparticion" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UF2215Model.Profesor" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="UF2215Model.FK_Imparticiones_Alumnos" ManuallyRouted="false" />
+        <AssociationConnector Association="UF2215Model.FK_Cursos_Clientes" ManuallyRouted="false" />
+        <AssociationConnector Association="UF2215Model.FK_Cursos_Profesores" ManuallyRouted="false" />
+        <AssociationConnector Association="UF2215Model.FK_Imparticiones_Cursos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
