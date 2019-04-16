@@ -51,7 +51,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr @(ViewBag.IdSeleccionado == item.Id ? "class=success" : "")>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>

@@ -81,6 +81,7 @@ namespace MF0966_3.Controllers
             {
                 var alumnos = db.Imparticiones.Where(i => i.Curso.Id == id).Select(i => i.Alumno);
                 ViewBag.Alumnos = alumnos;
+                ViewBag.IdSeleccionado = id;
             }
 
             return View(cursos.ToList());
