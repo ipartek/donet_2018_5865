@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.ActionLink("Curso", "Index", new { orden = ViewBag.OrdenCurso })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Identificador)
@@ -36,10 +36,10 @@
             @Html.DisplayNameFor(model => model.Precio)
         </th>
         <th>
-            Cliente
+            @Html.ActionLink("Cliente", "Index", new { orden = ViewBag.OrdenCliente })
         </th>
         <th>
-            Profesor
+            @Html.ActionLink("Profesor", "Index", new { orden = ViewBag.OrdenProfesor })
         </th>
         <th></th>
     </tr>

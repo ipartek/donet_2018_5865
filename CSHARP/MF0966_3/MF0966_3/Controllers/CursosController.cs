@@ -14,10 +14,64 @@ namespace MF0966_3.Controllers
     {
         private UF2215Entities db = new UF2215Entities();
 
-        // GET: Cursos
-        public ActionResult Index()
+        private static string Inverso(string orden)
         {
+            if(orden.Contains("desc"))
+            {
+                return LimpiarDesc(orden);
+            }
+            else
+            {
+                return PonerDesc(orden);
+            }
+        }
+
+        private static string PonerDesc(string orden)
+        {
+            return orden += "_desc";
+        }
+
+        private static string LimpiarDesc(string orden)
+        {
+            return orden.Replace("_desc", "");
+        }
+
+        private static string Orden(string objetivo, string orden)
+        {
+            if(objetivo == LimpiarDesc(orden))
+            {
+                return Inverso(orden);
+            }
+            else
+            {
+                return objetivo;
+            }
+        }
+
+        // GET: Cursos
+        public ActionResult Index(string orden)
+        {
+            if(orden == null)
+            {
+                orden = "curso";
+            }
+
+            ViewBag.OrdenCurso = Orden("curso", orden);
+            ViewBag.OrdenProfesor = Orden("profesor", orden);
+            ViewBag.OrdenCliente = Orden("cliente", orden);
+
             var cursos = db.Cursos.Include(c => c.Cliente).Include(c => c.Profesor);
+
+            switch (orden)
+            {
+                case "curso": cursos = cursos.OrderBy(c => c.Nombre); break;
+                case "curso_desc": cursos = cursos.OrderByDescending(c => c.Nombre); break;
+                case "profesor": cursos = cursos.OrderBy(c => c.Profesor.Nombre); break;
+                case "profesor_desc": cursos = cursos.OrderByDescending(c => c.Profesor.Nombre); break;
+                case "cliente": cursos = cursos.OrderBy(c => c.Cliente.Nombre); break;
+                case "cliente_desc": cursos = cursos.OrderByDescending(c => c.Cliente.Nombre); break;
+            }
+
             return View(cursos.ToList());
         }
 
