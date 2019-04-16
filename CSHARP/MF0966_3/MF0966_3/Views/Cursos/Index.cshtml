@@ -36,10 +36,10 @@
             @Html.DisplayNameFor(model => model.Precio)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cliente.Nombre)
+            Cliente
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Profesor.NumeroSeguridadSocial)
+            Profesor
         </th>
         <th></th>
     </tr>
@@ -74,7 +74,7 @@
             @Html.DisplayFor(modelItem => item.Cliente.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Profesor.NumeroSeguridadSocial)
+            @Html.DisplayFor(modelItem => item.Profesor.Nombre)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
