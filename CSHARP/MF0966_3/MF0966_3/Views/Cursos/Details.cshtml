@@ -83,36 +83,34 @@
             @Html.DisplayFor(model => model.Cliente.Nombre)
         </dd>
 
+    </dl>
+    <h4>Profesor</h4>
+    <hr />
+    <dl class="dl-horizontal">
         <dt>
-            Profesor
+            @Html.DisplayNameFor(model => model.Profesor.Nombre)
         </dt>
+
         <dd>
-            <dl>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Profesor.Nombre)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Profesor.Nombre)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Profesor.Apellidos)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Profesor.Apellidos)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Profesor.Email)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Profesor.Email)
-                </dd>
-            </dl>
+            @Html.DisplayFor(model => model.Profesor.Nombre)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Profesor.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profesor.Apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Profesor.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profesor.Email)
+        </dd>
+
     </dl>
 </div>
 <p>
@@ -130,13 +128,17 @@
         </tr>
     </thead>
     <tbody>
+        @{ 
+            Alumno alumno;
+        }
         @foreach (Imparticion imparticion in Model.Imparticiones)
         {
+            alumno = imparticion.Alumno;
             <tr>
-                <td>@imparticion.Alumno.Nombre</td>
-                <td>@imparticion.Alumno.Apellidos</td>
-                <td>@imparticion.Alumno.Email</td>
-                <td>@imparticion.Alumno.FechaNacimiento.Value.ToShortDateString()</td>
+                <td>@alumno.Nombre</td>
+                <td>@alumno.Apellidos</td>
+                <td>@alumno.Email</td>
+                <td>@alumno.FechaNacimiento.Value.ToShortDateString()</td>
             </tr>
         }
     </tbody>
