@@ -18,6 +18,7 @@ namespace UF2215.Models
         public UF2215Entities()
             : base("name=UF2215Entities")
         {
+
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

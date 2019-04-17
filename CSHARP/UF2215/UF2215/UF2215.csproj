@@ -177,18 +177,21 @@
     <Compile Include="Models\Alumno.cs">
       <DependentUpon>UF2215Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AlumnoDto.cs" />
     <Compile Include="Models\Cliente.cs">
       <DependentUpon>UF2215Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Curso.cs">
       <DependentUpon>UF2215Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CursoDto.cs" />
     <Compile Include="Models\Imparticion.cs">
       <DependentUpon>UF2215Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Profesor.cs">
       <DependentUpon>UF2215Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfesorDto.cs" />
     <Compile Include="Models\UF2215Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
