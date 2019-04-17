@@ -12,54 +12,44 @@ using WebApiSwagger.Models;
 
 namespace WebApiSwagger.Controllers
 {
-    public class UsuariosController : ApiController
+    public class CategoriasController : ApiController
     {
         private IpartekEntities db = new IpartekEntities();
 
-        // GET: api/Usuarios
-
-        /// <summary>
-        /// Obtener todos los usuarios
-        /// </summary>
-        /// <returns>Todos los usuarios</returns>
-        public IQueryable<Usuario> GetUsuarios()
+        // GET: api/Categorias
+        public IQueryable<Categoria> GetCategorias()
         {
-            return db.Usuarios;
+            return db.Categorias;
         }
 
-        // GET: api/Usuarios/5
-        /// <summary>
-        /// Obtener un usuario según su id
-        /// </summary>
-        /// <param name="id">Id del usuario</param>
-        /// <returns>Usuario con ese id</returns>
-        [ResponseType(typeof(Usuario))]
-        public IHttpActionResult GetUsuario(int id)
+        // GET: api/Categorias/5
+        [ResponseType(typeof(Categoria))]
+        public IHttpActionResult GetCategoria(int id)
         {
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
+            Categoria categoria = db.Categorias.Find(id);
+            if (categoria == null)
             {
                 return NotFound();
             }
 
-            return Ok(usuario);
+            return Ok(categoria);
         }
 
-        // PUT: api/Usuarios/5
+        // PUT: api/Categorias/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUsuario(int id, Usuario usuario)
+        public IHttpActionResult PutCategoria(int id, Categoria categoria)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != usuario.Id)
+            if (id != categoria.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(usuario).State = EntityState.Modified;
+            db.Entry(categoria).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +57,7 @@ namespace WebApiSwagger.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsuarioExists(id))
+                if (!CategoriaExists(id))
                 {
                     return NotFound();
                 }
@@ -80,35 +70,35 @@ namespace WebApiSwagger.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Usuarios
-        [ResponseType(typeof(Usuario))]
-        public IHttpActionResult PostUsuario(Usuario usuario)
+        // POST: api/Categorias
+        [ResponseType(typeof(Categoria))]
+        public IHttpActionResult PostCategoria(Categoria categoria)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Usuarios.Add(usuario);
+            db.Categorias.Add(categoria);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = usuario.Id }, usuario);
+            return CreatedAtRoute("DefaultApi", new { id = categoria.Id }, categoria);
         }
 
-        // DELETE: api/Usuarios/5
-        [ResponseType(typeof(Usuario))]
-        public IHttpActionResult DeleteUsuario(int id)
+        // DELETE: api/Categorias/5
+        [ResponseType(typeof(Categoria))]
+        public IHttpActionResult DeleteCategoria(int id)
         {
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
+            Categoria categoria = db.Categorias.Find(id);
+            if (categoria == null)
             {
                 return NotFound();
             }
 
-            db.Usuarios.Remove(usuario);
+            db.Categorias.Remove(categoria);
             db.SaveChanges();
 
-            return Ok(usuario);
+            return Ok(categoria);
         }
 
         protected override void Dispose(bool disposing)
@@ -120,9 +110,9 @@ namespace WebApiSwagger.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UsuarioExists(int id)
+        private bool CategoriaExists(int id)
         {
-            return db.Usuarios.Count(e => e.Id == id) > 0;
+            return db.Categorias.Count(e => e.Id == id) > 0;
         }
     }
 }

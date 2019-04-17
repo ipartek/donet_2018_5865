@@ -12,54 +12,44 @@ using WebApiSwagger.Models;
 
 namespace WebApiSwagger.Controllers
 {
-    public class UsuariosController : ApiController
+    public class RolesController : ApiController
     {
         private IpartekEntities db = new IpartekEntities();
 
-        // GET: api/Usuarios
-
-        /// <summary>
-        /// Obtener todos los usuarios
-        /// </summary>
-        /// <returns>Todos los usuarios</returns>
-        public IQueryable<Usuario> GetUsuarios()
+        // GET: api/Roles
+        public IQueryable<Rol> GetRols()
         {
-            return db.Usuarios;
+            return db.Rols;
         }
 
-        // GET: api/Usuarios/5
-        /// <summary>
-        /// Obtener un usuario según su id
-        /// </summary>
-        /// <param name="id">Id del usuario</param>
-        /// <returns>Usuario con ese id</returns>
-        [ResponseType(typeof(Usuario))]
-        public IHttpActionResult GetUsuario(int id)
+        // GET: api/Roles/5
+        [ResponseType(typeof(Rol))]
+        public IHttpActionResult GetRol(int id)
         {
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
+            Rol rol = db.Rols.Find(id);
+            if (rol == null)
             {
                 return NotFound();
             }
 
-            return Ok(usuario);
+            return Ok(rol);
         }
 
-        // PUT: api/Usuarios/5
+        // PUT: api/Roles/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUsuario(int id, Usuario usuario)
+        public IHttpActionResult PutRol(int id, Rol rol)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != usuario.Id)
+            if (id != rol.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(usuario).State = EntityState.Modified;
+            db.Entry(rol).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +57,7 @@ namespace WebApiSwagger.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsuarioExists(id))
+                if (!RolExists(id))
                 {
                     return NotFound();
                 }
@@ -80,35 +70,35 @@ namespace WebApiSwagger.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Usuarios
-        [ResponseType(typeof(Usuario))]
-        public IHttpActionResult PostUsuario(Usuario usuario)
+        // POST: api/Roles
+        [ResponseType(typeof(Rol))]
+        public IHttpActionResult PostRol(Rol rol)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Usuarios.Add(usuario);
+            db.Rols.Add(rol);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = usuario.Id }, usuario);
+            return CreatedAtRoute("DefaultApi", new { id = rol.Id }, rol);
         }
 
-        // DELETE: api/Usuarios/5
-        [ResponseType(typeof(Usuario))]
-        public IHttpActionResult DeleteUsuario(int id)
+        // DELETE: api/Roles/5
+        [ResponseType(typeof(Rol))]
+        public IHttpActionResult DeleteRol(int id)
         {
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
+            Rol rol = db.Rols.Find(id);
+            if (rol == null)
             {
                 return NotFound();
             }
 
-            db.Usuarios.Remove(usuario);
+            db.Rols.Remove(rol);
             db.SaveChanges();
 
-            return Ok(usuario);
+            return Ok(rol);
         }
 
         protected override void Dispose(bool disposing)
@@ -120,9 +110,9 @@ namespace WebApiSwagger.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UsuarioExists(int id)
+        private bool RolExists(int id)
         {
-            return db.Usuarios.Count(e => e.Id == id) > 0;
+            return db.Rols.Count(e => e.Id == id) > 0;
         }
     }
 }

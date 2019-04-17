@@ -404,7 +404,7 @@ advertencia 6002: La tabla o vista 'ipartek.dbo.UsuariosDeRolUser' no tiene defi
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Pedidos" Relationship="Self.FK_Pedidos_Usuarios" FromRole="Usuarios" ToRole="Pedidos" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_Usuarios_Roles" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_Usuarios_Roles" FromRole="Usuarios" ToRole="Roles" />
           <NavigationProperty Name="Tutorizados" Relationship="Self.FK_Usuarios_Usuarios" FromRole="Usuarios" ToRole="Usuarios1" />
           <NavigationProperty Name="Tutor" Relationship="Self.FK_Usuarios_Usuarios" FromRole="Usuarios1" ToRole="Usuarios" />
           <NavigationProperty Name="EntradasBlogs" Relationship="Self.UsuariosEntradasBlog" FromRole="Usuarios" ToRole="EntradasBlog" />
@@ -494,7 +494,7 @@ advertencia 6002: La tabla o vista 'ipartek.dbo.UsuariosDeRolUser' no tiene defi
           <End Role="EntradasBlog" Type="Self.EntradasBlog" Multiplicity="*" />
           <End Role="Usuarios" Type="Self.Usuario" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="IpartekEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="IpartekEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Articulos" EntityType="Self.Articulo" />
           <EntitySet Name="Categorias" EntityType="Self.Categoria" />
           <EntitySet Name="Departamentos" EntityType="Self.Departamento" />
