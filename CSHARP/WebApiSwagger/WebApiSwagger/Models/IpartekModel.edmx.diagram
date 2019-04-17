@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="164a0c15e87e4742b5a3d087d0f2405b" Name="Diagram1">
+        <EntityTypeShape EntityType="IpartekModel.Articulo" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IpartekModel.Categoria" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IpartekModel.Departamento" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IpartekModel.DetallePedido" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IpartekModel.EntradasBlog" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IpartekModel.Pedido" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IpartekModel.Rol" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IpartekModel.TiposUsuario" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IpartekModel.Usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="IpartekModel.RolesActivo" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IpartekModel.UsuariosDeRolUser" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="IpartekModel.FK_DetallePedidos_Articulos" ManuallyRouted="false" />
+        <AssociationConnector Association="IpartekModel.FK_DetallePedidos_Pedidos" ManuallyRouted="false" />
+        <AssociationConnector Association="IpartekModel.FK_Pedidos_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="IpartekModel.FK_Usuarios_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="IpartekModel.FK_Usuarios_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="IpartekModel.UsuariosEntradasBlog" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
