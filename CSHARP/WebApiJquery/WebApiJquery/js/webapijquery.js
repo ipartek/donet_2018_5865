@@ -22,7 +22,7 @@ $(function () {
         var id = $('#id').val();
 
         if (id) {
-            rol.Id = id;
+            rol.Id = +id;
 
             llamadaREST('PUT', url + id, rol);
         } else {
@@ -82,7 +82,9 @@ function llamadaREST(metodo, url, datos) {
     return $.ajax({
         method: metodo,
         url: url,
-        data: datos
+        data: JSON.stringify(datos),
+        dataType: 'json',
+        contentType: 'application/json'
     }).done(function (data, textStatus, jqXHR) {
         console.log(data, textStatus);
         refrescarTabla();
