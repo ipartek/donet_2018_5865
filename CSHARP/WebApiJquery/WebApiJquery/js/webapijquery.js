@@ -12,7 +12,7 @@ $(function () {
         $('form').show();
     });
 
-    $('form').click(function (e) {
+    $('form').submit(function (e) {
         e.preventDefault();
 
         var rol = { Nombre: $('#nombre').val(), Descripcion: $('#descripcion').val() };
