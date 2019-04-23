@@ -83,11 +83,14 @@ function llamadaREST(metodo, url, datos) {
         method: metodo,
         url: url,
         data: datos
-    }).done(function () {
+    }).done(function (data, textStatus, jqXHR) {
+        console.log(data, textStatus);
         refrescarTabla();
-    }).fail(function () {
-        alert('MAL');
-    }).always(function () {
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+        alert('Error: ' + textStatus + ", " + jqXHR.state());
+    }).always(function (dataOjqXHR, textStatus, jqXHROerrorThrown) {
         console.log('SIEMPRE');
+        //console.log(dataOjqXHR, textStatus, jqXHROerrorThrown);
     });
 }
