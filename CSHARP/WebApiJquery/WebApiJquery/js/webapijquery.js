@@ -57,7 +57,22 @@ function refrescarTabla() {
         $('.delete').click(function (e) {
             e.preventDefault();
 
-            alert('Delete');
+            if (confirm(`¿Estás seguro de que quieres borrar el registro ${this.dataset.id}?`)) {
+                $.ajax({
+                    method: 'DELETE',
+                    url: url + this.dataset.id,
+                    data: null,
+                    dataType: 'json',
+                    contentType: 'application/json; charset=UTF-8'
+                }).done(function () {
+                    //alert('Ok');
+                    refrescarTabla();
+                }).fail(function () {
+                    alert('MAL');
+                }).always(function () {
+                    console.log('SIEMPRE');
+                });
+            }
         });
     });
 }

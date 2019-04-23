@@ -20,7 +20,7 @@ namespace WebApiJquery.Controllers
         // GET: api/Roles
         public IQueryable<Rol> GetRols()
         {
-            return db.Rols;
+            return db.Rols.Where(r => !r.Borrado);
         }
 
         // GET: api/Roles/5
