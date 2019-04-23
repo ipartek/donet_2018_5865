@@ -1,8 +1,35 @@
 ﻿var url = 'api/roles/';
 
 $(function () {
+
+    $('form').hide();
+
+    refrescarTabla();
+
+    $('.insert').click(function (e) {
+        e.preventDefault();
+
+        $('form').show();
+    });
+
+    $('form').click(function (e) {
+        e.preventDefault();
+
+        var rol = { Nombre: $('#nombre').val(), Descripcion: $('#descripcion').val() };
+
+        $.post(url, rol).done(function (res) {
+            console.log(res);
+
+            refrescarTabla();
+        });
+    });
+});
+
+function refrescarTabla() {
     $.getJSON(url, function (roles) {
         console.log(roles);
+
+        $('tbody').empty();
 
         $(roles).each(function () {
             var fila = `
@@ -17,4 +44,4 @@ $(function () {
             $(fila).appendTo('tbody');
         });
     });
-});
+}
