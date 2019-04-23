@@ -43,5 +43,21 @@ function refrescarTabla() {
                 </tr>`;
             $(fila).appendTo('tbody');
         });
+
+        console.log($('.update'));
+
+        $('.update').click(function (e) {
+            e.preventDefault();
+
+            alert('Update ' + this.dataset.id + ' ' + $(this).data('id'));
+        });
+
+        console.log($('.delete'));
+
+        $('.delete').click(function (e) {
+            e.preventDefault();
+
+            alert('Delete');
+        });
     });
 }
