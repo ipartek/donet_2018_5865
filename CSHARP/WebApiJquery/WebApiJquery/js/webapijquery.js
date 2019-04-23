@@ -9,6 +9,8 @@ $(function () {
     $('.insert').click(function (e) {
         e.preventDefault();
 
+        $('form')[0].reset();
+
         $('form').show();
     });
 
@@ -17,13 +19,17 @@ $(function () {
 
         var rol = { Nombre: $('#nombre').val(), Descripcion: $('#descripcion').val() };
 
-        $.post(url, rol).done(function (res) {
-            console.log(res);
+        var id = $('#id').val();
 
-            refrescarTabla();
+        if (id) {
+            rol.Id = id;
 
-            $('form').hide()[0].reset();
-        });
+            llamadaREST('PUT', url + id, rol);
+        } else {
+            llamadaREST('POST', url, rol);
+        }
+
+        $('form').hide();
     });
 });
 
@@ -76,19 +82,12 @@ function llamadaREST(metodo, url, datos) {
     return $.ajax({
         method: metodo,
         url: url,
-        data: datos //,
-        //dataType: 'json',
-        //contentType: 'application/json; charset=UTF-8'
+        data: datos
     }).done(function () {
-        //alert('Ok');
         refrescarTabla();
     }).fail(function () {
         alert('MAL');
     }).always(function () {
         console.log('SIEMPRE');
     });
-}
-
-function getREST(url, datos) {
-    return llamadaREST('GET', url, datos);
 }
