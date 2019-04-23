@@ -21,6 +21,8 @@ $(function () {
             console.log(res);
 
             refrescarTabla();
+
+            $('form').hide()[0].reset();
         });
     });
 });
@@ -49,7 +51,13 @@ function refrescarTabla() {
         $('.update').click(function (e) {
             e.preventDefault();
 
-            alert('Update ' + this.dataset.id + ' ' + $(this).data('id'));
+            llamadaREST('GET', url + this.dataset.id).done(function (rol) {
+                $('#id').val(rol.Id);
+                $('#nombre').val(rol.Nombre);
+                $('#descripcion').val(rol.Descripcion);
+
+                $('form').show();
+            });
         });
 
         console.log($('.delete'));
@@ -58,21 +66,29 @@ function refrescarTabla() {
             e.preventDefault();
 
             if (confirm(`¿Estás seguro de que quieres borrar el registro ${this.dataset.id}?`)) {
-                $.ajax({
-                    method: 'DELETE',
-                    url: url + this.dataset.id,
-                    data: null,
-                    dataType: 'json',
-                    contentType: 'application/json; charset=UTF-8'
-                }).done(function () {
-                    //alert('Ok');
-                    refrescarTabla();
-                }).fail(function () {
-                    alert('MAL');
-                }).always(function () {
-                    console.log('SIEMPRE');
-                });
+                llamadaREST('DELETE', url + this.dataset.id);
             }
         });
     });
+}
+
+function llamadaREST(metodo, url, datos) {
+    return $.ajax({
+        method: metodo,
+        url: url,
+        data: datos //,
+        //dataType: 'json',
+        //contentType: 'application/json; charset=UTF-8'
+    }).done(function () {
+        //alert('Ok');
+        refrescarTabla();
+    }).fail(function () {
+        alert('MAL');
+    }).always(function () {
+        console.log('SIEMPRE');
+    });
+}
+
+function getREST(url, datos) {
+    return llamadaREST('GET', url, datos);
 }
