@@ -1,78 +1,123 @@
-﻿var url = 'api/roles/';
+﻿var URL = 'api/';
 
 $(function () {
 
+    $('body section').hide();
+
     $('form').hide();
 
-    refrescarTabla();
+    $('nav a').click(function (e) {
+        e.preventDefault();
+
+        var capa = this.id.substring(2);
+
+        refrescarTabla(capa);
+
+        $('body section').hide();
+        $('#' + capa).show();
+    });
 
     $('.insert').click(function (e) {
         e.preventDefault();
 
-        $('form')[0].reset();
+        var capa = idCapaPadre(this);
+        var $capa = $('#' + capa);
 
-        $('form').show();
+        $capa.find('form')[0].reset();
+
+        $capa.find('form').show();
     });
 
     $('form').submit(function (e) {
         e.preventDefault();
 
-        var rol = { Nombre: $('#nombre').val(), Descripcion: $('#descripcion').val() };
+        var capa = idCapaPadre(this);
 
-        var id = $('#id').val();
+        var objeto = obtenerObjeto(capa, this);// { Nombre: $capa.find('.nombre').val(), Descripcion: $capa.find('.descripcion').val() };
+
+        var id = this.id.value;
 
         if (id) {
-            rol.Id = +id;
+            objeto.Id = +id;
 
-            llamadaREST('PUT', url + id, rol);
+            llamadaREST('PUT', URL + capa + '/' + id, objeto)
+                .done(function () {
+                    refrescarTabla(capa);
+                });
         } else {
-            llamadaREST('POST', url, rol);
+            llamadaREST('POST', URL + capa, objeto)
+                .done(function () {
+                    refrescarTabla(capa);
+                });
         }
 
         $('form').hide();
     });
 });
 
-function refrescarTabla() {
-    $.getJSON(url, function (roles) {
-        console.log(roles);
+function obtenerCamposTabla(capa, objeto) {
+    switch (capa) {
+        case 'roles': return rolesObtenerCamposTabla(objeto);
+    }
+}
 
-        $('tbody').empty();
+function obtenerObjeto(capa, form) {
+    switch (capa) {
+        case 'roles': return rolesObtenerObjeto(form);
+    }
+    //return eval(capa + 'ObtenerObjeto(' + JSON.stringify(form) + ')');
+}
 
-        $(roles).each(function () {
+function idCapaPadre(that) {
+    return $(that).closest('section').attr('id');
+}
+
+function refrescarTabla(capa) {
+    $.getJSON(URL + capa, function (objetos) {
+        console.log(objetos);
+
+        var $capa = $('#' + capa);
+        var form = $capa.find('form')[0];
+
+        $capa.find('tbody').empty();
+
+        $(objetos).each(function () {
             var fila = `
                 <tr>
                     <th>${this.Id}</th>
-                    <td>${this.Nombre}</td>
+                    ${obtenerCamposTabla(capa, this)}
                     <td>
                         <a class="update" data-id="${this.Id}" href="#">Editar</a>
                         <a class="delete" data-id="${this.Id}" href="#">Borrar</a>
                     </td>
                 </tr>`;
-            $(fila).appendTo('tbody');
+            $(fila).appendTo($capa.find('tbody'));
         });
 
-        console.log($('.update'));
+        console.log($capa.find('.update'));
 
-        $('.update').click(function (e) {
+        $capa.find('.update').click(function (e) {
             e.preventDefault();
 
-            llamadaREST('GET', url + this.dataset.id).done(function (rol) {
-                $('#id').val(rol.Id);
-                $('#nombre').val(rol.Nombre);
-                $('#descripcion').val(rol.Descripcion);
+            llamadaREST('GET', URL + capa + '/' + this.dataset.id).done(function (rol) {
+                form.id.value = rol.Id;
+                form.nombre.value = rol.Nombre;
+                form.descripcion.value = rol.Descripcion;
 
-                $('form').show();
+                $(form).show();
             });
         });
 
-        console.log($('.delete'));
+        console.log($capa.find('.delete'));
 
-        $('.delete').click(function (e) {
+        $capa.find('.delete').click(function (e) {
             e.preventDefault();
 
             if (confirm(`¿Estás seguro de que quieres borrar el registro ${this.dataset.id}?`)) {
-                llamadaREST('DELETE', url + this.dataset.id);
+                llamadaREST('DELETE', URL + capa + '/' + this.dataset.id)
+                    .done(function () {
+                        refrescarTabla(capa);
+                    });
             }
         });
     });
@@ -87,7 +132,6 @@ function llamadaREST(metodo, url, datos) {
         contentType: 'application/json'
     }).done(function (data, textStatus, jqXHR) {
         console.log(data, textStatus);
-        refrescarTabla();
     }).fail(function (jqXHR, textStatus, errorThrown) {
         console.log(textStatus, errorThrown);
         alert('Error: ' + textStatus + ", " + jqXHR.state());

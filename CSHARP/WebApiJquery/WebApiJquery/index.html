@@ -4,33 +4,51 @@
     <meta charset="utf-8" />
     <title></title>
     <script src="js/jquery-3.4.0.min.js"></script>
+    <script src="js/roles.js"></script>
     <script src="js/webapijquery.js"></script>
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Nombre
-                </th>
-                <th>
-                    <a class="insert" href="#">Añadir</a>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            
-        </tbody>
-    </table>
+    <h1>Blog</h1>
 
-    <form action="#">
-        <input type="hidden" id="id" placeholder="Id" />
-        <input id="nombre" placeholder="Nombre" />
-        <input id="descripcion" placeholder="Descripción" />
-        <button class="guardar">Guardar</button>
-    </form>
+    <nav>
+        <ul>
+            <li><a id="a-usuarios" href="#">Usuarios</a></li>
+            <li><a id="a-roles" href="#">Roles</a></li>
+        </ul>
+    </nav>
+
+    <section id="usuarios">
+        <h2>Usuarios</h2>
+    </section>
+
+    <section id="roles">
+        <h2>Roles</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                        <a class="insert" data-form="roles" href="#">Añadir</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <form action="#">
+            <input type="hidden" name="id" placeholder="Id" />
+            <input name="nombre" placeholder="Nombre" />
+            <input name="descripcion" placeholder="Descripción" />
+            <button class="guardar">Guardar</button>
+        </form>
+    </section>
 </body>
 </html>

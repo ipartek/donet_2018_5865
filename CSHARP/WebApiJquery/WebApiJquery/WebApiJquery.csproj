@@ -101,6 +101,7 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="js\jquery-3.4.0.min.js" />
+    <Content Include="js\roles.js" />
     <Content Include="js\webapijquery.js" />
     <Content Include="Models\IpartekModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
