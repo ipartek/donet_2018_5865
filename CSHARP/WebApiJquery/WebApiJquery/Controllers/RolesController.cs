@@ -18,7 +18,7 @@ namespace WebApiJquery.Controllers
         private IpartekEntities db = new IpartekEntities();
 
         // GET: api/Roles
-        public IQueryable<Rol> GetRols()
+        public IQueryable<Rol> GetRoles()
         {
             return db.Rols.Where(r => !r.Borrado);
         }
