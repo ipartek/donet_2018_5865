@@ -58,12 +58,26 @@ $(function () {
 function obtenerCamposTabla(capa, objeto) {
     switch (capa) {
         case 'roles': return rolesObtenerCamposTabla(objeto);
+        case 'usuarios': return usuariosObtenerCamposTabla(objeto);
+        default: throw "No se reconoce ese tipo de capa";
+    }
+}
+
+function rellenarFormulario(capa, objeto) {
+    var form = $(`#${capa} form`)[0];
+
+    switch (capa) {
+        case 'roles': return rolesRellenarFormulario(form, objeto);
+        case 'usuarios': return usuariosRellenarFormulario(form, objeto);
+        default: throw "No se reconoce ese tipo de capa";
     }
 }
 
 function obtenerObjeto(capa, form) {
     switch (capa) {
         case 'roles': return rolesObtenerObjeto(form);
+        case 'usuarios': return usuariosObtenerObjeto(form);
+        default: throw "No se reconoce ese tipo de capa";
     }
     //return eval(capa + 'ObtenerObjeto(' + JSON.stringify(form) + ')');
 }
@@ -77,8 +91,7 @@ function refrescarTabla(capa) {
         console.log(objetos);
 
         var $capa = $('#' + capa);
-        var form = $capa.find('form')[0];
-
+        
         $capa.find('tbody').empty();
 
         $(objetos).each(function () {
@@ -99,12 +112,9 @@ function refrescarTabla(capa) {
         $capa.find('.update').click(function (e) {
             e.preventDefault();
 
-            llamadaREST('GET', URL + capa + '/' + this.dataset.id).done(function (rol) {
-                form.id.value = rol.Id;
-                form.nombre.value = rol.Nombre;
-                form.descripcion.value = rol.Descripcion;
-
-                $(form).show();
+            llamadaREST('GET', URL + capa + '/' + this.dataset.id).done(function (objeto) {
+                rellenarFormulario(capa, objeto);
+                $(`#${capa} form`).show();
             });
         });
 

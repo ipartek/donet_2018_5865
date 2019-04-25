@@ -18,6 +18,7 @@ namespace WebApiJquery.Models
         public IpartekEntities()
             : base("name=IpartekEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -26,5 +27,6 @@ namespace WebApiJquery.Models
         }
     
         public virtual DbSet<Rol> Rols { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
     }
 }

@@ -6,6 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="d3f39292986848eead8cb271e4d549e1" Name="Diagram1">
         <EntityTypeShape EntityType="IpartekModel.Rol" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IpartekModel.Usuario" Width="1.5" PointX="4" PointY="0.75" />
+        <AssociationConnector Association="IpartekModel.FK_Usuarios_Roles" />
+        <AssociationConnector Association="IpartekModel.FK_Usuarios_Usuarios" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

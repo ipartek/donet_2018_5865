@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title></title>
     <script src="js/jquery-3.4.0.min.js"></script>
+    <script src="js/usuarios.js"></script>
     <script src="js/roles.js"></script>
     <script src="js/webapijquery.js"></script>
 </head>
@@ -19,6 +20,35 @@
 
     <section id="usuarios">
         <h2>Usuarios</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Rol
+                    </th>
+                    <th>
+                        <a class="insert" data-form="roles" href="#">Añadir</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <form action="#">
+            <input type="hidden" name="id" placeholder="Id" />
+            <input type="email" name="email" placeholder="Email" />
+            <input type="password" name="password" placeholder="Password" />
+            <!-- TODO: Cambiar Rol -->
+            <input name="rol" placeholder="Rol" />
+            <button class="guardar">Guardar</button>
+        </form>
     </section>
 
     <section id="roles">

@@ -101,6 +101,7 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="js\jquery-3.4.0.min.js" />
+    <Content Include="js\usuarios.js" />
     <Content Include="js\roles.js" />
     <Content Include="js\webapijquery.js" />
     <Content Include="Models\IpartekModel.Context.tt">
@@ -119,6 +120,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,6 +140,9 @@
       <DependentUpon>IpartekModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Rol.cs">
+      <DependentUpon>IpartekModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
       <DependentUpon>IpartekModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,20 +12,22 @@ namespace WebApiJquery.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Rol
+    public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Rol()
+        public Usuario()
         {
-            this.Usuarios = new HashSet<Usuario>();
+            this.Tutorizados = new HashSet<Usuario>();
         }
     
         public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public bool Borrado { get; set; }
+        public Nullable<int> IdRol { get; set; }
+        public Nullable<int> IdTutor { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     
+        public virtual Rol Rol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual ICollection<Usuario> Tutorizados { get; set; }
     }
 }
