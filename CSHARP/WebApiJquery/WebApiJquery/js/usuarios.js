@@ -1,7 +1,10 @@
 ﻿function usuariosObtenerObjeto(form) {
+    var idrol = parseInt(form.rol.value);
+
     return {
         Email: form.email.value,
-        Password: form.password.value
+        Password: form.password.value,
+        IdRol: idrol === 0 ? null : idrol
     };
 }
 
@@ -18,8 +21,12 @@ function usuariosRellenarFormulario(form, usuario) {
     llamadaREST('GET', URL + 'roles').done(function (roles) {
         console.log('usuariosRellenarFormulario', roles);
 
+        form.rol.innerHTML = '';
+
+        form.rol.add(new Option('SIN ROL', 0, false, false));
+
         $(roles).each(function () {
-            form.rol.add(new Option(this.Descripcion, this.Id, false, false));
+            form.rol.add(new Option(this.Descripcion, this.Id, false, usuario.RolId === this.Id));
         });
     });
 }

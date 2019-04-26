@@ -23,7 +23,10 @@ $(function () {
         var capa = idCapaPadre(this);
         var $capa = $('#' + capa);
 
-        $capa.find('form')[0].reset();
+        var form = $capa.find('form')[0];
+
+        form.reset();
+        form.id.value = '';
 
         $capa.find('form').show();
     });
