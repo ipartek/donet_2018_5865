@@ -29,5 +29,6 @@ namespace WebApiJquery.Models
         public virtual Rol Rol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuario> Tutorizados { get; set; }
+        public virtual Usuario Tutor { get; set; }
     }
 }

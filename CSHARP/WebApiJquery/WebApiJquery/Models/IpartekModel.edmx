@@ -97,6 +97,7 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Rol" Relationship="IpartekModel.FK_Usuarios_Roles" FromRole="Usuario" ToRole="Rol" />
           <NavigationProperty Name="Tutorizados" Relationship="IpartekModel.FK_Usuarios_Usuarios" FromRole="Usuario" ToRole="Usuario1" />
+          <NavigationProperty Name="Tutor" Relationship="IpartekModel.FK_Usuarios_Usuarios" FromRole="Usuario1" ToRole="Usuario" />
         </EntityType>
         <Association Name="FK_Usuarios_Roles">
           <End Type="IpartekModel.Rol" Role="Rol" Multiplicity="0..1" />

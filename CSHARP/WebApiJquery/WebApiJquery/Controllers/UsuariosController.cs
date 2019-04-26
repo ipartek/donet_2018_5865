@@ -17,8 +17,14 @@ namespace WebApiJquery.Controllers
     {
         private IpartekEntities db = new IpartekEntities();
 
+        [Route("prueba")]
+        public IQueryable<Usuario> GetUsuariosCompletos()
+        {
+            return db.Usuarios;
+        }
+
         // GET: api/Usuarios
-        public IQueryable GetUsuarios()
+            public IQueryable GetUsuarios()
         {
             return db.Usuarios.Include("Rol").Select(
                 u => new
