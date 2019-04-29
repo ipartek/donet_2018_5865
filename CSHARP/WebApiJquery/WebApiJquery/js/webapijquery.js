@@ -1,6 +1,7 @@
 ﻿var URL = 'api/';
 
 $(function () {
+    rellenarRolesFormularioUsuario();
 
     $('body section').hide();
 
