@@ -9,7 +9,10 @@ $(function () {
         console.log(naves);
     });
 
-    obtenerPiloto().then(obtenerPlaneta).then(obtenerEspecie).then(
+    //obtenerPiloto().then(obtenerPlaneta).then(obtenerEspecie).then(
+    obtenerPiloto().then(function(pilot) {
+        return $.when(obtenerPlaneta(pilot), obtenerEspecie(pilot));
+    }).then(
         function(pilot){
             piloto = pilot.piloto;
             console.log(piloto);
