@@ -1,3 +1,11 @@
+# Ejemplo de Angular
+
+Para poder utilizarlo necesitamos tener instalado [NodeJS](http://nodejs.org) y luego desde este directorio, lanzar `npm install`.
+
+Para lanzar el servidor de desarrollo utilizar `ng serve --open`.
+
+Se abrirá el navegador por defecto en `http://localhost:4200`.
+
 # MyApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
