@@ -1,0 +1,14 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Bienvenido a {{ title }}!
+  </h1>
+
+  <h2>Hola {{persona.nombre}}</h2>
+  <input [(ngModel)]="persona.nombre" />
+  <button (click)="onClick()">Ver en consola</button>
+</div>
+
+<app-personas-listado></app-personas-listado>
+
+
